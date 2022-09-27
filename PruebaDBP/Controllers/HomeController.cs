@@ -13,20 +13,49 @@ namespace PruebaDBP.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult EditProfile()
         {
             return View();
         }
 
-        public IActionResult Pelicula()
+        public IActionResult LandingPage()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult LandingPageUser()
         {
             return View();
         }
+
+        public IActionResult Library()
+        {
+            return View();
+        }
+        public IActionResult Login()
+        {
+            return View();
+        }
+        public IActionResult Movie()
+        {
+            return View();
+        }
+
+        public IActionResult Profile()
+        {
+            return View();
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        public IActionResult Result()
+        {
+            return View();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
