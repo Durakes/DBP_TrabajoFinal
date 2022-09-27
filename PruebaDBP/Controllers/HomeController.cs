@@ -18,6 +18,11 @@ namespace PruebaDBP.Controllers
             return View();
         }
 
+        public IActionResult Pelicula()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
