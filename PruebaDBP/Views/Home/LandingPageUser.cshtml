@@ -1,7 +1,88 @@
 ﻿@{
     ViewData["Title"] = "Landing Page User";
 }
-
+<link rel="stylesheet" href="~/css/caroussel.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/caroussel2.css" asp-append-version="true" />
 <main class="flex items-center justify-center h-screen bg-gray-100">
-    <h1>Landing Page Usuario</h1>
+    <div class="container mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div class="flex justify-center p-6 bg-gray-100 scale-50">
+                <div class="carousel2" >
+                    <div class="carousel2-inner">
+                        <input class="carousel2-open" type="radio" id="carousel2-1" name="carousel2" aria-hidden="true"
+                            hidden="" checked="checked">
+                        <div class="carousel2-item">
+                            <img class="object-cover" src="/images/pelicula5.jpg">
+                        </div>
+                        <input class="carousel2-open" type="radio" id="carousel2-2" name="carousel2" aria-hidden="true"
+                            hidden="">
+                        <div class="carousel2-item ">
+                            <img class="object-cover" src="/images/pelicula6.jpg">
+                        </div>
+                        <input class="carousel2-open" type="radio" id="carousel2-3" name="carousel2" aria-hidden="true"
+                            hidden="">
+                        <div class="carousel2-item ">
+                            <img class="object-cover" src="/images/pelicula4.jpg">
+                        </div>
+                        <label for="carousel2-3" class="carousel2-control prev control-1">‹</label>
+                        <label for="carousel2-2" class="carousel2-control next control-1">›</label>
+                        <label for="carousel2-1" class="carousel2-control prev control-2">‹</label>
+                        <label for="carousel2-3" class="carousel2-control next control-2">›</label>
+                        <label for="carousel2-2" class="carousel2-control prev control-3">‹</label>
+                        <label for="carousel2-1" class="carousel2-control next control-3">›</label>
+                        <ol class="carousel2-indicators">
+                            <li>
+                                <label for="carousel2-1" class="carousel2-bullet">•</label>
+                            </li>
+                            <li>
+                                <label for="carousel2-2" class="carousel2-bullet">•</label>
+                            </li>
+                            <li>
+                                <label for="carousel2-3" class="carousel2-bullet">•</label>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center  p-6 bg-gray-100 scale-50">
+                <div class="carousel" >
+                    <div class="carousel-inner">
+                        <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true"
+                            hidden="" checked="checked">
+                        <div class="carousel-item">
+                            <img class="" src="/images/pelicula1.jpg">
+                        </div>
+                        <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true"
+                            hidden="">
+                        <div class="carousel-item ">
+                            <img class="" src="/images/pelicula2.jpg">
+                        </div>
+                        <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true"
+                            hidden="">
+                        <div class="carousel-item ">
+                            <img class="" src="/images/pelicula3.jpg">
+                        </div>
+                        <label for="carousel-3" class="carousel-control prev control-1">‹</label>
+                        <label for="carousel-2" class="carousel-control next control-1">›</label>
+                        <label for="carousel-1" class="carousel-control prev control-2">‹</label>
+                        <label for="carousel-3" class="carousel-control next control-2">›</label>
+                        <label for="carousel-2" class="carousel-control prev control-3">‹</label>
+                        <label for="carousel-1" class="carousel-control next control-3">›</label>
+                        <ol class="carousel-indicators">
+                            <li>
+                                <label for="carousel-1" class="carousel-bullet">•</label>
+                            </li>
+                            <li>
+                                <label for="carousel-2" class="carousel-bullet">•</label>
+                            </li>
+                            <li>
+                                <label for="carousel-3" class="carousel-bullet">•</label>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </main>
