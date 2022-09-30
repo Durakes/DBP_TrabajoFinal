@@ -4,37 +4,37 @@ html, body {
     background: url("http://digital.bnint.com/filelib/s9/photos/white_wood_4500x3000_lo_res.jpg");
 }
 
-.carousel {
+.carousel1 {
     position: relative;
     box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.64);
     margin-top: 0px;
 }
 
-.carousel-inner {
+.carousel1-inner {
     position: relative;
     overflow: hidden;
     width: 100%;
 }
 
-.carousel-open:checked + .carousel-item {
+.carousel1-open:checked + .carousel1-item {
     position: static;
     opacity: 100;
 }
 
-.carousel-item {
+.carousel1-item {
     position: absolute;
     opacity: 0;
     -webkit-transition: opacity 0.6s ease-out;
     transition: opacity 0.6s ease-out;
 }
 
-.carousel-item img {
+.carousel1-item img {
     display: block;
     height: auto;
     max-width: 100%;
 }
 
-.carousel-control {
+.carousel1-control {
     background: rgba(0, 0, 0, 0.28);
     border-radius: 50%;
     color: #fff;
@@ -54,26 +54,26 @@ html, body {
     z-index: 10;
 }
 
-.carousel-control.prev {
+.carousel1-control.prev {
     left: 2%;
 }
 
-.carousel-control.next {
+.carousel1-control.next {
     right: 2%;
 }
 
-.carousel-control:hover {
+.carousel1-control:hover {
     background: rgba(0, 0, 0, 0.8);
     color: #aaaaaa;
 }
 
-#carousel-1:checked ~ .control-1,
-#carousel-2:checked ~ .control-2,
-#carousel-3:checked ~ .control-3 {
+#carousel1-1:checked ~ .control-1,
+#carousel1-2:checked ~ .control-2,
+#carousel1-3:checked ~ .control-3 {
     display: block;
 }
 
-.carousel-indicators {
+.carousel1-indicators {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -85,25 +85,25 @@ html, body {
     z-index: 10;
 }
 
-.carousel-indicators li {
+.carousel1-indicators li {
     display: inline-block;
     margin: 0 5px;
 }
 
-.carousel-bullet {
+.carousel1-bullet {
     color: #fff;
     cursor: pointer;
     display: block;
     font-size: 35px;
 }
 
-.carousel-bullet:hover {
+.carousel1-bullet:hover {
     color: #aaaaaa;
 }
 
-#carousel-1:checked ~ .control-1 ~ .carousel-indicators li:nth-child(1) .carousel-bullet,
-#carousel-2:checked ~ .control-2 ~ .carousel-indicators li:nth-child(2) .carousel-bullet,
-#carousel-3:checked ~ .control-3 ~ .carousel-indicators li:nth-child(3) .carousel-bullet {
+#carousel1-1:checked ~ .control-1 ~ .carousel1-indicators li:nth-child(1) .carousel1-bullet,
+#carousel1-2:checked ~ .control-2 ~ .carousel1-indicators li:nth-child(2) .carousel1-bullet,
+#carousel1-3:checked ~ .control-3 ~ .carousel1-indicators li:nth-child(3) .carousel1-bullet {
     color: #428bca;
 }
 
