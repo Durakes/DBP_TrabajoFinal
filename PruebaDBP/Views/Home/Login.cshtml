@@ -2,19 +2,49 @@
     ViewData["Title"] = "Login";
 }
 
-<main class="flex items-center justify-center h-screen bg-gray-100">
-    <form action="">
-        <div class="bg-white w-96 p-6 rounded shadow-sm">
-            <div class="flex items-center justify-center mb-4">
-                <img src="/images/logo.jpeg" class="h-32" alt=""/>
+<main class="flex items-center justify-center h-screen">
+    <div class="container py-12 px-6 h-full">
+        <div class="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
+            <div class="xl:w-10/12">
+                <div class="block bg-white shadow-lg rounded-lg">
+                    <div class="lg:flex lg:flex-wrap g-0">
+                        <div class="lg:w-6/12 px-4 md:px-0">
+                            <div class="md:p-12 md:mx-6">
+                                <div class="text-center">
+                                    <img class="mx-auto w-48 mb-8" src="~/images/logo.jpeg" alt="logo" />
+                                </div>
+                                <form>
+                                    <p class="mb-4">Ingrese sus datos de usuario</p>
+                                    <div class="mb-4">
+                                        <input type="email" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleFormControlInput1" placeholder="Correo Electronico" />
+                                    </div>
+                                    <div class="mb-4">
+                                        <input type="password" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleFormControlInput1" placeholder="Contraseña" />
+                                    </div>
+                                    <div class="text-center pt-1 mb-12 pb-1">
+                                        <button class="inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3" type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" style="background: linear-gradient(90deg, rgba(226,226,227,1) 0%, rgba(68,93,116,0.9262079831932774) 36%, rgba(63,102,127,1) 73%, rgba(0,30,36,1) 100%);">Inicio de Sesión</button>
+
+                                        <a class="text-gray-500" href="#!">Forgot password?</a>
+                                    </div>
+                                    <div class="flex items-center justify-between pb-6">
+                                        <p class="mb-0 mr-2">Don't have an account?</p>
+                                        <button type="button" class="inline-block px-6 py-2 border-2 border-red-600 text-red-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light">Danger</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="lg:w-6/12 flex items-center lg:rounded-r-lg rounded-b-lg lg:rounded-bl-none" style="background: linear-gradient(90deg, rgba(226,226,227,1) 0%, rgba(102,127,149,1) 12%, rgba(68,93,116,0.9262079831932774) 36%, rgba(63,102,127,1) 70%, rgba(0,30,36,1) 100%);">
+                            <div class="text-white px-4 py-6 md:p-12 md:mx-6">
+                                <h2 class="text-xl font-bold mb-6">Lumière</h2>
+                                <h4 class="text-xl font-italic mb-6">"Donde las mejores películas se comparten"</h4>
+                                <p class="text-sm">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <label class="text-gray-700">Email</label>
-            <input type="email" class="w-full py-2 bg-gray-50 text-gray-500 px-1 outline-none mb-4"/>
-            <label class="text-gray-700">Password</label>
-            <input type="password" class="w-full py-2 bg-gray-50 text-gray-500 px-1 outline-none mb-4"/>
-            <input type="checkbox" class="mb-4" id="remember"/>
-            <label for="remember" class="text-gray-700">Prueba 2</label>
-            <button type="submit" class="bg-blue-500 w-full text-gray-100 py-2 rounded hover:bg-blue-600 transition-colors">Login</button>
         </div>
-    </form>
+    </div>
 </main>
