@@ -32,6 +32,7 @@ namespace PruebaDBP.Controllers
         {
             return View();
         }
+        [Route("/login")]
         public IActionResult Login()
         {
             return View();
@@ -45,7 +46,7 @@ namespace PruebaDBP.Controllers
         {
             return View();
         }
-
+        [Route("/register")]
         public IActionResult Register()
         {
             return View();
