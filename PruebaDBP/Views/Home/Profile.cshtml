@@ -2,6 +2,205 @@
     ViewData["Title"] = "Perfil";
 }
 
-<main class="flex items-center justify-center h-screen bg-gray-100">
-    <h1>Perfil</h1>
+<main class="flex overflow-hidden overflow-y-auto items-start justify-center h-screen bg-gray-100">
+    <div class="columns-1">
+        <figure class="flex flex-md-column bg-slate-50 rounded-xl p-2 dark:bg-slate-800 pt-20">
+            <img class="w-36 h-36 md:w-48 md:h-48 md:flex md:rounded-none mx-auto" src="/images/perfil.jpg" alt="" width="384" height="512">
+            <div class="pt-0 md:p-5 text-left space-y-4 ml-5">
+                <figcaption class="font-medium columns-2">
+                    <div class="text-sky-500 dark:text-sky-400">
+                        Usuario
+                    </div>
+                    <div class="text-sky-500 dark:text-sky-400">
+                        Nombre
+                    </div>
+                </figcaption>
+                <figcaption class="font-medium columns-2">
+                    <div class="text-slate-700 dark:text-slate-500">
+                        Fecha de ult. actividad: 18/08/22
+                    </div>
+                        <a href="\Home\EditProfile">
+                            <input type="submit" value="Editar perfil " class="bg-sky-100 p-3 rounded-lg w-auto h-auto"/>
+                        </a>
+                </figcaption>
+                <blockquote class="columns-1">
+                    <div class="text-md font-medium h-10 w-50 invisible md:visible">
+                        Descripción
+                    </div>
+                    <div class="text-sm font-small h-30 w-200">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </div>
+                </blockquote>
+            </div>
+        </figure>
+        <figure class="bg-slate-50 rounded-xl p-2 dark:bg-slate-800 pt-20">
+            <p class="text-2xl">Apregados ultimamente</p>
+            <div class="columns-1">
+                <div class="container">
+                    <figure class="flex flex-md-column bg-slate-50 rounded-xl p-2 dark:bg-slate-800  ">
+                        <img class="w-24 h-36 md:w-32 md:h-48 md:flex md:rounded-none mx-auto" src="/images/avatar.jpg" alt="" width="384" height="512">
+                        <div class="pt-0 md:p-5 text-left space-y-4 ml-5">
+                            <div class="text-black-500 dark:text-sky-400 text-xl text-left">
+                                <a href="\Home\Movie">Avatar</a>
+                            </div>
+                            <div class="columns-1 md:columns-2 grid grid-cols-3 gap-4">
+                                <div class="col-span-2">
+                                    <figcaption class="font-medium columns-1 md:columns-2">
+                                        <div class="text-sky-500 dark:text-sky-400">
+                                            Director: James Cameron
+                                        </div>
+                                        <div class="text-sky-500 dark:text-sky-400">
+                                            Año: 2009
+                                        </div>
+                                    </figcaption>
+                            
+                                    <blockquote>
+                                        <div class="text-sm font-small h-50 w-400 ">
+                                            Corre el año 2154. Jake Sully es un antiguo marine que vive postrado en una silla de ruedas, pero cuya determinación y valentía se mantienen intactas. Ahora, tiene una misión entre manos: viajar a Pandora, un planeta del que los humanos extraen...
+                                        </div>
+                                    </blockquote>
+                                </div>
+                                <figure class="columns-1 items-center">
+                                    <p>Ciencia ficción</p><br />
+                                    <img class="w-20 h-6" src="/images/valoracion.png" alt="" width="100" height="30">
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+                <div class="container">
+                    <figure class="flex flex-md-column bg-slate-50 rounded-xl p-2 dark:bg-slate-800  ">
+                        <img class="w-24 h-36 md:w-32 md:h-48 md:flex md:rounded-none mx-auto" src="/images/avatar.jpg" alt="" width="384" height="512">
+                        <div class="pt-0 md:p-5 text-left space-y-4 ml-5">
+                            <div class="text-black-500 dark:text-sky-400 text-xl text-left">
+                                <a href="\Home\Movie">Avatar</a>
+                            </div>
+                            <div class="columns-1 md:columns-2 grid grid-cols-3 gap-4">
+                                <div class="col-span-2">
+                                    <figcaption class="font-medium columns-1 md:columns-2">
+                                        <div class="text-sky-500 dark:text-sky-400">
+                                            Director: James Cameron
+                                        </div>
+                                        <div class="text-sky-500 dark:text-sky-400">
+                                            Año: 2009
+                                        </div>
+                                    </figcaption>
+
+                                    <blockquote>
+                                        <div class="text-sm font-small h-50 w-400 ">
+                                            Corre el año 2154. Jake Sully es un antiguo marine que vive postrado en una silla de ruedas, pero cuya determinación y valentía se mantienen intactas. Ahora, tiene una misión entre manos: viajar a Pandora, un planeta del que los humanos extraen...
+                                        </div>
+                                    </blockquote>
+                                </div>
+                                <figure class="columns-1 items-center">
+                                    <p>Ciencia ficción</p>
+                                    <br />
+                                    <img class="w-20 h-6" src="/images/valoracion.png" alt="" width="100" height="30">
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+                <div class="container">
+                    <figure class="flex flex-md-column bg-slate-50 rounded-xl p-2 dark:bg-slate-800  ">
+                        <img class="w-24 h-36 md:w-32 md:h-48 md:flex md:rounded-none mx-auto" src="/images/avatar.jpg" alt="" width="384" height="512">
+                        <div class="pt-0 md:p-5 text-left space-y-4 ml-5">
+                            <div class="text-black-500 dark:text-sky-400 text-xl text-left">
+                                <a href="\Home\Movie">Avatar</a>
+                            </div>
+                            <div class="columns-1 md:columns-2 grid grid-cols-3 gap-4">
+                                <div class="col-span-2">
+                                    <figcaption class="font-medium columns-1 md:columns-2">
+                                        <div class="text-sky-500 dark:text-sky-400">
+                                            Director: James Cameron
+                                        </div>
+                                        <div class="text-sky-500 dark:text-sky-400">
+                                            Año: 2009
+                                        </div>
+                                    </figcaption>
+
+                                    <blockquote>
+                                        <div class="text-sm font-small h-50 w-400 ">
+                                            Corre el año 2154. Jake Sully es un antiguo marine que vive postrado en una silla de ruedas, pero cuya determinación y valentía se mantienen intactas. Ahora, tiene una misión entre manos: viajar a Pandora, un planeta del que los humanos extraen...
+                                        </div>
+                                    </blockquote>
+                                </div>
+                                <figure class="columns-1 items-center">
+                                    <p>Ciencia ficción</p>
+                                    <br />
+                                    <img class="w-20 h-6" src="/images/valoracion.png" alt="" width="100" height="30">
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+                <div class="container">
+                    <figure class="flex flex-md-column bg-slate-50 rounded-xl p-2 dark:bg-slate-800  ">
+                        <img class="w-24 h-36 md:w-32 md:h-48 md:flex md:rounded-none mx-auto" src="/images/avatar.jpg" alt="" width="384" height="512">
+                        <div class="pt-0 md:p-5 text-left space-y-4 ml-5">
+                            <div class="text-black-500 dark:text-sky-400 text-xl text-left">
+                                <a href="\Home\Movie">Avatar</a>
+                            </div>
+                            <div class="columns-1 md:columns-2 grid grid-cols-3 gap-4">
+                                <div class="col-span-2">
+                                    <figcaption class="font-medium columns-1 md:columns-2">
+                                        <div class="text-sky-500 dark:text-sky-400">
+                                            Director: James Cameron
+                                        </div>
+                                        <div class="text-sky-500 dark:text-sky-400">
+                                            Año: 2009
+                                        </div>
+                                    </figcaption>
+
+                                    <blockquote>
+                                        <div class="text-sm font-small h-50 w-400 ">
+                                            Corre el año 2154. Jake Sully es un antiguo marine que vive postrado en una silla de ruedas, pero cuya determinación y valentía se mantienen intactas. Ahora, tiene una misión entre manos: viajar a Pandora, un planeta del que los humanos extraen...
+                                        </div>
+                                    </blockquote>
+                                </div>
+                                <figure class="columns-1 items-center">
+                                    <p>Ciencia ficción</p>
+                                    <br />
+                                    <img class="w-20 h-6" src="/images/valoracion.png" alt="" width="100" height="30">
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+                <div class="container">
+                    <figure class="flex flex-md-column bg-slate-50 rounded-xl p-2 dark:bg-slate-800  ">
+                        <img class="w-24 h-36 md:w-32 md:h-48 md:flex md:rounded-none mx-auto" src="/images/avatar.jpg" alt="" width="384" height="512">
+                        <div class="pt-0 md:p-5 text-left space-y-4 ml-5">
+                            <div class="text-black-500 dark:text-sky-400 text-xl text-left">
+                                <a href="\Home\Movie">Avatar</a>
+                            </div>
+                            <div class="columns-1 md:columns-2 grid grid-cols-3 gap-4">
+                                <div class="col-span-2">
+                                    <figcaption class="font-medium columns-1 md:columns-2">
+                                        <div class="text-sky-500 dark:text-sky-400">
+                                            Director: James Cameron
+                                        </div>
+                                        <div class="text-sky-500 dark:text-sky-400">
+                                            Año: 2009
+                                        </div>
+                                    </figcaption>
+
+                                    <blockquote>
+                                        <div class="text-sm font-small h-50 w-400 ">
+                                            Corre el año 2154. Jake Sully es un antiguo marine que vive postrado en una silla de ruedas, pero cuya determinación y valentía se mantienen intactas. Ahora, tiene una misión entre manos: viajar a Pandora, un planeta del que los humanos extraen...
+                                        </div>
+                                    </blockquote>
+                                </div>
+                                <figure class="columns-1 items-center">
+                                    <p>Ciencia ficción</p>
+                                    <br />
+                                    <img class="w-20 h-6" src="/images/valoracion.png" alt="" width="100" height="30">
+                                </figure>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+            </div>
+       </figure>
+    </div>
 </main>
