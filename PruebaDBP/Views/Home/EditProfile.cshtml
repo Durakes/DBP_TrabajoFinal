@@ -2,6 +2,40 @@
     ViewData["Title"] = "Edición Perfil";
 }
 
-<main class="flex items-center justify-center h-screen bg-gray-100">
-    <h1>Edición Perfil</h1>
+<main class="flex items-center justify-center h-auto bg-gray-100 p-20">
+    <div class="conteiner w-100 bg-white items-center">
+        <div class="md:p-12 md:mx-6 md:w-7/10 sm:4/5 overflow-hidden">
+            <form action="/Home/Profile ">
+                <div class="form-group md:flex">
+                    <div class="columns-1">
+                        <img class="items-center m-5 w-24 h-24 md:w-36 md:h-36 md:flex md:rounded-none mx-auto" src="/images/perfil.jpg" alt="" width="512" height="512">
+                        <input type="file" class="items-center form-control-file" id="exampleFormControlFile1">
+                    </div>
+                    <div class="columns-1 visible">
+                        <label class="block p-2">
+                            <span class="text-gray-700">Usuario: </span>
+                            <input type="text" class="bg-gray-100 form-input mt-1 rounded-full block w-full pl-3" placeholder="Ingrese su usuario" />
+                        </label>
+                        <label class="block p-2">
+                            <span class="text-gray-700">Nombre: </span>
+                            <input type="text" class="bg-gray-100 form-input mt-1 rounded-full block w-full pl-3" placeholder="Ingrese su nombre" />
+                        </label>
+                        <label class="block p-2">
+                            <span class="text-gray-700">Contraseña: </span>
+                            <input type="password" class="bg-gray-100 form-input mt-1 rounded-full block w-full pl-3" placeholder="Nueva contraseña" />
+                        </label>
+                        <label class="block p-2">
+                            <span class="text-gray-700">Comfirme su contraseña: </span>
+                            <input type="password" class="bg-gray-100 form-input mt-1 rounded-full block w-full pl-3" placeholder="Confirme su contraseña" />
+                        </label>
+                        <label class="block p-2">
+                            <span class="text-gray-700">Descripción:</span>
+                            <textarea type="text" class="bg-gray-100 form-textarea mt-1 rounded-2xl block w-full pl-3" rows="3" placeholder="Ingrese su descripción"></textarea>
+                        </label>
+                        <button type="button" class="bg-gray-100 rounded-2" value="Guardar" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </main>
