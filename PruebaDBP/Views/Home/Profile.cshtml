@@ -2,11 +2,11 @@
     ViewData["Title"] = "Perfil";
 }
 
-<main class="flex overflow-hidden overflow-y-auto items-start justify-center h-screen bg-gray-100">
-    <div class="columns-1 md:pt-20">
-        <figure class="flex flex-md-column bg-slate-50 rounded-xl p-2 dark:bg-slate-800 pt-20">
+<main class="flex items-center justify-center h-auto bg-gray-100 pt-20">
+    <div class="columns-1 space-y-5 place-self-center">
+        <figure class="flex bg-slate-50 rounded-xl p-2 dark:bg-slate-800 grid grid-cols-5 gap-4">
             <img class="w-36 h-36 md:w-48 md:h-48 md:flex md:rounded-none mx-auto" src="/images/perfil.jpg" alt="" width="384" height="512">
-            <div class="pt-0 md:p-5 text-left space-y-4 ml-5">
+            <div class="pt-0 md:p-5 text-left space-y-4 ml-5 col-span-4">
                 <figcaption class="font-medium columns-2">
                     <div class="text-sky-500 dark:text-sky-400">
                         Usuario
@@ -23,23 +23,24 @@
                             <input type="submit" value="Editar perfil " class="bg-sky-100 p-3 rounded-lg w-auto h-auto"/>
                         </a>
                 </figcaption>
-                <blockquote class="columns-1">
+                <div class="columns-1">
                     <div class="text-md font-medium h-10 w-50">
                         Descripción
                     </div>
-                    <div class="text-sm font-small h-30 w-200">
+                    <div class="text-sm font-small h-auto w-50">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </div>
-                </blockquote>
+                </div>
             </div>
         </figure>
-        <figure class="bg-slate-50 rounded-xl p-2 dark:bg-slate-800 pt-20">
-            <p class="text-2xl">Apregados ultimamente</p>
-            <div class="columns-1">
-                <div class="container">
-                    <figure class="flex flex-md-column bg-slate-50 rounded-xl p-2 dark:bg-slate-800  ">
+        <figure class="dark:bg-slate-800 grid justify-items-center ">
+            
+            <div class="columns-1 space-y-5 ">
+                <p class="text-2xl p-5 justify-content-start">Agregados ultimamente</p>
+                <div class="container bg-slate-50 rounded-xl ">
+                    <figure class=" bg-slate-50 rounded-xl p-2 dark:bg-slate-800 grid grid-cols-5 gap-4 justify-content-center flex justify-center" ">
                         <img class="w-24 h-36 md:w-32 md:h-48 md:flex md:rounded-none mx-auto" src="/images/avatar.jpg" alt="" width="384" height="512">
-                        <div class="pt-0 md:p-5 text-left space-y-4 ml-5">
+                        <div class="pt-0 md:p-5 text-left space-y-4 ml-5 col-span-4">
                             <div class="text-black-500 dark:text-sky-400 text-xl text-left">
                                 <a href="\Home\Movie">Avatar</a>
                             </div>
@@ -47,31 +48,63 @@
                                 <div class="col-span-2">
                                     <figcaption class="font-medium columns-1 md:columns-2">
                                         <div class="text-sky-500 dark:text-sky-400">
-                                            Director: James Cameron
+                                            Director: <label class="text-slate-600 font-small">James Cameron</label>
                                         </div>
                                         <div class="text-sky-500 dark:text-sky-400">
-                                            Año: 2009
+                                            Año: <label class="text-slate-600 font-small">2009</label>
                                         </div>
                                     </figcaption>
                             
                                     <blockquote>
                                         <div class="text-sm font-small h-50 w-400 ">
+                                            <div class="font-semibold py-2">Descripcion</div>
                                             Corre el año 2154. Jake Sully es un antiguo marine que vive postrado en una silla de ruedas, pero cuya determinación y valentía se mantienen intactas. Ahora, tiene una misión entre manos: viajar a Pandora, un planeta del que los humanos extraen...
                                         </div>
                                     </blockquote>
                                 </div>
-                                <figure class="columns-1 items-center">
-                                    <p>Ciencia ficción</p><br />
-                                    <img class="w-20 h-6" src="/images/valoracion.png" alt="" width="100" height="30">
-                                </figure>
+                                <div class="justify-items-stretch">
+                                    <figure class="columns-1 justify-self-start ">
+                                        <a href="\Home\Library"><p>Ciencia ficción</p></a>
+                                        <br />
+                                        <div class="text-slate-700 dark:text-slate-500">
+                                            <ul class="flex justify-center">
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
+                                                    </svg>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </figure>
+                                </div>
                             </div>
                         </div>
                     </figure>
                 </div>
-                <div class="container">
-                    <figure class="flex flex-md-column bg-slate-50 rounded-xl p-2 dark:bg-slate-800  ">
+                <div class="container bg-slate-50 rounded-xl ">
+                    <figure class=" bg-slate-50 rounded-xl p-2 dark:bg-slate-800 grid grid-cols-5 gap-4 justify-content-center flex justify-center" ">
                         <img class="w-24 h-36 md:w-32 md:h-48 md:flex md:rounded-none mx-auto" src="/images/avatar.jpg" alt="" width="384" height="512">
-                        <div class="pt-0 md:p-5 text-left space-y-4 ml-5">
+                        <div class="pt-0 md:p-5 text-left space-y-4 ml-5 col-span-4">
                             <div class="text-black-500 dark:text-sky-400 text-xl text-left">
                                 <a href="\Home\Movie">Avatar</a>
                             </div>
@@ -79,32 +112,63 @@
                                 <div class="col-span-2">
                                     <figcaption class="font-medium columns-1 md:columns-2">
                                         <div class="text-sky-500 dark:text-sky-400">
-                                            Director: James Cameron
+                                            Director: <label class="text-slate-600 font-small">James Cameron</label>
                                         </div>
                                         <div class="text-sky-500 dark:text-sky-400">
-                                            Año: 2009
+                                            Año: <label class="text-slate-600 font-small">2009</label>
                                         </div>
                                     </figcaption>
-
+                            
                                     <blockquote>
                                         <div class="text-sm font-small h-50 w-400 ">
+                                            <div class="font-semibold py-2">Descripcion</div>
                                             Corre el año 2154. Jake Sully es un antiguo marine que vive postrado en una silla de ruedas, pero cuya determinación y valentía se mantienen intactas. Ahora, tiene una misión entre manos: viajar a Pandora, un planeta del que los humanos extraen...
                                         </div>
                                     </blockquote>
                                 </div>
-                                <figure class="columns-1 items-center">
-                                    <p>Ciencia ficción</p>
-                                    <br />
-                                    <img class="w-20 h-6" src="/images/valoracion.png" alt="" width="100" height="30">
-                                </figure>
+                                <div class="justify-items-stretch">
+                                    <figure class="columns-1 justify-self-start ">
+                                        <a href="\Home\Library"><p>Ciencia ficción</p></a>
+                                        <br />
+                                        <div class="text-slate-700 dark:text-slate-500">
+                                            <ul class="flex justify-center">
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
+                                                    </svg>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </figure>
+                                </div>
                             </div>
                         </div>
                     </figure>
                 </div>
-                <div class="container">
-                    <figure class="flex flex-md-column bg-slate-50 rounded-xl p-2 dark:bg-slate-800  ">
+                <div class="container bg-slate-50 rounded-xl ">
+                    <figure class=" bg-slate-50 rounded-xl p-2 dark:bg-slate-800 grid grid-cols-5 gap-4 justify-content-center flex justify-center" ">
                         <img class="w-24 h-36 md:w-32 md:h-48 md:flex md:rounded-none mx-auto" src="/images/avatar.jpg" alt="" width="384" height="512">
-                        <div class="pt-0 md:p-5 text-left space-y-4 ml-5">
+                        <div class="pt-0 md:p-5 text-left space-y-4 ml-5 col-span-4">
                             <div class="text-black-500 dark:text-sky-400 text-xl text-left">
                                 <a href="\Home\Movie">Avatar</a>
                             </div>
@@ -112,32 +176,63 @@
                                 <div class="col-span-2">
                                     <figcaption class="font-medium columns-1 md:columns-2">
                                         <div class="text-sky-500 dark:text-sky-400">
-                                            Director: James Cameron
+                                            Director: <label class="text-slate-600 font-small">James Cameron</label>
                                         </div>
                                         <div class="text-sky-500 dark:text-sky-400">
-                                            Año: 2009
+                                            Año: <label class="text-slate-600 font-small">2009</label>
                                         </div>
                                     </figcaption>
-
+                            
                                     <blockquote>
                                         <div class="text-sm font-small h-50 w-400 ">
+                                            <div class="font-semibold py-2">Descripcion</div>
                                             Corre el año 2154. Jake Sully es un antiguo marine que vive postrado en una silla de ruedas, pero cuya determinación y valentía se mantienen intactas. Ahora, tiene una misión entre manos: viajar a Pandora, un planeta del que los humanos extraen...
                                         </div>
                                     </blockquote>
                                 </div>
-                                <figure class="columns-1 items-center">
-                                    <p>Ciencia ficción</p>
-                                    <br />
-                                    <img class="w-20 h-6" src="/images/valoracion.png" alt="" width="100" height="30">
-                                </figure>
+                                <div class="justify-items-stretch">
+                                    <figure class="columns-1 justify-self-start ">
+                                        <a href="\Home\Library"><p>Ciencia ficción</p></a>
+                                        <br />
+                                        <div class="text-slate-700 dark:text-slate-500">
+                                            <ul class="flex justify-center">
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
+                                                    </svg>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </figure>
+                                </div>
                             </div>
                         </div>
                     </figure>
                 </div>
-                <div class="container">
-                    <figure class="flex flex-md-column bg-slate-50 rounded-xl p-2 dark:bg-slate-800  ">
+                <div class="container bg-slate-50 rounded-xl ">
+                    <figure class=" bg-slate-50 rounded-xl p-2 dark:bg-slate-800 grid grid-cols-5 gap-4 justify-content-center flex justify-center" ">
                         <img class="w-24 h-36 md:w-32 md:h-48 md:flex md:rounded-none mx-auto" src="/images/avatar.jpg" alt="" width="384" height="512">
-                        <div class="pt-0 md:p-5 text-left space-y-4 ml-5">
+                        <div class="pt-0 md:p-5 text-left space-y-4 ml-5 col-span-4">
                             <div class="text-black-500 dark:text-sky-400 text-xl text-left">
                                 <a href="\Home\Movie">Avatar</a>
                             </div>
@@ -145,32 +240,63 @@
                                 <div class="col-span-2">
                                     <figcaption class="font-medium columns-1 md:columns-2">
                                         <div class="text-sky-500 dark:text-sky-400">
-                                            Director: James Cameron
+                                            Director: <label class="text-slate-600 font-small">James Cameron</label>
                                         </div>
                                         <div class="text-sky-500 dark:text-sky-400">
-                                            Año: 2009
+                                            Año: <label class="text-slate-600 font-small">2009</label>
                                         </div>
                                     </figcaption>
-
+                            
                                     <blockquote>
                                         <div class="text-sm font-small h-50 w-400 ">
+                                            <div class="font-semibold py-2">Descripcion</div>
                                             Corre el año 2154. Jake Sully es un antiguo marine que vive postrado en una silla de ruedas, pero cuya determinación y valentía se mantienen intactas. Ahora, tiene una misión entre manos: viajar a Pandora, un planeta del que los humanos extraen...
                                         </div>
                                     </blockquote>
                                 </div>
-                                <figure class="columns-1 items-center">
-                                    <p>Ciencia ficción</p>
-                                    <br />
-                                    <img class="w-20 h-6" src="/images/valoracion.png" alt="" width="100" height="30">
-                                </figure>
+                                <div class="justify-items-stretch">
+                                    <figure class="columns-1 justify-self-start ">
+                                        <a href="\Home\Library"><p>Ciencia ficción</p></a>
+                                        <br />
+                                        <div class="text-slate-700 dark:text-slate-500">
+                                            <ul class="flex justify-center">
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
+                                                    </svg>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </figure>
+                                </div>
                             </div>
                         </div>
                     </figure>
                 </div>
-                <div class="container">
-                    <figure class="flex flex-md-column bg-slate-50 rounded-xl p-2 dark:bg-slate-800  ">
+                <div class="container bg-slate-50 rounded-xl ">
+                    <figure class=" bg-slate-50 rounded-xl p-2 dark:bg-slate-800 grid grid-cols-5 gap-4 justify-content-center flex justify-center" ">
                         <img class="w-24 h-36 md:w-32 md:h-48 md:flex md:rounded-none mx-auto" src="/images/avatar.jpg" alt="" width="384" height="512">
-                        <div class="pt-0 md:p-5 text-left space-y-4 ml-5">
+                        <div class="pt-0 md:p-5 text-left space-y-4 ml-5 col-span-4">
                             <div class="text-black-500 dark:text-sky-400 text-xl text-left">
                                 <a href="\Home\Movie">Avatar</a>
                             </div>
@@ -178,28 +304,60 @@
                                 <div class="col-span-2">
                                     <figcaption class="font-medium columns-1 md:columns-2">
                                         <div class="text-sky-500 dark:text-sky-400">
-                                            Director: James Cameron
+                                            Director: <label class="text-slate-600 font-small">James Cameron</label>
                                         </div>
                                         <div class="text-sky-500 dark:text-sky-400">
-                                            Año: 2009
+                                            Año: <label class="text-slate-600 font-small">2009</label>
                                         </div>
                                     </figcaption>
-
+                            
                                     <blockquote>
                                         <div class="text-sm font-small h-50 w-400 ">
+                                            <div class="font-semibold py-2">Descripcion</div>
                                             Corre el año 2154. Jake Sully es un antiguo marine que vive postrado en una silla de ruedas, pero cuya determinación y valentía se mantienen intactas. Ahora, tiene una misión entre manos: viajar a Pandora, un planeta del que los humanos extraen...
                                         </div>
                                     </blockquote>
                                 </div>
-                                <figure class="columns-1 items-center">
-                                    <p>Ciencia ficción</p>
-                                    <br />
-                                    <img class="w-20 h-6" src="/images/valoracion.png" alt="" width="100" height="30">
-                                </figure>
+                                <div class="justify-items-stretch">
+                                    <figure class="columns-1 justify-self-start ">
+                                        <a href="\Home\Library"><p>Ciencia ficción</p></a>
+                                        <br />
+                                        <div class="text-slate-700 dark:text-slate-500">
+                                            <ul class="flex justify-center">
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
+                                                    </svg>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </figure>
+                                </div>
                             </div>
                         </div>
                     </figure>
                 </div>
+                <br />
             </div>
        </figure>
     </div>
