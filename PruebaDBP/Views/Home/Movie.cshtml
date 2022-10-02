@@ -2,6 +2,270 @@
     ViewData["Title"] = "Pelicula";
 }
 
-<main class="flex items-center justify-center h-screen bg-gray-100">
-    <h1>Película</h1>
+<main class="flex items-center justify-center h-fit bg-gray-100 pt-20 pb-20 md:pt-48 md:pb-20 lg:pt-36 lg:pb-20">
+
+    <div class="columns-1">
+        <div class="container ">
+            <figure class="grid grid-cols-5 gap-4 flex flex-md-column bg-slate-100 rounded-xl p-2 md:place-items-center columns-2 ">
+                <img class=" w-104 h-106 md:drop-shadow-2xl md:w-104 md:h-106 md:flex md:rounded-none mx-auto" src="/images/avatar.jpg" alt="" width="384" height="512">
+                <div class="col-span-4 pt-0 md:p-5 text-left space-y-4 ml-5 bg-slate-200 rounded-lg">
+                    <div class="text-black-500 text-2xl text-left">
+                        <a href="\Home\Movie">Avatar</a>
+                    </div>
+                        <figcaption class="font-medium md:columns-3 sm:rows-3">
+                            <div class="text-sky-500">
+                                Director
+                            </div>
+                            <div class="text-sky-500">
+                                Año
+                            </div>
+                            <div class="text-sky-500">
+                                Valoracion
+                            </div>
+                        </figcaption>
+                        <figcaption class="font-medium md:columns-3 sm:rows-3">
+                            <div class="text-slate-700">
+                                James Cameron
+                            </div>
+                            <div class="text-slate-700">
+                                2009
+                            </div>
+                            <div class="text-sky-700">
+                                <figcaption class="hidden md:block font-medium columns-3">
+                                    <div class="text-slate-700">
+                                        <ul class="flex justify-center">
+                                            <li>
+                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                </svg>
+                                            </li>
+                                            <li>
+                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                </svg>
+                                            </li>
+                                            <li>
+                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                </svg>
+                                            </li>
+                                            <li>
+                                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                </svg>
+                                            </li>
+                                            <li>
+                                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                    <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
+                                                </svg>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </figcaption>
+                                <!--Tamaño sm y movil Movil-->
+                                <figcaption class="visible md:hidden font-medium columns-2">
+                                    <div class="text-sky-500 ">
+                                        <div class="text-slate-700">
+                                            <ul class="flex justify-center">
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                        <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                        <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                        <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                        <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                        <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
+                                                    </svg>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </figcaption>
+                            </div>
+                        </figcaption>
+                   
+
+
+
+
+
+                    <blockquote>
+                        <div class="h-auto w-auto text-[0px] md:text-sm" >
+                            Corre el año 2154. Jake Sully es un antiguo marine que vive postrado en una silla de ruedas, pero cuya determinación y valentía se mantienen intactas. Ahora, tiene una misión entre manos: viajar a Pandora, un planeta del que los humanos extraen un mineral que puede acabar con la crisis energética de la Tierra.
+
+                            Sin embargo, este planeta...
+                        </div>
+                    </blockquote>
+
+                    <figcaption class="font-medium columns-3">
+                        <div class="text-sky-500">
+                            <a class="text-white bg-zinc-900 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 lg:mr-5" asp-controller="Home" asp-action="Login">Añadir a Estanteria</a>
+                        </div>
+                        <div class="text-sky-500">
+                            <a class="text-white bg-zinc-900 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 lg:mr-5" asp-controller="Home" asp-action="Login">Valorar</a>
+                        </div>
+                        <div class="text-sky-500">
+                            <a class="text-white bg-zinc-900 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 lg:mr-5" asp-controller="Home" asp-action="Login">Visto</a>
+                        </div>
+                    </figcaption>
+                </div>
+            </figure>
+        </div>
+
+
+        <div class="container">
+            <figure class="md: p-2 flex flex-md-column bg-gray-100 rounded-xl p-2 place-content-center">
+
+                <img class="w-20 h-20 md:border-double border-4 border-indigo-600 md:rounded-lg md:w-52 md:h-48 md:flex md:rounded-none" src="/images/gatoPerfil.jpg"
+                     alt="" width="384" height="512">
+                
+                <div class=" h-fit  bg-slate-200 rounded-xl pt-0 md:p-3 text-left space-y-4 ml-5">
+                    <div class="text-black-500 text-smibold md:text-2xl text-left font-semibold	tracking-wider">
+                        <label class ="  text-black-500 text-semibold md:text-2xl text-left italic font-normal"> PepinilloCosmico267</label>
+                    </div>
+                    <figcaption class="hidden md:block font-medium columns-2">
+                        <div class="text-sky-500">
+                            Valoración Individual
+                        </div>
+                        <div class="text-sky-500">
+                            Estado
+                        </div>
+                    </figcaption>
+                    <!--Tamaño sm y movil Movil-->
+                    <figcaption class="visible md:hidden font-medium  columns-1">
+                        <div class="text-sky-500">
+                            Valoración Individual
+                        </div>
+                        <div class="text-sky-500">
+                            <div class="text-slate-700">
+                                <ul class="flex justify-center">
+                                    <li>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+                                        </svg>
+                                    </li>
+                                    <li>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+                                        </svg>
+                                    </li>
+                                    <li>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+                                        </svg>
+                                    </li>
+                                    <li>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+                                        </svg>
+                                    </li>
+                                    <li>
+                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" class="w-3.5 text-red-500" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor" d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"></path>
+                                        </svg>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </figcaption>
+                    <figcaption class=" text-center visible md:hidden font-medium columns-1">
+                        <div class="text-sky-500">
+                            Estado
+                        </div>
+                        <div class="text-slate-700">
+                            Vista
+                        </div>
+                    </figcaption>
+                    <!--Vista tamaño md +-->
+                    <figcaption class="hidden md:block font-medium columns-2">
+                        <div class="text-slate-700">
+                            <ul class="flex justify-center">
+                                <li>
+                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+                                    </svg>
+                                </li>
+                                <li>
+                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+                                    </svg>
+                                </li>
+                                <li>
+                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+                                    </svg>
+                                </li>
+                                <li>
+                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+                                    </svg>
+                                </li>
+                                <li>
+                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" class="w-3.5 text-red-500" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path fill="currentColor" d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"></path>
+                                    </svg>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="text-slate-700">
+                            Vista
+                        </div>
+                    </figcaption>
+
+                    
+                </div>
+
+
+                
+            </figure>
+
+
+
+        </div>
+
+        <div class="container">
+            <figure class="md: p-2 flex flex-md-column bg-gray-100 rounded-xl p-2 place-content-center">
+                <div class=" h-fit md:h-fit place-content-center bg-slate-200 rounded-xl pt-0 md:p-3 text-left space-y-4 ml-5">
+                    <figcaption class="place-content-center hidden md:block font-medium columns-1">
+                        <div class=" flex items-center justify-center h-fit bg-slate-200">
+                   
+                            <div class="text-black bg-slate-400 rounded-lg">Comentario</div>
+                </div>
+                <div class="text-black-500">
+                    Sin duda una película fascinante y que ha sido de mi agrado, recuerdo haberla visto de pequeño y quedar fascinado por tales efectos especiales los cuales en aquella época eran novedosos, la recomiendo plenamente.
+                </div>
+            </figcaption>
+
+                </div>
+            </figure>
+
+
+            
+        </div>
+            
+
+
+    
+    </div>
+
+
+    
+
+
+
 </main>
