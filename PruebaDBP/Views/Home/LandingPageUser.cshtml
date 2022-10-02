@@ -1,90 +1,88 @@
 ﻿@{
     ViewData["Title"] = "Landing Page User";
 }
-<link rel="stylesheet" href="~/css/carousel.css" asp-append-version="true" />
-<main class="flex items-center justify-center h-screen bg-gray-100">
+
+<main class="flex items-center justify-center h-fit bg-gray-100 pt-20 pb-20 md:pt-48 md:pb-20 lg:pt-36 lg:pb-20">
     <div class="container gap-8 columns-1 md:gap-16 md:columns-2">
         <div class="col-span-1 md:col-span-4 lg:col-span-6 mx-auto px-4">
             <h4 class="text-xl md:text-2xl text-gray-700 mb-5 italic text-center">Sólo para tí</h4>
             <div class="p-5 rounded-md shadow-md bg-slate-200 w-52 h-auto sd:w-44 sd:h-auto md:w-64 md:h-auto lg:w-96 lg:h-auto md:flex md:rounded-none mx-auto">
-                <!--<img class="object-fill w-44 h-auto sd:w-44 sd:h-auto md:w-96 md:h-auto md:flex md:rounded-none mx-auto" src="/images/pelicula1.jpg">-->
-                <div class="carousel2 " >
-                    <div class="carousel2-inner">
-                        <input class="carousel2-open" type="radio" id="carousel2-1" name="carousel2" aria-hidden="true"
-                            hidden="" checked="checked">
-                        <div class="carousel2-item">
-                            <img class="object-cover" src="/images/pelicula5.jpg">
-                        </div>
-                        <input class="carousel2-open" type="radio" id="carousel2-2" name="carousel2" aria-hidden="true"
-                            hidden="">
-                        <div class="carousel2-item ">
-                            <img class="object-cover" src="/images/pelicula6.jpg">
-                        </div>
-                        <input class="carousel2-open" type="radio" id="carousel2-3" name="carousel2" aria-hidden="true"
-                            hidden="">
-                        <div class="carousel2-item ">
-                            <img class="object-cover" src="/images/pelicula4.jpg">
-                        </div>
-                        <label for="carousel2-3" class="carousel2-control prev control-1">‹</label>
-                        <label for="carousel2-2" class="carousel2-control next control-1">›</label>
-                        <label for="carousel2-1" class="carousel2-control prev control-2">‹</label>
-                        <label for="carousel2-3" class="carousel2-control next control-2">›</label>
-                        <label for="carousel2-2" class="carousel2-control prev control-3">‹</label>
-                        <label for="carousel2-1" class="carousel2-control next control-3">›</label>
-                        <ol class="carousel2-indicators">
-                            <li>
-                                <label for="carousel2-1" class="carousel2-bullet">•</label>
-                            </li>
-                            <li>
-                                <label for="carousel2-2" class="carousel2-bullet">•</label>
-                            </li>
-                            <li>
-                                <label for="carousel2-3" class="carousel2-bullet">•</label>
-                            </li>
-                        </ol>
+                <div id="carousel2" class="carousel slide relative" data-bs-ride="carousel">
+                    <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
+                        <button type="button" data-bs-target="#carousel2" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carousel2" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carousel2" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
                     </div>
+                    <div class="carousel-inner relative w-full overflow-hidden">
+                        <div class="carousel-item active float-left w-full">
+                            <img src="/images/pelicula5.jpg" class="block w-full"
+                                alt="Pelicula 1" />
+                        </div>
+                        <div class="carousel-item float-left w-full">
+                            <img src="/images/pelicula4.jpg" class="block w-full"
+                                alt="Pelicula 2" />
+                        </div>
+                        <div class="carousel-item float-left w-full">
+                            <img src="/images/pelicula6.jpg" class="block w-full"
+                                alt="Pelicula 3" />
+                        </div>
+                    </div>
+                    <button
+                        class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
+                        type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button
+                        class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
+                        type="button" data-bs-target="#carousel2" data-bs-slide="next">
+                        <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             </div>
         </div>
         <div class="col-span-1 md:col-span-4 lg:col-span-6 order-first lg:order-last justify-center">
-            <h4 class="text-xl md:text-2xl text-gray-700 mb-5 italic text-center">Las más populares</h4>
+            <h4 class="pt-5 md:pt-0 text-xl md:text-2xl text-gray-700 mb-5 italic text-center">Las más populares</h4>
             <div class="p-5 rounded-md shadow-md bg-slate-200 p-5 rounded-md shadow-md bg-white w-52 h-auto sd:w-52 sd:h-auto  md:w-64 md:h-auto lg:w-96 lg:h-auto md:flex md:rounded-none mx-auto">
-                <!--<img class="object-fill w-44 h-auto sd:w-52 sd:h-auto md:w-96 md:h-auto md:flex md:rounded-none mx-auto" src="/images/pelicula1.jpg">-->
-                <div class="carousel1" >
-                    <div class="carousel1-inner">
-                        <input class="carousel1-open" type="radio" id="carousel1-1" name="carousel1" aria-hidden="true"
-                            hidden="object-cover" checked="checked">
-                        <div class="carousel1-item">
-                            <img class="object-cover" src="/images/pelicula1.jpg">
-                        </div>
-                        <input class="carousel1-open" type="radio" id="carousel1-2" name="carousel1" aria-hidden="true"
-                            hidden="">
-                        <div class="carousel1-item ">
-                            <img class="object-cover" src="/images/pelicula2.jpg">
-                        </div>
-                        <input class="carousel1-open" type="radio" id="carousel1-3" name="carousel1" aria-hidden="true"
-                            hidden="">
-                        <div class="carousel1-item ">
-                            <img class="object-cover" src="/images/pelicula3.jpg">
-                        </div>
-                        <label for="carousel1-3" class="carousel1-control prev control-1">‹</label>
-                        <label for="carousel1-2" class="carousel1-control next control-1">›</label>
-                        <label for="carousel1-1" class="carousel1-control prev control-2">‹</label>
-                        <label for="carousel1-3" class="carousel1-control next control-2">›</label>
-                        <label for="carousel1-2" class="carousel1-control prev control-3">‹</label>
-                        <label for="carousel1-1" class="carousel1-control next control-3">›</label>
-                        <ol class="carousel1-indicators">
-                            <li>
-                                <label for="carousel1-1" class="carousel1-bullet">•</label>
-                            </li>
-                            <li>
-                                <label for="carousel1-2" class="carousel1-bullet">•</label>
-                            </li>
-                            <li>
-                                <label for="carousel1-3" class="carousel1-bullet">•</label>
-                            </li>
-                        </ol>
+                <div id="carousel1" class="carousel slide relative" data-bs-ride="carousel">
+                    <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
+                        <button type="button" data-bs-target="#carousel1" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carousel1" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carousel1" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
                     </div>
+                    <div class="carousel-inner relative w-full overflow-hidden">
+                        <div class="carousel-item active float-left w-full">
+                            <img src="/images/pelicula1.jpg" class="block w-full"
+                                alt="Pelicula 1" />
+                        </div>
+                        <div class="carousel-item float-left w-full">
+                            <img src="/images/pelicula2.jpg" class="block w-full"
+                                alt="Pelicula 2" />
+                        </div>
+                        <div class="carousel-item float-left w-full">
+                            <img src="/images/pelicula3.jpg" class="block w-full"
+                                alt="Pelicula 3" />
+                        </div>
+                    </div>
+                    <button
+                        class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
+                        type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button
+                        class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
+                        type="button" data-bs-target="#carousel1" data-bs-slide="next">
+                        <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             </div>
         </div>
