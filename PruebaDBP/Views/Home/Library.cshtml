@@ -2,11 +2,11 @@
     ViewData["Title"] = "Estanterías";
 }
 
-<main class="flex items-center justify-center h-fit bg-gray-100 pt-20 pb-20 md:pt-48 md:pb-20 lg:pt-36 lg:pb-20">
-    <div class="container h-4/6 overflow-auto mx-auto">
-        <div class="flex flex-row flex-wrap py-4">
-            <aside class="w-2/6  sm:w-1/3 md:w-2/6 lg:w-1/6 px-2">
-                <div class="sticky top-0 p-4 w-full bg-slate-300">
+<main class="flex items-center justify-center h-fit bg-gray-100 pt-20 pb-20 md:pt-20 md:pb-20 lg:pt-36 lg:pb-20">
+    <div class="container h-4/6 mx-auto">
+        <div class="flex py-4">
+            <aside class="h-4/6 sticky top-20 w-2/6 sm:w-1/3 md:w-2/6 lg:w-1/6 px-2">
+                <div class=" p-4 w-full bg-slate-300">
                     <!-- navigation -->
                     <ul class="flex flex-col overflow-hidden">
                         <li>
@@ -16,7 +16,7 @@
                             <h4 class="text-xl md:text-xl md:text-xl lg:text-2xl text-gray-700 mb-5  text-center">Romance</h4>
                             <h4 class="text-xl sm:text-xl md:text-xl lg:text-2xl text-gray-700 mb-5  text-center">Terror</h4>
                             <h4 class="text-xl md:text-xl md:text-xl lg:text-2xl text-gray-700 mb-5  text-center">Por ver</h4>
-                            <button type="button" class="inline-block px-6 py-2.5 bg-gray-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-500 hover:shadow-lg focus:bg-gray-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#registroLib">
+                            <button type="button" class="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-800 hover:shadow-lg focus:bg-gray-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#registroLib">
                                 Añadir nueva estantería
                             </button>
 
@@ -24,11 +24,11 @@
                     </ul>
                 </div>
             </aside>
-            <main role="main" class="w-4/6 h-5/6 sm:w-2/3 sd:h-5/6 md:w-4/6 md:h-5/6 lg:w-5/6 p-1 bg-slate-300 ">
+            <main role="main" class="w-4/6 h-5/6 sm:w-2/3 sd:h-5/6 md:w-4/6 md:h-5/6 lg:w-5/6 p-1 ">
                 <!--Pelicula-->
                 <div class="container">
-                    <figure class="md:p-2 flex flex-md-column bg-slate-100 rounded-xl p-2 ">
-                        <img class="w-24 h-36 md:w-32 md:h-48 md:flex md:rounded-none" src="/images/avatar.jpg"
+                    <figure class="md:p-2 flex flex-md-column bg-slate-50 rounded-xl p-2 lg:gap-10">
+                        <img class="w-24 h-36 md:w-40 md:h-60 md:flex md:rounded-none" src="/images/avatar.jpg"
                             alt="" width="384" height="512">
                         <div class="pt-0 md:p-3 text-left space-y-4 ml-5">
                             <div class="text-black-500 text-3xl text-left font-semibold	tracking-wider">
@@ -125,7 +125,7 @@
                                 <div class="text-sky-500">
                                     Estado
                                 </div>
-                                <div class="text-slate-700">
+                                <div class="text-slate-700 flex justify-center">
                                     Vista
                                 </div>
                             </figcaption>
@@ -199,7 +199,7 @@
                                 </div>
                                 <div class="text-slate-700">
                                     <div class="flex space-x-2 justify-center">
-                                        <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out">
+                                        <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-800 hover:shadow-lg focus:bg-gray-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out">
                                             Eliminar
                                         </button>
                                     </div>
@@ -211,8 +211,8 @@
                 </div>
                 <!--Pelicula-->
                 <div class="container">
-                    <figure class="md:p-2 flex flex-md-column bg-slate-100 rounded-xl p-2">
-                        <img class="w-24 h-36 md:w-32 md:h-48 md:flex md:rounded-none" src="/images/starTrek.jpg"
+                    <figure class="md:p-2 flex flex-md-column bg-slate-50 rounded-xl p-2 mt-5 lg:gap-10">
+                        <img class="w-24 h-36 md:w-40 md:h-60 md:flex md:rounded-none" src="/images/starTrek.jpg"
                             alt="" width="384" height="512">
                         <div class="pt-0 md:p-3 text-left space-y-4 ml-5">
                             <div class="text-black-500 text-3xl text-left font-semibold	tracking-wider">
@@ -309,7 +309,7 @@
                                 <div class="text-sky-500 ">
                                     Estado
                                 </div>
-                                <div class="text-slate-700 ">
+                                <div class="text-slate-700 flex justify-center">
                                     Vista
                                 </div>
                             </figcaption>
@@ -383,7 +383,7 @@
                                 </div>
                                 <div class="text-slate-700">
                                     <div class="flex space-x-2 justify-center">
-                                        <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out">
+                                        <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-800 hover:shadow-lg focus:bg-gray-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out">
                                             Eliminar
                                         </button>
                                     </div>
@@ -395,8 +395,8 @@
                 </div>
                 <!--Pelicula-->
                 <div class="container">
-                    <figure class="md:p-2 flex flex-md-column bg-slate-100 rounded-xl p-2 ">
-                        <img class="w-24 h-36 md:w-32 md:h-48 md:flex md:rounded-none" src="/images/pelicula5.jpg"
+                    <figure class="md:p-2 flex flex-md-column bg-slate-50 rounded-xl p-2 mt-5 lg:gap-10">
+                        <img class="w-24 h-36 md:w-40 md:h-60 md:flex md:rounded-none" src="/images/pelicula5.jpg"
                             alt="" width="384" height="512">
                         <div class="pt-0 md:p-3 text-left space-y-4 ml-5">
                             <div class="text-black-500 text-3xl text-left font-semibold	tracking-wider">
@@ -493,7 +493,7 @@
                                 <div class="text-sky-500 ">
                                     Estado
                                 </div>
-                                <div class="text-slate-700 ">
+                                <div class="text-slate-700 flex justify-center">
                                     Vista
                                 </div>
                             </figcaption>
@@ -567,7 +567,7 @@
                                 </div>
                                 <div class="text-slate-700">
                                     <div class="flex space-x-2 justify-center">
-                                        <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out">
+                                        <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-800 hover:shadow-lg focus:bg-gray-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out">
                                             Eliminar
                                         </button>
                                     </div>
@@ -579,8 +579,8 @@
                 </div>
                 <!--Pelicula-->
                 <div class="container">
-                    <figure class="md:p-2 flex flex-md-column bg-slate-100 rounded-xl p-2 ">
-                        <img class="w-24 h-36 md:w-32 md:h-48 md:flex md:rounded-none" src="/images/avatar.jpg"
+                    <figure class="md:p-2 flex flex-md-column bg-slate-50 rounded-xl p-2 mt-5 lg:gap-10">
+                        <img class="w-24 h-36 md:w-40 md:h-60 md:flex md:rounded-none" src="/images/avatar.jpg"
                             alt="" width="384" height="512">
                         <div class="pt-0 md:p-3 text-left space-y-4 ml-5">
                             <div class="text-black-500 text-3xl text-left font-semibold	tracking-wider">
@@ -677,7 +677,7 @@
                                 <div class="text-sky-500 ">
                                     Estado
                                 </div>
-                                <div class="text-slate-700 ">
+                                <div class="text-slate-700 flex justify-center">
                                     Vista
                                 </div>
                             </figcaption>
@@ -751,7 +751,7 @@
                                 </div>
                                 <div class="text-slate-700">
                                     <div class="flex space-x-2 justify-center">
-                                        <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out">
+                                        <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-800 hover:shadow-lg focus:bg-gray-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out">
                                             Eliminar
                                         </button>
                                     </div>
@@ -763,8 +763,8 @@
                 </div>
                 <!--Pelicula-->
                 <div class="container">
-                    <figure class="md:p-2 flex flex-md-column bg-slate-100 rounded-xl p-2 ">
-                        <img class="w-24 h-36 md:w-32 md:h-48 md:flex md:rounded-none" src="/images/starTrek.jpg"
+                    <figure class="md:p-2 flex flex-md-column bg-slate-50 rounded-xl p-2 mt-5 lg:gap-10">
+                        <img class="w-24 h-36 md:w-40 md:h-60 md:flex md:rounded-none" src="/images/starTrek.jpg"
                             alt="" width="384" height="512">
                         <div class="pt-0 md:p-3 text-left space-y-4 ml-5">
                             <div class="text-black-500 text-3xl text-left font-semibold	tracking-wider">
@@ -861,7 +861,7 @@
                                 <div class="text-sky-500 ">
                                     Estado
                                 </div>
-                                <div class="text-slate-700 ">
+                                <div class="text-slate-700 flex justify-center">
                                     Vista
                                 </div>
                             </figcaption>
@@ -935,7 +935,7 @@
                                 </div>
                                 <div class="text-slate-700">
                                     <div class="flex space-x-2 justify-center">
-                                        <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out">
+                                        <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-800 hover:shadow-lg focus:bg-gray-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out">
                                             Eliminar
                                         </button>
                                     </div>
@@ -947,8 +947,8 @@
                 </div>
                 <!--Pelicula-->
                 <div class="container">
-                    <figure class="md:p-2 flex flex-md-column bg-slate-100 rounded-xl p-2 ">
-                        <img class="w-24 h-36 md:w-32 md:h-48 md:flex md:rounded-none" src="/images/pelicula5.jpg"
+                    <figure class="md:p-2 flex flex-md-column bg-slate-50 rounded-xl p-2 mt-5 lg:gap-10">
+                        <img class="w-24 h-36 md:w-40 md:h-60 md:flex md:rounded-none" src="/images/pelicula5.jpg"
                             alt="" width="384" height="512">
                         <div class="pt-0 md:p-3 text-left space-y-4 ml-5">
                             <div class="text-black-500 text-3xl text-left font-semibold	tracking-wider">
@@ -1045,7 +1045,7 @@
                                 <div class="text-sky-500 ">
                                     Estado
                                 </div>
-                                <div class="text-slate-700 ">
+                                <div class="text-slate-700 flex justify-center">
                                     Vista
                                 </div>
                             </figcaption>
@@ -1119,7 +1119,7 @@
                                 </div>
                                 <div class="text-slate-700">
                                     <div class="flex space-x-2 justify-center">
-                                        <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out">
+                                        <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-800 hover:shadow-lg focus:bg-gray-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out">
                                             Eliminar
                                         </button>
                                     </div>
@@ -1131,8 +1131,8 @@
                 </div>
                 <!--Pelicula-->
                 <div class="container">
-                    <figure class="md:p-2 flex flex-md-column bg-slate-100 rounded-xl p-2  ">
-                        <img class="w-24 h-36 md:w-32 md:h-48 md:flex md:rounded-none" src="/images/avatar.jpg"
+                    <figure class="md:p-2 flex flex-md-column bg-slate-50 rounded-xl p-2 mt-5 lg:gap-10 ">
+                        <img class="w-24 h-36 md:w-40 md:h-60 md:flex md:rounded-none" src="/images/avatar.jpg"
                             alt="" width="384" height="512">
                         <div class="pt-0 md:p-3 text-left space-y-4 ml-5">
                             <div class="text-black-500 text-3xl text-left font-semibold	tracking-wider">
@@ -1229,7 +1229,7 @@
                                 <div class="text-sky-500 ">
                                     Estado
                                 </div>
-                                <div class="text-slate-700 ">
+                                <div class="text-slate-700 flex justify-center">
                                     Vista
                                 </div>
                             </figcaption>
@@ -1303,7 +1303,7 @@
                                 </div>
                                 <div class="text-slate-700">
                                     <div class="flex space-x-2 justify-center">
-                                        <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out">
+                                        <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-800 hover:shadow-lg focus:bg-gray-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out">
                                             Eliminar
                                         </button>
                                     </div>
