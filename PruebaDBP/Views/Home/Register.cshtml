@@ -1,46 +1,62 @@
 ﻿@{
     ViewData["Title"] = "Register";
 }
-<main class="flex items-center justify-center h-screen">
-    <div class="container py-12 px-6 h-full">
+<main class="flex items-center justify-center h-auto">
+    <div class="container pb-8 px-6 h-full pt-32 md:pt-24">
         <div class="flex justify-center items-center md:flex-wrap lg:flex-nowrap h-full text-gray-800">
             <div class="xl:w-10/12">
                 <div class="block bg-white shadow-lg rounded-lg">
-                    <div class="lg:flex lg:flex-wrap sm:flex-wrap md:flex-wrap g-0">
-                        <div class="lg:w-6/12 px-4 lg:px-0">
-                            <div class="lg:p-12 lg:mx-6">
-                                <div class="text-center">
-                                    <img class="mx-auto w-48 mb-8" src="~/images/logo.jpeg" alt="logo"/>
-                                </div>
-                                <form>
-                                    <p class="mb-4">Registrate</p>
-                                    <div class="mb-4">
-                                        <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleFormControlInput1" placeholder="Nombre"/>
-                                    </div>
-                                    <div class="mb-4">
-                                        <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleFormControlInput1" placeholder="Usuario"/>
-                                    </div>
-                                    <div class="mb-4">
-                                        <input type="email" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleFormControlInput1" placeholder="Correo Electronico"/>
-                                    </div>
-                                    <div class="mb-4">
-                                        <input type="password" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleFormControlInput1" placeholder="Contraseña"/>
-                                    </div>
-                                    <div class="text-center pt-1 mb-12 pb-1">
-                                        <button class="inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3" type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" style="background: linear-gradient(90deg, rgba(226,226,227,1) 0%, rgba(68,93,116,0.9262079831932774) 36%, rgba(63,102,127,1) 73%, rgba(0,30,36,1) 100%);">Registrar</button>
-                                    </div>
-                                    
-                                </form>
+                    <div class="lg:flex lg:flex-wrap g-0">
+
+                        <div class="lg:w-6/12 items-center lg:rounded-l-lg rounded-t-lg lg:rounded-bl-none bg-gradient-to-r from-sky-900 to-white">
+                            <div class="text-center mt-8">
+                                <img class="mx-auto w-48 mb-8" src="~/images/logo_2_0.png" alt="logo" />
                             </div>
-                        </div>
-                        <div class="lg:w-6/12 flex items-center lg:rounded-r-lg rounded-b-lg lg:rounded-bl-none" style="background: linear-gradient(90deg, rgba(226,226,227,1) 0%, rgba(102,127,149,1) 12%, rgba(68,93,116,0.9262079831932774) 36%, rgba(63,102,127,1) 70%, rgba(0,30,36,1) 100%);">
-                            <div class="text-white px-4 py-6 md:p-12 md:mx-6">
+                            <div class="text-white px-4 py-6 md:p-8 md:mx-6">
                                 <h2 class="text-xl font-bold mb-6">Lumière</h2>
                                 <h4 class="text-xl font-italic mb-6">"Donde las mejores películas se comparten"</h4>
-                                <p class="text-sm">Lumiére, donde encontraras reseñas y una comunidad dispuesta a disfrutar de tus gustos en las mejores peliculas.
+                                <p class="text-sm text-gray-100 pr-16">
+                                    Lumière, lugar de reseñas y una comunidad dispuesta a disfrutar de tus gustos en las mejores peliculas.
                                 </p>
                             </div>
                         </div>
+                        <div class="lg:w-6/12 px-4 lg:px-0 rounded-b-lg lg:rounded-r-lg pt-4 md:pt-0">
+                            <div class="lg:p-12 lg:mx-6">
+
+                                <form>
+                                    <p class="mb-4">Registrate</p>
+                                    <div class="mb-4">
+                                        <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleFormControlInput1" placeholder="Nombre" />
+                                    </div>
+                                    <div class="mb-4">
+                                        <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleFormControlInput1" placeholder="Usuario" />
+                                    </div>
+                                    <div class="mb-4">
+                                        <input type="email" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleFormControlInput1" placeholder="Correo Electronico" />
+                                    </div>
+                                    <div class="mb-4">
+                                        <input type="password" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleFormControlInput1" placeholder="Contraseña" />
+                                    </div>
+                                    <div class="flex items-center justify-center">
+                                        <div class="datepicker relative form-floating mb-4 xl:w-96" data-mdb-toggle-button="false">
+                                            <input type="text"
+                                                   class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                   placeholder="Select a date" />
+                                            <label for="floatingInput" class="text-gray-400">Ingrese su fecha de nacimiento</label>
+                                            <button class="datepicker-toggle-button" data-mdb-toggle="datepicker">
+                                                <i class="fas fa-calendar datepicker-toggle-icon"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="text-center pt-1 mb-12 pb-1">
+                                        <button class="inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3" type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" style="background: linear-gradient(90deg, rgba(226,226,227,1) 0%, rgba(68,93,116,0.9262079831932774) 36%, rgba(63,102,127,1) 73%, rgba(0,30,36,1) 100%);">Registrarse</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                        
+                        
                     </div>
                 </div>
             </div>
