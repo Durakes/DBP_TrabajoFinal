@@ -3,27 +3,27 @@
 }
 
 <main class="flex items-center justify-center h-auto">
-    <div class="container pb-8 px-6 h-full pt-32 md:pt-24">
+    <div class="container py-8 px-6 h-full">
         <div class="flex justify-center items-center md:flex-wrap lg:flex-nowrap h-full text-gray-800">
             <div class="xl:w-10/12">
                 <div class="block bg-white shadow-lg rounded-lg">
-                    <div class="lg:flex lg:flex-wrap g-0">
-                        
-                        <div class="lg:w-6/12 items-center lg:rounded-l-lg rounded-t-lg lg:rounded-bl-none bg-gradient-to-r from-sky-900 to-white">
+                    <div class="lg:flex lg:flex-wrap g-0 flex-column items-center">
+
+                        <div class="lg:w-6/12 items-center md:py-20 py-5 md:rounded-l-lg rounded-t-lg bg-gradient-to-b md:bg-gradient-to-r from-sky-900 to-white">
                             <div class="text-center mt-8">
                                 <img class="mx-auto w-48 mb-8" src="~/images/logo_2_0.png" alt="logo" />
                             </div>
-                            <div class="text-white px-4 py-6 md:p-8 md:mx-6">
+                            <div class="md:text-white text-gray-700 px-4 py-6 md:p-8 md:mx-6">
                                 <h2 class="text-xl font-bold mb-6">Lumière</h2>
                                 <h4 class="text-xl font-italic mb-6">"Donde las mejores películas se comparten"</h4>
-                                <p class="text-sm text-gray-100 pr-16">
+                                <p class="text-sm md:text-white md:pr-16">
                                     Lumière, lugar de reseñas y una comunidad dispuesta a disfrutar de tus gustos en las mejores peliculas.
                                 </p>
                             </div>
                         </div>
-                        <div class="lg:w-6/12 px-4 lg:px-0 rounded-b-lg lg:rounded-r-lg pt-4 md:pt-0">
+                        <div class="lg:w-6/12 px-4 lg:px-0 rounded-b-lg md:rounded-r-lg pt-4 md:pt-0">
                             <div class="lg:p-12 lg:mx-6">
-                                
+
                                 <form>
                                     <p class="mb-4">Ingrese sus datos de usuario</p>
                                     <div class="mb-4">
@@ -38,7 +38,7 @@
                                     </div>
                                     <div class="flex items-center justify-between pb-6">
                                         <p class="mb-0 mr-2">¿No tienes cuenta?</p>
-                                        <a class="inline-block px-6 py-2 border-2 border-gray-600 text-gray-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" asp-controller="Usuario" asp-action="Registro">Registrate</a>
+                                        <a class="inline-block px-6 py-2 border-2 border-gray-600 text-gray-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" asp-controller="Home" asp-action="Register">Registrate</a>
                                     </div>
                                 </form>
                             </div>
@@ -107,3 +107,4 @@
         </div>
     </div>
 </main>
+

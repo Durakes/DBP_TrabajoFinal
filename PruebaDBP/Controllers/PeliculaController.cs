@@ -13,5 +13,9 @@ namespace PruebaDBP.Controllers
         {
             return View();
         }
+        public IActionResult TopMovie()
+        {
+            return View();
+        }
     }
 }
