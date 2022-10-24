@@ -6,7 +6,6 @@ namespace PruebaDBP.Models
 {
     public partial class Usuario
     {
-        [Required(ErrorMessage = "El campo ID usuario es obligatorio")]
         public int IdUsuario { get; set; }
         [Required(ErrorMessage = "El campo nombre de usuario es obligatorio")]
         public string? NomUsuario { get; set; }
@@ -17,12 +16,11 @@ namespace PruebaDBP.Models
         [Required(ErrorMessage = "El campo contraseña es obligatorio")]
         public string? Contraseña { get; set; }
         [Required(ErrorMessage = "El campo fecha de nacimiento es obligatorio")]
-        public DateOnly? FechaNacimiento { get; set; }
-        [Required(ErrorMessage = "El campo descripcion es obligatorio")]
+        //Fecha de nacimiento se cambio de Date a String
+        public string FechaNacimiento { get; set; }
         public string? Descripcion { get; set; }
-        [Required(ErrorMessage = "El campo fecha de creacion es obligatorio")]
-        public DateOnly? FechaCreacion { get; set; }
-        [Required(ErrorMessage = "El campo foto de perfil es obligatorio")]
+        //Fecha de creacion se cambio de Date a String
+        public string FechaCreacion { get; set; }
         public string? UrlFoto { get; set; }
     }
 }
