@@ -31,8 +31,8 @@
                     <span class="self-center text-xl font-semibold whitespace-nowrap">Lumière</span>
                 </a>
                 <div class="flex lg:order-2">
-                    <a class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 lg:mr-5" asp-controller="Home" asp-action="Login">Iniciar Sesión</a>
-                    <a class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 lg:mr-5" asp-controller="Home" asp-action="Register">Registrate</a>
+                    <a class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 lg:mr-5" asp-controller="Usuario" asp-action="Login">Iniciar Sesión</a>
+                    <a class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 lg:mr-5" asp-controller="Usuario" asp-action="Registro">Registrate</a>
                     <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-sticky" aria-expanded="false">
                         <span class="sr-only">Abrir menú principal</span>
                         <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
@@ -41,19 +41,19 @@
                 <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="navbar-sticky">
                     <ul class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 lg:flex-row lg:space-x-8 lg:mt-0 lg:text-sm lg:font-medium lg:border-0 lg:bg-white">
                         <li>
-                            <a class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0" asp-area="" asp-controller="Home" asp-action="LandingPage">Landing Page</a>
+                            <a class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0" asp-area="" asp-controller="Home" asp-action="Index">Landing Page</a>
                         </li>
                         <li>
-                            <a class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0" asp-area="" asp-controller="Home" asp-action="LandingPageUser">Landing User</a>
+                            <a class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0" asp-area="" asp-controller="Usuario" asp-action="Index">Landing User</a>
                         </li>
                         <li>
-                            <a class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0" asp-area="" asp-controller="Home" asp-action="Library">Estantería</a>
+                            <a class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0" asp-area="" asp-controller="Estanteria" asp-action="Libreria">Estantería</a>
                         </li>
                         <li>
-                            <a class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0" asp-area="" asp-controller="Home" asp-action="Profile">Perfil</a>
+                            <a class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0" asp-area="" asp-controller="Usuario" asp-action="Perfil">Perfil</a>
                         </li>
                         <li>
-                            <a class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0" asp-area="" asp-controller="Home" asp-action="Result">Resultados</a>
+                            <a class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0" asp-area="" asp-controller="Pelicula" asp-action="Resultados">Resultados</a>
                         </li>
                     </ul>
                 </div>
@@ -69,10 +69,10 @@
         </span>
         <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 sm:mt-0">
             <li>
-                <a class="mr-4 hover:underline md:mr-6" asp-area="" asp-controller="Home" asp-action="Profile">Perfil</a>
+                <a class="mr-4 hover:underline md:mr-6" asp-area="" asp-controller="Usuario" asp-action="Perfil">Perfil</a>
             </li>
             <li>
-                <a class="mr-4 hover:underline md:mr-6" asp-area="" asp-controller="Home" asp-action="Library">Estantería</a>
+                <a class="mr-4 hover:underline md:mr-6" asp-area="" asp-controller="Estanteria" asp-action="Libreria">Estantería</a>
             </li>
         </ul>
     </footer>
