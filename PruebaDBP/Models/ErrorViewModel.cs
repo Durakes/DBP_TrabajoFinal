@@ -1,4 +1,5 @@
 namespace PruebaDBP.Models
+
 {
     public class ErrorViewModel
     {
