@@ -2,7 +2,7 @@
     ViewData["Title"] = "Perfil";
 }
 
-<main class="flex items-center justify-center h-auto w-fit bg-gray-100 pt-20">
+<main class="flex items-center justify-center w-fit bg-gray-100 p-5">
     <div class="columns-1 space-y-5 place-self-center w-fit md:w-10/12">
         <figure class="bg-slate-50 rounded-xl p-2 grid md:grid-cols-5 gap-4 columns-1 md:columns-2">
             <img class="w-24 h-24 md:w-48 md:h-48 md:flex rounded-full mx-auto" src="/images/gatoPerfil.jpg" alt="" width="384" height="512">
@@ -31,342 +31,78 @@
                 </div>
             </div>
         </figure>
+        
         <figure class=" grid gap-2 grid-cols-1">
             <p class="grid justify-items-center md:justify-items-start  text-2xl">Agregados recientemente</p>
-            <div class="container bg-slate-50 rounded-xl grid justify-items-center mt-10 ">
-                <figure class=" flex items-center bg-slate-50 rounded-xl p-2 grid grid-cols-4 md:grid-cols-6 gap-2 justify-content-center flex justify-center" ">
-                    <img class="w-fit h-fit md:w-32 md:h-48 flex md:rounded-none mx-auto" src="/images/avatar.jpg" alt="" width="384" height="512">
-                    <div class="pt-0 md:p-5 text-left space-y-4 ml-5 col-span-3 md:col-span-5 ">
+            @for(int i=0; i<10; i++){
+                <div class="container bg-slate-50 rounded-xl grid justify-items-center mt-10 ">
+                    <figure class=" flex items-center bg-slate-50 rounded-xl p-2 grid grid-cols-4 md:grid-cols-6 gap-2 justify-content-center flex justify-center" ">
+                        <img class="w-fit h-fit md:w-32 md:h-48 flex md:rounded-none mx-auto" src="/images/avatar.jpg" alt="" width="384" height="512">
+                        <div class="pt-0 md:p-5 text-left space-y-4 ml-5 col-span-3 md:col-span-5 ">
 
-                        <div class="text-sky-900 text-3xl text-left">
-                            <a asp-controller="Pelicula" asp-action="Index">Avatar</a>
-                        </div>
-                        <div class="columns-1 md:columns-2 grid md:grid-cols-3 gap-0 md:gap-4">
-                            <div class="md:col-span-2">
-                                <figcaption class="font-medium columns-2">
-                                    <div class="text-sky-500">
-                                        Director: <label class="text-slate-600 font-small">James Cameron</label>
-                                    </div>
-                                    <div class="text-sky-500">
-                                        Año: <label class="text-slate-600 font-small">2009</label>
-                                    </div>
-                                </figcaption>
-
-                                <blockquote>
-                                    <div class="h-auto w-auto md:py-2 font-small text-[0px] md:text-base mt-0 md:mt-3 ">
-                                        <div class="font-medium text-sky-500 mb-2">Sinopsis</div>
-                                        Corre el año 2154. Jake Sully es un antiguo marine que vive postrado en una silla de ruedas, pero cuya determinación y valentía se mantienen intactas. Ahora, tiene una misión entre manos: viajar a Pandora, un planeta del que los humanos extraen...
-                                    </div>
-                                </blockquote>
+                            <div class="text-sky-900 text-3xl text-left">
+                                <a asp-controller="Pelicula" asp-action="Index">Avatar</a>
                             </div>
+                            <div class="columns-1 md:columns-2 grid md:grid-cols-3 gap-0 md:gap-4">
+                                <div class="md:col-span-2">
+                                    <figcaption class="font-medium columns-2">
+                                        <div class="text-sky-500">
+                                            Director: <label class="text-slate-600 font-small">James Cameron</label>
+                                        </div>
+                                        <div class="text-sky-500">
+                                            Año: <label class="text-slate-600 font-small">2009</label>
+                                        </div>
+                                    </figcaption>
 
-                            <div>
-                                <figure class="grid md:grid-rows-5 columns-2 md:columns-1 gap-2 flex items-start md:items-end">
-                                    <div class="md:row-start-2 md:row-end-3 text-sm "><a asp-controller="Estanteria" asp-action="Libreria"><p>Ciencia ficción</p></a></div>
+                                    <blockquote>
+                                        <div class="h-auto w-auto md:py-2 font-small text-[0px] md:text-base mt-0 md:mt-3 ">
+                                            <div class="font-medium text-sky-500 mb-2">Sinopsis</div>
+                                            Corre el año 2154. Jake Sully es un antiguo marine que vive postrado en una silla de ruedas, pero cuya determinación y valentía se mantienen intactas. Ahora, tiene una misión entre manos: viajar a Pandora, un planeta del que los humanos extraen...
+                                        </div>
+                                    </blockquote>
+                                </div>
 
-                                    <div class="text-slate-700 flex justify-self-start md:row-start-3 md:row-end-4 ">
-                                        <ul class="flex justify-self-center  ">
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
-                                                </svg>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </figure>
-                            </div>
-                        </div>
-                    </div>
-                </figure>
-            </div>
+                                <div>
+                                    <figure class="grid md:grid-rows-5 columns-2 md:columns-1 gap-2 flex items-start md:items-end">
+                                        <div class="md:row-start-2 md:row-end-3 text-sm "><a asp-controller="Estanteria" asp-action="Libreria"><p>Ciencia ficción</p></a></div>
 
-            <div class="container bg-slate-50 rounded-xl grid justify-items-center mt-10 ">
-                <figure class=" flex items-center bg-slate-50 rounded-xl p-2 grid grid-cols-4 md:grid-cols-6 gap-2 justify-content-center flex justify-center" ">
-                    <img class="w-fit h-fit md:w-32 md:h-48 flex md:rounded-none mx-auto" src="/images/avatar.jpg" alt="" width="384" height="512">
-                    <div class="pt-0 md:p-5 text-left space-y-4 ml-5 col-span-3 md:col-span-5 ">
-
-                        <div class="text-sky-900 text-3xl text-left">
-                            <a asp-controller="Pelicula" asp-action="Index">Avatar</a>
-                        </div>
-                        <div class="columns-1 md:columns-2 grid md:grid-cols-3 gap-0 md:gap-4">
-                            <div class="md:col-span-2">
-                                <figcaption class="font-medium columns-2">
-                                    <div class="text-sky-500">
-                                        Director: <label class="text-slate-600 font-small">James Cameron</label>
-                                    </div>
-                                    <div class="text-sky-500">
-                                        Año: <label class="text-slate-600 font-small">2009</label>
-                                    </div>
-                                </figcaption>
-
-                                <blockquote>
-                                    <div class="h-auto w-auto md:py-2 font-small text-[0px] md:text-base mt-0 md:mt-3 ">
-                                        <div class="font-medium text-sky-500 mb-2">Sinopsis</div>
-                                        Corre el año 2154. Jake Sully es un antiguo marine que vive postrado en una silla de ruedas, pero cuya determinación y valentía se mantienen intactas. Ahora, tiene una misión entre manos: viajar a Pandora, un planeta del que los humanos extraen...
-                                    </div>
-                                </blockquote>
-                            </div>
-
-                            <div>
-                                <figure class="grid md:grid-rows-5 columns-2 md:columns-1 gap-2 flex items-start md:items-end">
-                                    <div class="md:row-start-2 md:row-end-3 text-sm "><a asp-controller="Estanteria" asp-action="Libreria"><p>Ciencia ficción</p></a></div>
-
-                                    <div class="text-slate-700 flex justify-self-start md:row-start-3 md:row-end-4 ">
-                                        <ul class="flex justify-self-center  ">
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
-                                                </svg>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </figure>
+                                        <div class="text-slate-700 flex justify-self-start md:row-start-3 md:row-end-4 ">
+                                            <ul class="flex justify-center">
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                        <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                        <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                        <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                        <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+                                                    </svg>
+                                                </li>
+                                                <li>
+                                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" class="w-3.5 text-red-500" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                        <path fill="currentColor" d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"></path>
+                                                    </svg>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </figure>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </figure>
-            </div>
+                    </figure>
+                </div>
+            }
 
-            <div class="container bg-slate-50 rounded-xl grid justify-items-center mt-10 ">
-                <figure class=" flex items-center bg-slate-50 rounded-xl p-2 grid grid-cols-4 md:grid-cols-6 gap-2 justify-content-center flex justify-center" ">
-                    <img class="w-fit h-fit md:w-32 md:h-48 flex md:rounded-none mx-auto" src="/images/avatar.jpg" alt="" width="384" height="512">
-                    <div class="pt-0 md:p-5 text-left space-y-4 ml-5 col-span-3 md:col-span-5 ">
-
-                        <div class="text-sky-900 text-3xl text-left">
-                            <a asp-controller="Pelicula" asp-action="Index">Avatar</a>
-                        </div>
-                        <div class="columns-1 md:columns-2 grid md:grid-cols-3 gap-0 md:gap-4">
-                            <div class="md:col-span-2">
-                                <figcaption class="font-medium columns-2">
-                                    <div class="text-sky-500">
-                                        Director: <label class="text-slate-600 font-small">James Cameron</label>
-                                    </div>
-                                    <div class="text-sky-500">
-                                        Año: <label class="text-slate-600 font-small">2009</label>
-                                    </div>
-                                </figcaption>
-
-                                <blockquote>
-                                    <div class="h-auto w-auto md:py-2 font-small text-[0px] md:text-base mt-0 md:mt-3 ">
-                                        <div class="font-medium text-sky-500 mb-2">Sinopsis</div>
-                                        Corre el año 2154. Jake Sully es un antiguo marine que vive postrado en una silla de ruedas, pero cuya determinación y valentía se mantienen intactas. Ahora, tiene una misión entre manos: viajar a Pandora, un planeta del que los humanos extraen...
-                                    </div>
-                                </blockquote>
-                            </div>
-
-                            <div>
-                                <figure class="grid md:grid-rows-5 columns-2 md:columns-1 gap-2 flex items-start md:items-end">
-                                    <div class="md:row-start-2 md:row-end-3 text-sm "><a asp-controller="Estanteria" asp-action="Libreria"><p>Ciencia ficción</p></a></div>
-
-                                    <div class="text-slate-700 flex justify-self-start md:row-start-3 md:row-end-4 ">
-                                        <ul class="flex justify-self-center  ">
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
-                                                </svg>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </figure>
-                            </div>
-                        </div>
-                    </div>
-                </figure>
-            </div>
-            <div class="container bg-slate-50 rounded-xl grid justify-items-center mt-10 ">
-                <figure class=" flex items-center bg-slate-50 rounded-xl p-2 grid grid-cols-4 md:grid-cols-6 gap-2 justify-content-center flex justify-center" ">
-                    <img class="w-fit h-fit md:w-32 md:h-48 flex md:rounded-none mx-auto" src="/images/avatar.jpg" alt="" width="384" height="512">
-                    <div class="pt-0 md:p-5 text-left space-y-4 ml-5 col-span-3 md:col-span-5 ">
-
-                        <div class="text-sky-900 text-3xl text-left">
-                            <a asp-controller="Pelicula" asp-action="Index">Avatar</a>
-                        </div>
-                        <div class="columns-1 md:columns-2 grid md:grid-cols-3 gap-0 md:gap-4">
-                            <div class="md:col-span-2">
-                                <figcaption class="font-medium columns-2">
-                                    <div class="text-sky-500">
-                                        Director: <label class="text-slate-600 font-small">James Cameron</label>
-                                    </div>
-                                    <div class="text-sky-500">
-                                        Año: <label class="text-slate-600 font-small">2009</label>
-                                    </div>
-                                </figcaption>
-
-                                <blockquote>
-                                    <div class="h-auto w-auto md:py-2 font-small text-[0px] md:text-base mt-0 md:mt-3 ">
-                                        <div class="font-medium text-sky-500 mb-2">Sinopsis</div>
-                                        Corre el año 2154. Jake Sully es un antiguo marine que vive postrado en una silla de ruedas, pero cuya determinación y valentía se mantienen intactas. Ahora, tiene una misión entre manos: viajar a Pandora, un planeta del que los humanos extraen...
-                                    </div>
-                                </blockquote>
-                            </div>
-
-                            <div>
-                                <figure class="grid md:grid-rows-5 columns-2 md:columns-1 gap-2 flex items-start md:items-end">
-                                    <div class="md:row-start-2 md:row-end-3 text-sm "><a asp-controller="Estanteria" asp-action="Libreria"><p>Ciencia ficción</p></a></div>
-
-                                    <div class="text-slate-700 flex justify-self-start md:row-start-3 md:row-end-4 ">
-                                        <ul class="flex justify-self-center  ">
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
-                                                </svg>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </figure>
-                            </div>
-                        </div>
-                    </div>
-                </figure>
-            </div>
-
-            <div class="container bg-slate-50 rounded-xl grid justify-items-center mt-10 ">
-                <figure class=" flex items-center bg-slate-50 rounded-xl p-2 grid grid-cols-4 md:grid-cols-6 gap-2 justify-content-center flex justify-center" ">
-                     <img class="w-fit h-fit md:w-32 md:h-48 flex md:rounded-none mx-auto" src="/images/avatar.jpg" alt="" width="384" height="512">
-                    <div class="pt-0 md:p-5 text-left space-y-4 ml-5 col-span-3 md:col-span-5 ">
-
-                        <div class="text-sky-900 text-3xl text-left">
-                            <a asp-controller="Pelicula" asp-action="Index">Avatar</a>
-                        </div>
-                        <div class="columns-1 md:columns-2 grid md:grid-cols-3 gap-0 md:gap-4">
-                            <div class="md:col-span-2">
-                                <figcaption class="font-medium columns-2">
-                                    <div class="text-sky-500">
-                                        Director: <label class="text-slate-600 font-small">James Cameron</label>
-                                    </div>
-                                    <div class="text-sky-500">
-                                        Año: <label class="text-slate-600 font-small">2009</label>
-                                    </div>
-                                </figcaption>
-
-                                <blockquote>
-                                    <div class="h-auto w-auto md:py-2 font-small text-[0px] md:text-base mt-0 md:mt-3 ">
-                                        <div class="font-medium text-sky-500 mb-2">Sinopsis</div>
-                                        Corre el año 2154. Jake Sully es un antiguo marine que vive postrado en una silla de ruedas, pero cuya determinación y valentía se mantienen intactas. Ahora, tiene una misión entre manos: viajar a Pandora, un planeta del que los humanos extraen...
-                                    </div>
-                                </blockquote>
-                            </div>
-
-                            <div>
-                                <figure class="grid md:grid-rows-5 columns-2 md:columns-1 gap-2 flex items-start md:items-end">
-                                    <div class="md:row-start-2 md:row-end-3 text-sm "><a asp-controller="Estanteria" asp-action="Libreria"><p>Ciencia ficción</p></a></div>
-
-                                    <div class="text-slate-700 flex justify-self-start md:row-start-3 md:row-end-4 ">
-                                        <ul class="flex justify-self-center  ">
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="w-4 text-yellow-500" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                    <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
-                                                </svg>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </figure>
-                            </div>
-                        </div>
-                    </div>
-                </figure>
-            </div>
-            <br />
        </figure>
     </div>
 </main>

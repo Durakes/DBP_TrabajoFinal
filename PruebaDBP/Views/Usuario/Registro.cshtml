@@ -1,25 +1,26 @@
 ﻿@{
     ViewData["Title"] = "Register";
 }
-<main class="flex items-center justify-center h-auto">
-    <div class="container pb-8 px-6 h-full pt-32 md:pt-24">
+<main class="flex items-center justify-center">
+    <div class="container py-8 px-6 h-full ">
         <div class="flex justify-center items-center md:flex-wrap lg:flex-nowrap h-full text-gray-800">
             <div class="xl:w-10/12">
                 <div class="block bg-white shadow-lg rounded-lg">
-                    <div class="lg:flex lg:flex-wrap g-0">
+                    <div class="lg:flex lg:flex-wrap g-0 flex-column items-center">
 
-                        <div class="lg:w-6/12 items-center lg:rounded-l-lg rounded-t-lg lg:rounded-bl-none bg-gradient-to-r from-sky-900 to-white">
+                        <div class="lg:w-6/12 items-center md:py-20 py-5 md:rounded-l-lg rounded-t-lg bg-gradient-to-b md:bg-gradient-to-r from-sky-900 to-white">
                             <div class="text-center mt-8">
                                 <img class="mx-auto w-48 mb-8" src="~/images/logo_2_0.png" alt="logo" />
                             </div>
-                            <div class="text-white px-4 py-6 md:p-8 md:mx-6">
+                            <div class="md:text-white text-gray-700 px-4 py-6 md:p-8 md:mx-6">
                                 <h2 class="text-xl font-bold mb-6">Lumière</h2>
                                 <h4 class="text-xl font-italic mb-6">"Donde las mejores películas se comparten"</h4>
-                                <p class="text-sm text-gray-100 pr-16">
+                                <p class="text-sm md:text-white md:pr-16">
                                     Lumière, lugar de reseñas y una comunidad dispuesta a disfrutar de tus gustos en las mejores peliculas.
                                 </p>
                             </div>
                         </div>
+
                         <div class="lg:w-6/12 px-4 lg:px-0 rounded-b-lg lg:rounded-r-lg pt-4 md:pt-0">
                             <div class="lg:p-12 lg:mx-6">
 
@@ -37,12 +38,12 @@
                                     <div class="mb-4">
                                         <input type="password" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleFormControlInput1" placeholder="Contraseña" />
                                     </div>
-                                    <div class="flex items-center justify-center">
+                                    <div class="flex items-center justify-center blockquote w-full">
                                         <div class="datepicker relative form-floating mb-4 xl:w-96" data-mdb-toggle-button="false">
                                             <input type="text"
                                                    class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                    placeholder="Select a date" />
-                                            <label for="floatingInput" class="text-gray-400">Ingrese su fecha de nacimiento</label>
+                                            <label for="floatingInput" class="text-gray-400">Fecha de nacimiento</label>
                                             <button class="datepicker-toggle-button" data-mdb-toggle="datepicker">
                                                 <i class="fas fa-calendar datepicker-toggle-icon"></i>
                                             </button>
@@ -55,8 +56,6 @@
                                 </form>
                             </div>
                         </div>
-                        
-                        
                     </div>
                 </div>
             </div>
