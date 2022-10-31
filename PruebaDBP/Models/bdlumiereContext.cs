@@ -99,19 +99,17 @@ namespace PruebaDBP.Models
                 entity.HasCharSet("utf8")
                     .UseCollation("utf8_general_ci");
 
-                entity.HasIndex(e => e.IdMejorPelicula, "id_mejor_pelicula");
-
                 entity.Property(e => e.IdDirector)
                     .HasColumnType("int(11)")
                     .HasColumnName("id_director");
 
-                entity.Property(e => e.BioDirector)
-                    .HasMaxLength(500)
-                    .HasColumnName("bio_director");
-
-                entity.Property(e => e.IdMejorPelicula)
+                entity.Property(e => e.IdDirTmdb)
                     .HasColumnType("int(11)")
-                    .HasColumnName("id_mejor_pelicula");
+                    .HasColumnName("id_dir_tmdb");
+
+                entity.Property(e => e.BioDirector)
+                    .HasMaxLength(2500)
+                    .HasColumnName("bio_director");
 
                 entity.Property(e => e.NomDirector)
                     .HasMaxLength(50)
@@ -168,6 +166,10 @@ namespace PruebaDBP.Models
                 entity.Property(e => e.NomIdioma)
                     .HasMaxLength(50)
                     .HasColumnName("nom_idioma");
+
+                entity.Property(e => e.Abreviacion)
+                    .HasMaxLength(10)
+                    .HasColumnName("abreviacion");
             });
 
             modelBuilder.Entity<Pelicula>(entity =>
@@ -182,6 +184,10 @@ namespace PruebaDBP.Models
 
                 entity.HasIndex(e => e.IdIdioma, "id_idioma");
 
+                entity.Property(e => e.IdTmdb)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("id_tmdb");
+
                 entity.Property(e => e.IdPelicula)
                     .HasColumnType("int(11)")
                     .HasColumnName("id_pelicula");
@@ -191,11 +197,11 @@ namespace PruebaDBP.Models
                     .HasColumnName("duracion_min");
 
                 entity.Property(e => e.FechaEstreno)
-                    .HasColumnType("year(4)")
+                    .HasMaxLength(11)
                     .HasColumnName("fecha_estreno");
 
                 entity.Property(e => e.IdIdioma)
-                    .HasColumnType("int(11)")
+                    .HasColumnType("int(15)")
                     .HasColumnName("id_idioma");
 
                 entity.Property(e => e.NomPelicula)
@@ -305,9 +311,13 @@ namespace PruebaDBP.Models
                     .HasMaxLength(250)
                     .HasColumnName("descripcion");
 
-                entity.Property(e => e.FechaCreacion).HasColumnName("fecha_creacion");
+                entity.Property(e => e.FechaCreacion)
+                    .HasMaxLength(11)
+                    .HasColumnName("fecha_creacion");
 
-                entity.Property(e => e.FechaNacimiento).HasColumnName("fecha_nacimiento");
+                entity.Property(e => e.FechaNacimiento)
+                    .HasMaxLength(11)    
+                    .HasColumnName("fecha_nacimiento");
 
                 entity.Property(e => e.NomUsuario)
                     .HasMaxLength(100)
