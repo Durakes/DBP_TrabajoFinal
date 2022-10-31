@@ -11,7 +11,7 @@ namespace PruebaDBP.Models
         public int IdPelicula { get; set; }
         [Required(ErrorMessage = "El campo texto es obligatorio")]
         public string? Texto { get; set; }
-        public DateOnly? FechaPublicacion { get; set; }
+        public string? FechaPublicacion { get; set; }
         public bool? Estado { get; set; }
     }
 }

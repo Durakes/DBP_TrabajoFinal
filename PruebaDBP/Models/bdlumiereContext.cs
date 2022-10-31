@@ -74,7 +74,9 @@ namespace PruebaDBP.Models
 
                 entity.Property(e => e.Estado).HasColumnName("estado");
 
-                entity.Property(e => e.FechaPublicacion).HasColumnName("fecha_publicacion");
+                entity.Property(e => e.FechaPublicacion)
+                    .HasMaxLength(15)
+                    .HasColumnName("fecha_publicacion");
 
                 entity.Property(e => e.IdPelicula)
                     .HasColumnType("int(11)")
@@ -138,7 +140,9 @@ namespace PruebaDBP.Models
 
                 entity.Property(e => e.EsEditable).HasColumnName("es_editable");
 
-                entity.Property(e => e.FechaCreacion).HasColumnName("fecha_creacion");
+                entity.Property(e => e.FechaCreacion)
+                    .HasMaxLength(15)    
+                    .HasColumnName("fecha_creacion");
 
                 entity.Property(e => e.IdUsuario)
                     .HasColumnType("int(11)")
@@ -197,7 +201,7 @@ namespace PruebaDBP.Models
                     .HasColumnName("duracion_min");
 
                 entity.Property(e => e.FechaEstreno)
-                    .HasMaxLength(11)
+                    .HasMaxLength(15)
                     .HasColumnName("fecha_estreno");
 
                 entity.Property(e => e.IdIdioma)
@@ -282,7 +286,9 @@ namespace PruebaDBP.Models
                     .HasColumnType("int(11)")
                     .HasColumnName("id_estanteria");
 
-                entity.Property(e => e.FechaAgregacion).HasColumnName("fecha_agregacion");
+                entity.Property(e => e.FechaAgregacion)
+                    .HasMaxLength(15)
+                    .HasColumnName("fecha_agregacion");
             });
 
             modelBuilder.Entity<Usuario>(entity =>
@@ -312,11 +318,11 @@ namespace PruebaDBP.Models
                     .HasColumnName("descripcion");
 
                 entity.Property(e => e.FechaCreacion)
-                    .HasMaxLength(11)
+                    .HasMaxLength(15)
                     .HasColumnName("fecha_creacion");
 
                 entity.Property(e => e.FechaNacimiento)
-                    .HasMaxLength(11)    
+                    .HasMaxLength(15)    
                     .HasColumnName("fecha_nacimiento");
 
                 entity.Property(e => e.NomUsuario)
@@ -353,7 +359,9 @@ namespace PruebaDBP.Models
                     .HasColumnType("int(11)")
                     .HasColumnName("id_usuario");
 
-                entity.Property(e => e.FechaValoracion).HasColumnName("fecha_valoracion");
+                entity.Property(e => e.FechaValoracion)
+                    .HasMaxLength(15)
+                    .HasColumnName("fecha_valoracion");
 
                 entity.Property(e => e.Valoracion)
                     .HasColumnType("int(11)")

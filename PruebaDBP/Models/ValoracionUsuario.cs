@@ -10,6 +10,6 @@ namespace PruebaDBP.Models
         public int IdUsuario { get; set; }
         public int? Valoracion { get; set; }
         //Fecha de Valoracion se cambio de Date a String
-        public string FechaValoracion { get; set; }
+        public string? FechaValoracion { get; set; }
     }
 }
