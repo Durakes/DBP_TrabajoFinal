@@ -17,10 +17,10 @@ namespace PruebaDBP.Models
         public string? Contraseña { get; set; }
         [Required(ErrorMessage = "El campo fecha de nacimiento es obligatorio")]
         //Fecha de nacimiento se cambio de Date a String
-        public string FechaNacimiento { get; set; }
+        public string? FechaNacimiento { get; set; }
         public string? Descripcion { get; set; }
         //Fecha de creacion se cambio de Date a String
-        public string FechaCreacion { get; set; }
+        public string? FechaCreacion { get; set; }
         public string? UrlFoto { get; set; }
     }
 }

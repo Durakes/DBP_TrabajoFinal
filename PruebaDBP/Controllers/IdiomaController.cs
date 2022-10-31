@@ -1,24 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using PruebaDBP.Models;
 
 namespace PruebaDBP.Controllers
 {
-    public class CategoriaController : Controller
+    public class IdiomaController : Controller
     {
         private readonly bdlumiereContext Context;
-        public CategoriaController(bdlumiereContext context)
+        public IdiomaController(bdlumiereContext context)
         {
             Context = context;
         }
-        public IActionResult Index()
+        public ActionResult Index()
         {
-            //AllCategories();
             return View();
         }
 
         [HttpGet]
-        public async Task AllCategories()
+        public async Task AllLanguages()
         {
             System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
 
@@ -29,23 +28,22 @@ namespace PruebaDBP.Controllers
                 httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
 
                 // api_key can be requestred on TMDB website
-                using (var response = await httpClient.GetAsync("genre/movie/list?api_key=da8f080c81b970a5c0962ea17bfc0cda&language=es"))
+                using (var response = await httpClient.GetAsync("configuration/languages?api_key=da8f080c81b970a5c0962ea17bfc0cda"))
                 {
                     string responseData = await response.Content.ReadAsStringAsync();
 
                     dynamic resultado = JsonConvert.DeserializeObject(responseData);
-
-                    foreach (var result in resultado.genres)
+                    foreach (var result in resultado)
                     {
-                        string nombre = result.name;
-                        Categorium obj = new Categorium(nombre);
+                        string abreviacion = result.iso_639_1;
+                        string nombre = result.english_name;
+                        Idioma obj = new Idioma(nombre, abreviacion);
                         if (ModelState.IsValid)
                         {
-                            Context.Categoria.Add(obj);
+                            Context.Idiomas.Add(obj);
                             Context.SaveChanges();
-
-                            Console.WriteLine(obj.IdCategoria + obj.NomCategoria);
                         }
+                        
                     }
                 }
             }

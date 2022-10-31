@@ -8,5 +8,15 @@ namespace PruebaDBP.Models
     {
         public int IdCategoria { get; set; }
         public string? NomCategoria { get; set; }
+        public Categorium() { }
+        public Categorium(int index,string? nomCategoria)
+        {
+            IdCategoria = index;
+            NomCategoria = nomCategoria;
+        }
+        public Categorium(string? nomCategoria)
+        {
+            NomCategoria = nomCategoria;
+        }
     }
 }
