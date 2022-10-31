@@ -8,5 +8,13 @@ namespace PruebaDBP.Models
     {
         public int IdPelicula { get; set; }
         public int IdCategoria { get; set; }
+
+        public PeliculaCategorium(int idPelicula, int idCategoria)
+        {
+            IdPelicula = idPelicula;
+            IdCategoria = idCategoria;
+        }
+
+        public PeliculaCategorium() { }
     }
 }
