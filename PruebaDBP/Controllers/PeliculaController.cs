@@ -39,7 +39,7 @@ namespace PruebaDBP.Controllers
 
                 int page = 1;
                 int totalpages = 1;
-                string nombre = "https://api.themoviedb.org/3/search/movie?api_key=da8f080c81b970a5c0962ea17bfc0cda&language=es&query=Avengers&page=1&include_adult=false"
+                string nombre = "https://api.themoviedb.org/3/search/movie?api_key=da8f080c81b970a5c0962ea17bfc0cda&language=es&query=Avengers&page=1&include_adult=false";
                 while (page <= totalpages)
                 {
                     using (var busqueda = await httpClient.GetAsync("search/movie?api_key=da8f080c81b970a5c0962ea17bfc0cda&language=es&query=" + nombreBuscar + "&page=" + page.ToString() + "&include_adult=false"))
