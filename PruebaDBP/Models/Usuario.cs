@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
+#nullable disable
 
 namespace PruebaDBP.Models
 {
@@ -22,5 +24,13 @@ namespace PruebaDBP.Models
         //Fecha de creacion se cambio de Date a String
         public string? FechaCreacion { get; set; }
         public string? UrlFoto { get; set; }
+    }
+    public partial class UsuarioLogin
+    {
+        [Required(ErrorMessage = "El campo username es obligatorio")]
+        public string Username { get; set; }
+        [Required(ErrorMessage = "El campo contraseña es obligatorio")]
+        public string Contraseña { get; set; }
+        
     }
 }
