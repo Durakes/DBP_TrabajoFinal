@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using PruebaDBP.Models;
+using System;
 using System.Net.Http;
 
 namespace PruebaDBP.Controllers
@@ -17,11 +19,38 @@ namespace PruebaDBP.Controllers
             return View();
         }
 
-        public IActionResult Resultados()
+        
+        private List<Pelicula> _pelicula;
+        private readonly int _RegistrosPorPagina = 10;
+        private Paginador<Pelicula> _PaginadorPelicula;
+        public IActionResult Resultados(int pagina = 1)
         {
-            return View();
+            int _TotalRegistros = 0;
+            using (Context)
+            {
+                // Número total de registros de la tabla Pelicula
+                _TotalRegistros = Context.Peliculas.Count();
+                // Obtenemos la 'página de registros' de la tabla Pelicula
+                _pelicula = Context.Peliculas.OrderBy(x => x.NomPelicula)
+                                                 .Skip((pagina - 1) * _RegistrosPorPagina)
+                                                 .Take(_RegistrosPorPagina)
+                                                 .ToList();
+                // Número total de páginas de la tabla Pelicula
+                var _TotalPaginas = (int)Math.Ceiling((double)_TotalRegistros / _RegistrosPorPagina);
+                // Instanciamos la 'Clase de paginación' y asignamos los nuevos valores
+                _PaginadorPelicula = new Paginador<Pelicula>()
+                {
+                    RegistrosPorPagina = _RegistrosPorPagina,
+                    TotalRegistros = _TotalRegistros,
+                    TotalPaginas = _TotalPaginas,
+                    PaginaActual = pagina,
+                    Resultado = _pelicula
+                };
+                // Enviamos a la Vista la 'Clase de paginación'
+                return View(_PaginadorPelicula);
+            }
         }
-        public IActionResult TopMovie()
+            public IActionResult TopMovie()
         {
             return View();
 
