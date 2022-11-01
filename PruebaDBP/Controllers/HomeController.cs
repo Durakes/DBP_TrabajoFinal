@@ -13,7 +13,18 @@ namespace PruebaDBP.Controllers
             _logger = logger;
         }
 
-       
+        public IActionResult Redirigir()
+        {
+            var objSesion = HttpContext.Session.GetString("sUsuario");
+            if(objSesion != null)
+            {
+                return RedirectToAction("Index","Usuario");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
 
         public IActionResult Index()
         {

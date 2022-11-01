@@ -1,18 +1,19 @@
-﻿@{
+﻿@model PruebaDBP.Models.Usuario
+@{
     ViewData["Title"] = "Perfil";
 }
 
 <main class="flex items-center justify-center w-fit bg-gray-100 p-5">
     <div class="columns-1 space-y-5 place-self-center w-fit md:w-10/12">
         <figure class="bg-slate-50 rounded-xl p-2 grid md:grid-cols-5 gap-4 columns-1 md:columns-2">
-            <img class="w-24 h-24 md:w-48 md:h-48 md:flex rounded-full mx-auto" src="/images/gatoPerfil.jpg" alt="" width="384" height="512">
+            <img class="w-24 h-24 md:w-48 md:h-48 md:flex rounded-full mx-auto" src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.webp" srcset="@Html.DisplayFor(modelItem => modelItem.UrlFoto)" alt="" width="384" height="512">
             <div class="pt-0 md:p-5 text-left space-y-4 ml-5 md:col-span-4">
                 <figcaption class="font-medium columns-1 md:columns-2">
                     <div class="text-sky-500">
-                        Usuario: <label class="text-slate-600 font-small">PepinilloCosmico267</label>
+                        Usuario: <label class="text-slate-600 font-small">@Html.DisplayFor(modelItem => modelItem.Username)</label>
                     </div>
                     <div class="text-sky-500">
-                        Nombre: <label class="text-slate-600 font-small">Oliver Martinez</label>
+                        Nombre: <label class="text-slate-600 font-small">@Html.DisplayFor(modelItem => modelItem.NomUsuario) @Html.DisplayFor(modelItem => modelItem.ApeUsuario)</label>
                     </div>
                 </figcaption>
                 <figcaption class="font-medium columns-2">
@@ -26,7 +27,7 @@
                         Descripción
                     </div>
                     <div class="text-sm font-small h-auto w-50">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        @Html.DisplayFor(modelItem => modelItem.Descripcion)
                     </div>
                 </div>
             </div>
