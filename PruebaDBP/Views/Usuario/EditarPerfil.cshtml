@@ -1,73 +1,108 @@
-﻿@{
+﻿@model PruebaDBP.Models.UsuarioModif
+@{
     ViewData["Title"] = "Edición Perfil";
 }
 
 <main class="flex items-center justify-center bg-gray-100 p-5">
     <div class="conteiner w-100 bg-white items-center">
         <div class="md:p-12 md:mx-6 md:w-8/10 sm:w-19/20 overflow-hidden">
-            <form >
+            <form asp-controller="Usuario" asp-action="ModificarPerfil" method="post">           
                 <div class="form-group md:flex items-center md:space-x-5">
                     <div class="columns-1">
-                        <img class="items-center m-5 w-24 h-24 md:w-36 md:h-36 md:flex rounded-full mx-auto" src="/images/gatoPerfil.jpg" alt="" width="512" height="512">
-                        <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file">
+                        <img class="items-center m-5 w-24 h-24 md:w-36 md:h-36 md:flex rounded-full mx-auto" src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.webp" srcset="@Model.UrlFoto" alt="" width="512" height="512">
+                        <input asp-for="UrlFoto" class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file">
                     </div>
                     <div class="columns-1 visible">
                         <label class="block p-2">
-                            <span class="text-gray-700">Usuario: </span>
-                            <input type="text" class="bg-gray-100 form-input mt-1 rounded-full block w-full pl-3" placeholder="Ingrese su usuario" />
+                            <span class="text-gray-700">Usuario: </span> 
+                            <input hidden type="text" asp-for="IdUsuario" />    
+                            <input type="text" asp-for="Username" class="bg-gray-100 form-input mt-1 rounded-full block w-full pl-3" placeholder="Ingrese su usuario" />
                         </label>
                         <label class="block p-2">
                             <span class="text-gray-700">Nombre: </span>
-                            <input type="text" class="bg-gray-100 form-input mt-1 rounded-full block w-full pl-3" placeholder="Ingrese su nombre" />
+                            <input type="text" asp-for="NomUsuario" class="bg-gray-100 form-input mt-1 rounded-full block w-full pl-3" placeholder="Ingrese su nombre" />
+                        </label>
+                        <label class="block p-2">
+                            <span class="text-gray-700">Apellido: </span>
+                            <input type="text" asp-for="ApeUsuario" class="bg-gray-100 form-input mt-1 rounded-full block w-full pl-3" placeholder="Ingrese su apellido" />
                         </label>
                         <label class="block p-2">
                             <span class="text-gray-700">Descripción:</span>
-                            <textarea type="text" class="bg-gray-100 form-textarea mt-1 rounded-2xl block w-full pl-3" rows="3" placeholder="Ingrese su descripción"></textarea>
+                            <textarea type="text" asp-for="Descripcion" class="bg-gray-100 form-textarea mt-1 rounded-2xl block w-full pl-3" rows="3" placeholder="Ingrese su descripción"></textarea>
                         </label>
                         <div>
                             <div class="p-6 text-center space-y-5 md:columns-2 items-center columns-1">
-                                <a href="\Home\Profile" class="block text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" data-mdb-ripple="true" data-mdb-ripple-color="light">Guardar</a>
+                                <button type="submit" class="w-full text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Guardar cambios</button>
                                 <button class="block w-full text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button" data-modal-toggle="authentication-modal">
                                     Cambiar Contraseña
                                 </button>
-                            </div>
-                            <!-- Main modal -->
-                            <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
-                                <div class="relative p-4 w-full max-w-md h-full md:h-auto">
-                                    <!-- Modal content -->
-                                    <div class="relative bg-white rounded-lg shadow">
-                                        <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-toggle="authentication-modal">
-                                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                            <span class="sr-only">Cerrar ventana</span>
-                                        </button>
-                                        <div class="py-6 px-6 lg:px-8">
-                                            <h3 class="mb-4 text-xl font-medium text-gray-900">Modifique su contraseña</h3>
-                                            <form class="space-y-6" action="#">
-                                                <div>
-                                                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Contraseña actual</label>
-                                                    <input type="password" name="password3" id="password1" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5" required>
-                                                </div>
-                                                <div>
-                                                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Nueva contraseña</label>
-                                                    <input type="password" name="password3" id="password2" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5" required>
-                                                </div>
-                                                <div>
-                                                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Confirme nueva contraseña</label>
-                                                    <input type="password" name="password3" id="password3" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5" required>
-                                                </div>
-                                                <div>
-                                                    <button type="submit" class="w-full text-white mt-5 bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Guardar cambios</button>
-                                                
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </form>
+            
+        </div>
+    </div>
+    <!-- Main modal -->
+    <div id="authentication-modal" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
+        <div class="relative p-4 w-full max-w-md h-full md:h-auto">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow">
+                <button type="button"
+                    class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                    data-modal-toggle="authentication-modal">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="sr-only">Cerrar ventana</span>
+                </button>
+                <div class="py-6 px-6 lg:px-8">
+                    <h3 class="mb-4 text-xl font-medium text-gray-900">Modifique su contraseña</h3>
+                    <form class="space-y-6" action="Usuario/CambiarContra">
+                    <input hidden type="text" asp-for="IdUsuario" /> 
+                        <div>
+                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Contraseña
+                                actual</label>
+                            <input asp-for="ContraseñaActual" type="password" id="password1" placeholder="••••••••"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5"
+                                required>
+                        </div>
+                        <div>
+                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Nueva
+                                contraseña</label>
+                            <input asp-for="ContraseñaNueva1" type="password" id="password2" placeholder="••••••••"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5"
+                                required>
+                        </div>
+                        <div>
+                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Confirme nueva
+                                contraseña</label>
+                            <input asp-for="ContraseñaNueva2" type="password" id="password3" placeholder="••••••••"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5"
+                                required>
+                        </div>
+                        <div>
+                            <button type="submit"
+                                class="w-full text-white mt-5 bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Guardar
+                                cambios</button>
+
+                        </div>
+                        @if (ViewBag.Message != null)  
+    {  
+        <script type="text/javascript">  
+            window.onload = function () {  
+                alert("@ViewBag.Message");  
+            };  
+        </script>  
+    }  
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </main>

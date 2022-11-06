@@ -29,15 +29,19 @@
                                     <p class="mb-4">Registrate</p>
                                     <div class="mb-4">
                                         <input type="text" asp-for="NomUsuario" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleFormControlInput1" placeholder="Nombre" />
+                                        <span asp-validation-for="NomUsuario" class="text-rose-500"></span>
                                     </div>
                                     <div class="mb-4">
                                         <input type="text" asp-for="ApeUsuario" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleFormControlInput1" placeholder="Apellido" />
+                                        <span asp-validation-for="ApeUsuario" class="text-rose-500"></span>
                                     </div>
                                     <div class="mb-4">
                                         <input type="text" asp-for="Username" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleFormControlInput1" placeholder="Usuario" />
+                                        <span asp-validation-for="Username" class="text-rose-500"></span>
                                     </div>
                                     <div class="mb-4">
                                         <input type="password" asp-for="Contraseña" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleFormControlInput1" placeholder="Contraseña" />
+                                        <span asp-validation-for="Contraseña" class="text-rose-500"></span>
                                     </div>
                                     <div class="flex items-center justify-center blockquote w-full">
                                         <div class="datepicker relative form-floating mb-4 xl:w-96" data-mdb-toggle-button="false">
@@ -48,6 +52,7 @@
                                             <button class="datepicker-toggle-button" data-mdb-toggle="datepicker">
                                                 <i class="fas fa-calendar datepicker-toggle-icon"></i>
                                             </button>
+                                            <span asp-validation-for="FechaNacimiento" class="text-rose-500"></span>
                                         </div>
                                     </div>
                                     <div class="text-center pt-1 mb-12 pb-1">
@@ -55,7 +60,9 @@
                                     </div>
 
                                 </form>
+
                             </div>
+                            
                         </div>
                     </div>
                 </div>
