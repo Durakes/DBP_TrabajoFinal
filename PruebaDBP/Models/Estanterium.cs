@@ -6,7 +6,7 @@ namespace PruebaDBP.Models
 {
     public partial class Estanterium
     {
-        public int IdEstanteria { get; set; }
+        public int IdEstanteria { get; set; } 
         public int IdUsuario { get; set; }
         [Required(ErrorMessage = "El campo nombre estanteria es obligatorio")]
         public string? NomEstanteria { get; set; }
@@ -14,4 +14,5 @@ namespace PruebaDBP.Models
         public string? FechaCreacion { get; set; }
         public bool? EsEditable { get; set; }
     }
+   
 }

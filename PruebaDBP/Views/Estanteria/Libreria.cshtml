@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<PruebaDBP.Models.Estanterium>
+@{
     ViewData["Title"] = "Estanterías";
 }
 
@@ -23,41 +24,17 @@
                         <ul
                             class="dropdown-menu w-full absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-paddingborder-none"
                             aria-labelledby="dropdownMenuButton1">
-                            <li>
-                            <a
-                                class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-300"
-                                href="#"
-                                >Por ver</a
-                            >
-                            </li>
-                            <li>
-                            <a
-                                class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                                href="#"
-                                >Favoritas</a
-                            >
-                            </li>
-                             <li>
-                            <a
-                                class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                                href="#"
-                                >Romance</a
-                            >
-                            </li>
-                             <li>
-                            <a
-                                class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                                href="#"
-                                >Terror</a
-                            >
-                            </li>
-                            <li>
-                            <a
-                                class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                                href="#"
-                                >Comedias</a
-                            >
-                            </li>
+                            @foreach(var est in Model)
+                            {
+                                <li>
+                                <a
+                                    class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-300"
+                                    href="#"
+                                    >@est.NomEstanteria</a>
+                                </li>
+                            }
+                            
+                            
                             <hr class="h-0 my-2 border border-solid border-t-0 border-gray-700 opacity-25" />
                             <li>
 
@@ -79,12 +56,11 @@
                     <!-- navigation -->
                     <ul class="flex flex-col overflow-hidden">
                         <li>
-                            <a href=""><h4 class="text-xl md:text-xl md:text-xl lg:text-2xl text-slate-100 mb-5 font-bold text-center">Vistas</h4></a>
-                            <a href=""><h4 class="text-xl md:text-xl md:text-xl lg:text-2xl text-slate-100 mb-5  text-center">Por ver</h4></a>
-                            <a href=""><h4 class="text-xl md:text-xl md:text-xl lg:text-2xl text-slate-100 mb-5  text-center">Favoritas</h4></a>
-                            <a href=""><h4 class="text-xl md:text-xl md:text-xl lg:text-2xl text-slate-100 mb-5  text-center">Romance</h4></a>
-                            <a href=""><h4 class="text-xl sm:text-xl md:text-xl lg:text-2xl text-slate-100 mb-5  text-center">Terror</h4></a>
-                            <a href=""><h4 class="text-xl md:text-xl md:text-xl lg:text-2xl text-slate-100 mb-5  text-center">Comedias</h4></a>
+                            @foreach(var est in Model)
+                            {
+                                <a href=""><h4 class="text-xl md:text-xl md:text-xl lg:text-2xl text-slate-100 mb-5 font-bold text-center">@est.NomEstanteria</h4></a>
+                            }
+                            
                             <button type="button" class="border-2 border-slate-50 inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#registroLib">
                                 Añadir nueva estantería
                             </button>
@@ -253,12 +229,13 @@
                     class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
                     data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <form action="/Estanteria/AgregarLibreria" method="post">
                 <div class="modal-body relative p-4">
                     <div class="flex justify-center">
                         <div class="mb-3 xl:w-96">
                             <label for="exampleText0" class="form-label inline-block mb-2 text-gray-700">Nombre de la estantería</label>
                             <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0
-                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="nombreLib" placeholder="Nombre"/>
+                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" name="nomLib" id="nombreLib" placeholder="Nombre"/>
                         </div>
                     </div>
                 </div>
@@ -269,11 +246,12 @@
                     data-bs-dismiss="modal">
                     Cerrar
                     </button>
-                    <button type="button"
+                    <button type="submit"
                     class="inline-block px-6 py-2.5 bg-cyan-900 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-cyan-800 hover:shadow-lg focus:bg-cyan-800 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-700 active:shadow-lg transition duration-150 ease-in-out ml-1" data-bs-dismiss="modal">
                     Guardar
                     </button>
                 </div>
+                </form>
             </div>
         </div>
     </div>

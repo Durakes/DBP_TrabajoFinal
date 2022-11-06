@@ -70,10 +70,27 @@ namespace PruebaDBP.Controllers
                 
                     Context.Usuarios.Add(nuevoUsuario);
                     Context.SaveChanges();
-
                     HttpContext.Session.SetString("sUsuario",JsonConvert.SerializeObject(nuevoUsuario));
-                
 
+                    //Crear Estanterías default
+                    var user = JsonConvert.DeserializeObject<Usuario>(HttpContext.Session.GetString("sUsuario"));
+                    Estanterium vistas = new Estanterium();
+                    vistas.IdUsuario = user.IdUsuario;
+                    vistas.NomEstanteria = "Vistas";
+                    vistas.EsEditable = true;
+                    vistas.FechaCreacion = DateTime.Now.ToString("yyyy-MM-dd");
+
+                    Context.Estanteria.Add(vistas);
+
+                    Estanterium porVer = new Estanterium();
+                    porVer.IdUsuario = user.IdUsuario;
+                    porVer.NomEstanteria = "Por Ver";
+                    porVer.EsEditable = true;
+                    porVer.FechaCreacion = DateTime.Now.ToString("yyyy-MM-dd");
+
+                    Context.Estanteria.Add(porVer);
+
+                    Context.SaveChanges();
                     return RedirectToAction("Index");
                 }
                 else
