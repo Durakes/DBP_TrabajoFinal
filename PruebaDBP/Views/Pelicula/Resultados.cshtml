@@ -21,10 +21,8 @@
                             </div>
                             <div class="columns-1 md:columns-2 grid md:grid-cols-3 gap-0 md:gap-4">
                                 <div class="md:col-span-2">
-                                    <figcaption class="font-medium columns-2">
-                                        <div class="text-sky-500">
-                                            Director: <label class="text-slate-600 font-small"><a asp-controller="Director" asp-action="Index">James Cameron</a></label>
-                                        </div>
+                                    <figcaption class="font-medium">
+                                        
                                         <div class="text-sky-500">
                                             Estreno: <label class="text-slate-600 font-small">@Html.DisplayFor(modelItem => item.FechaEstreno)</label>
                                         </div>
@@ -97,22 +95,22 @@
         @if(Model.TotalPaginas>1){
             if (Model.PaginaActual == 1)
             {
-                @Html.ActionLink("<<", "Resultados", new { pagina = 1 },new { @class = "btn btn-sm btn-default disabled" })
+                @Html.ActionLink("<<", "Resultados", new {nombreBuscar=Model.nombreABuscar, pagina = 1 },new { @class = "btn btn-sm btn-default disabled" })
                 <span></span>
             }else{
-                @Html.ActionLink("<<", "Resultados", new { pagina = 1 },new { @class = "btn btn-sm btn-default" })
+                        @Html.ActionLink("<<", "Resultados", new {nombreBuscar=Model.nombreABuscar, pagina = 1 },new { @class = "btn btn-sm btn-default" })
                 <span></span>
             }
             if(Model.PaginaActual==1){
-                @Html.ActionLink(Model.PaginaActual.ToString(), "Resultados", new { pagina = 1 },new { @class = "btn btn-sm btn-default disabled py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white focus:shadow-none" })
+                        @Html.ActionLink(Model.PaginaActual.ToString(), "Resultados", new {nombreBuscar=Model.nombreABuscar, pagina = 1 },new { @class = "btn btn-sm btn-default disabled py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white focus:shadow-none" })
                 <span></span>
                 if (Model.TotalPaginas >=2)
                 {
-                    @Html.ActionLink((Model.PaginaActual+1).ToString(), "Resultados", new { pagina = Model.PaginaActual + 1 },
+                            @Html.ActionLink((Model.PaginaActual+1).ToString(), "Resultados", new {nombreBuscar=Model.nombreABuscar, pagina = Model.PaginaActual + 1 },
                         new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
                         <span></span>
                     if(Model.TotalPaginas>=3){
-                        @Html.ActionLink((Model.PaginaActual+2).ToString(), "Resultados", new { pagina = Model.PaginaActual +2},
+                                @Html.ActionLink((Model.PaginaActual+2).ToString(), "Resultados", new {nombreBuscar=Model.nombreABuscar, pagina = Model.PaginaActual +2},
                         new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
                         <span></span>
                     }
@@ -121,13 +119,13 @@
             else{
                 if (Model.PaginaActual < Model.TotalPaginas)
                 {
-                    @Html.ActionLink((Model.PaginaActual-1).ToString(), "Resultados", new { pagina = 1 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
-                    @Html.ActionLink(Model.PaginaActual.ToString(), "Resultados", new { pagina = Model.PaginaActual},
+                            @Html.ActionLink((Model.PaginaActual-1).ToString(), "Resultados", new {nombreBuscar=Model.nombreABuscar, pagina = 1 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
+                    @Html.ActionLink(Model.PaginaActual.ToString(), "Resultados", new {nombreBuscar=Model.nombreABuscar, pagina = Model.PaginaActual},
             new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white  focus:shadow-none" })
                     <span></span>
                     if (Model.TotalPaginas >= 3)
                     {
-                        @Html.ActionLink((Model.PaginaActual+1).ToString(), "Resultados", new { pagina = Model.PaginaActual + 1},
+                                @Html.ActionLink((Model.PaginaActual+1).ToString(), "Resultados", new {nombreBuscar=Model.nombreABuscar, pagina = Model.PaginaActual + 1},
                         new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
                         <span></span>
                     }
@@ -135,17 +133,17 @@
                 else
                 {
                     if (Model.TotalPaginas <= 2) { 
-                    @Html.ActionLink((Model.PaginaActual-1).ToString(), "Resultados", new { pagina =Model.PaginaActual- 1 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
-                    @Html.ActionLink(Model.PaginaActual.ToString(), "Resultados", new { pagina = Model.PaginaActual},
+                    @Html.ActionLink((Model.PaginaActual-1).ToString(), "Resultados", new { nombreBuscar=Model.nombreABuscar,pagina =Model.PaginaActual- 1 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
+                                @Html.ActionLink(Model.PaginaActual.ToString(), "Resultados", new {nombreBuscar=Model.nombreABuscar, pagina = Model.PaginaActual},
                     new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white  focus:shadow-none" })
                     <span></span>
                     }
                     else{
-                        @Html.ActionLink((Model.PaginaActual-2).ToString(), "Resultados", new { pagina = Model.PaginaActual-2 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
-                        @Html.ActionLink((Model.PaginaActual-1).ToString(), "Resultados", new { pagina = Model.PaginaActual-1},
+                        @Html.ActionLink((Model.PaginaActual-2).ToString(), "Resultados", new { nombreBuscar=Model.nombreABuscar,pagina = Model.PaginaActual-2 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
+                                @Html.ActionLink((Model.PaginaActual-1).ToString(), "Resultados", new {nombreBuscar=Model.nombreABuscar, pagina = Model.PaginaActual-1},
             new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
                         <span></span>
-                            @Html.ActionLink(Model.PaginaActual.ToString(), "Resultados", new { pagina = Model.PaginaActual},
+                                @Html.ActionLink(Model.PaginaActual.ToString(), "Resultados", new {nombreBuscar=Model.nombreABuscar, pagina = Model.PaginaActual},
             new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
                             <span></span>
                     }
@@ -154,9 +152,9 @@
             }
             
             @if(Model.PaginaActual==Model.TotalPaginas){
-                @Html.ActionLink(">>", "Resultados", new { pagina = Model.TotalPaginas },new { @class = "btn btn-sm btn-default  disabled py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+                @Html.ActionLink(">>", "Resultados", new {nombreBuscar=Model.nombreABuscar, pagina = Model.TotalPaginas },new { @class = "btn btn-sm btn-default  disabled py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
             }else{
-                @Html.ActionLink(">>", "Resultados", new { pagina = Model.TotalPaginas },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+                        @Html.ActionLink(">>", "Resultados", new {nombreBuscar=Model.nombreABuscar, pagina = Model.TotalPaginas },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
 
             }
         }
