@@ -14,6 +14,8 @@ namespace PruebaDBP {
         public int TotalRegistros { get; set; }
         public int TotalPaginas { get; set; }
         public IEnumerable<T> Resultado { get; set; }
+
+        public  string nombreABuscar { get; set; }
     }
 }
 

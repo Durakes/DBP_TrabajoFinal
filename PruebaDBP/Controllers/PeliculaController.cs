@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using PruebaDBP.Models;
@@ -19,56 +20,34 @@ namespace PruebaDBP.Controllers
             return View();
         }
 
-        
-        private List<Pelicula> _pelicula;
+
+        //private List<Pelicula> _pelicula;
+        //List<Pelicula> peliculasEncontradasAPI = new List<Pelicula>();
         private readonly int _RegistrosPorPagina = 10;
         private Paginador<Pelicula> _PaginadorPelicula;
-        public IActionResult Resultados(int pagina = 1)
-        {
-            int _TotalRegistros = 0;
-            using (Context)
-            {
-                // Número total de registros de la tabla Pelicula
-                _TotalRegistros = Context.Peliculas.Count();
-                // Obtenemos la 'página de registros' de la tabla Pelicula
-                _pelicula = Context.Peliculas.OrderBy(x => x.NomPelicula)
-                                                 .Skip((pagina - 1) * _RegistrosPorPagina)
-                                                 .Take(_RegistrosPorPagina)
-                                                 .ToList();
-                // Número total de páginas de la tabla Pelicula
-                var _TotalPaginas = (int)Math.Ceiling((double)_TotalRegistros / _RegistrosPorPagina);
-                // Instanciamos la 'Clase de paginación' y asignamos los nuevos valores
-                _PaginadorPelicula = new Paginador<Pelicula>()
-                {
-                    RegistrosPorPagina = _RegistrosPorPagina,
-                    TotalRegistros = _TotalRegistros,
-                    TotalPaginas = _TotalPaginas,
-                    PaginaActual = pagina,
-                    Resultado = _pelicula
-                };
-                // Enviamos a la Vista la 'Clase de paginación'
-                return View(_PaginadorPelicula);
-            }
-        }
-            public IActionResult TopMovie()
-        {
-            return View();
-
-        }
-
-        public async Task SearchMovie(string nombreBuscar)
+        
+        public async Task<IActionResult> Resultados(string nombreBuscar, int pagina = 1)
         {
             System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+            List<Pelicula> peliculasEncontradasAPI = new List<Pelicula>();
 
             var baseAddress = new Uri("http://api.themoviedb.org/3/");
 
-            using(var httpClient = new HttpClient { BaseAddress = baseAddress})
+            using (var httpClient = new HttpClient { BaseAddress = baseAddress })
             {
                 httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
 
-                int page = 1;
-                int totalpages = 1;
-                string nombre = "https://api.themoviedb.org/3/search/movie?api_key=da8f080c81b970a5c0962ea17bfc0cda&language=es&query=Avengers&page=1&include_adult=false";
+                int? page = 1;
+                int? totalpages = 1;
+                int totalResult = 0;
+                int idPeliculaTMDB;
+                string lenguaje;
+                string titulo;
+                string fecha;
+                int minutos = 0;
+                string sumilla;
+                string posterURL;
+
                 while (page <= totalpages)
                 {
                     using (var busqueda = await httpClient.GetAsync("search/movie?api_key=da8f080c81b970a5c0962ea17bfc0cda&language=es&query=" + nombreBuscar + "&page=" + page.ToString() + "&include_adult=false"))
@@ -78,10 +57,56 @@ namespace PruebaDBP.Controllers
                         dynamic busquedaDatos = JsonConvert.DeserializeObject(resultadosBusqueda);
                         totalpages = busquedaDatos.total_pages;
                         page = busquedaDatos.page;
+                        totalResult = busquedaDatos.total_results;
+
+                        foreach (var objPelicula in busquedaDatos.results)
+                        {
+                            idPeliculaTMDB = objPelicula.id;
+                            lenguaje = objPelicula.original_language;
+                            titulo = objPelicula.title;
+                            fecha = "2020-11-02";
+                            sumilla = objPelicula.overview;
+                            if (objPelicula.poster_path != null)
+                                posterURL = "https://image.tmdb.org/t/p/w500" + objPelicula.poster_path;
+                            else
+                                posterURL = "";
+
+                            var ObjIdioma = (from Tleng in Context.Idiomas where Tleng.Abreviacion == lenguaje select Tleng).Single();
+                            Pelicula objPeliculaEncontrado = new Pelicula(idPeliculaTMDB, ObjIdioma.IdIdioma, titulo, fecha, minutos, sumilla, posterURL);
+                            Console.WriteLine(objPeliculaEncontrado.NomPelicula);
+                            peliculasEncontradasAPI.Add(objPeliculaEncontrado);
+                        }
                     }
+                    page++;
                 }
+                List<Pelicula> pruebita2 = new List<Pelicula>();
+                pruebita2 = peliculasEncontradasAPI.Skip((pagina - 1) * _RegistrosPorPagina).Take(_RegistrosPorPagina).ToList();
+                // Número total de páginas de la tabla Pelicula
+                var _TotalPaginas = (int)Math.Ceiling((double)totalResult / _RegistrosPorPagina);
+                // Instanciamos la 'Clase de paginación' y asignamos los nuevos valores
+                _PaginadorPelicula = new Paginador<Pelicula>()
+                {
+                    RegistrosPorPagina = _RegistrosPorPagina,
+                    TotalRegistros = totalResult,
+                    TotalPaginas = _TotalPaginas,
+                    PaginaActual = pagina,
+                    Resultado = pruebita2,
+                    nombreABuscar = nombreBuscar
+                };
+                // Enviamos a la Vista la 'Clase de paginación'
+
+                return View(_PaginadorPelicula);
             }
         }
+
+        public IActionResult TopMovie()
+    {
+        return View();
+
+    }
+
+    
+        
         public async Task AllMovies()
         {
             System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
