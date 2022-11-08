@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PruebaDBP.Models.Estanterium>
+﻿@model PruebaDBP.Models.LibreriaPelis
 @{
     ViewData["Title"] = "Estanterías";
 }
@@ -24,12 +24,13 @@
                         <ul
                             class="dropdown-menu w-full absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-paddingborder-none"
                             aria-labelledby="dropdownMenuButton1">
-                            @foreach(var est in Model)
+                            
+                            @foreach(var est in Model.listLib)
                             {
                                 <li>
                                 <a
                                     class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-300"
-                                    href="#"
+                                    asp-controller="Estanteria" asp-action="Libreria" asp-route-idLib="@est.IdEstanteria"
                                     >@est.NomEstanteria</a>
                                 </li>
                             }
@@ -56,9 +57,11 @@
                     <!-- navigation -->
                     <ul class="flex flex-col overflow-hidden">
                         <li>
-                            @foreach(var est in Model)
+                            @foreach(var est in Model.listLib)
                             {
-                                <a href=""><h4 class="text-xl md:text-xl md:text-xl lg:text-2xl text-slate-100 mb-5 font-bold text-center">@est.NomEstanteria</h4></a>
+                                <a asp-controller="Estanteria" asp-action="Libreria" asp-route-idLib="@est.IdEstanteria">
+                                    <h4 class="text-xl md:text-xl md:text-xl lg:text-2xl text-slate-100 mb-5 font-bold text-center">@est.NomEstanteria</h4>
+                                </a>
                             }
                             
                             <button type="button" class="border-2 border-slate-50 inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#registroLib">
@@ -70,52 +73,108 @@
                 </div>
             </aside>
             <main role="main" class="ml-2.5 sm:ml-0 w-6/6 h-5/6 pt-12 sm:p-1 sm:w-3/4 sd:h-5/6 md:w-4/6 md:h-5/6 lg:w-5/6">
-                @for(int i=0; i<8; i++)
+                <div class="mx-5 text-xl">@ViewData["nomLibreria"]</div><br>
+                @if(!Model.listPelis.Resultado.Any())
                 {
-                    <div class="container mb-2">
-                    
-                        <figure class="md:p-2 flex flex-md-column bg-slate-50 rounded-xl lg:gap-10">
-                            <img class="w-24 h-36 md:w-40 md:h-60 block md:rounded-none" src="/images/pelicula5.jpg"
-                                alt="" width="384" height="512">
-                            <div class="pt-0 md:p-3 text-left space-y-4 ml-5">
-                                <div class="text-black-500 text-3xl text-left ">
-                                    <a asp-controller="Pelicula" asp-action="Index">Sherlock Holmes</a>
-                                </div>
-                                <div class="text-black-500 text-xl text-left font-normal">
-                                    <a asp-controller="Director" asp-action="Index">Guy Ritchie</a>
-                                </div>
-                                <figcaption class="hidden md:block font-medium columns-3">
-                                    <div class="text-sky-500 lg:w-44 ">
-                                        Valoración General
+                    <div>No hay películas registradas</div>            
+                }
+                else
+                {
+                    @foreach(var peli in Model.listPelis.Resultado)
+                    {
+                        <div class="container mb-2">
+                        
+                            <figure class="md:p-2 flex flex-md-column bg-slate-50 rounded-xl lg:gap-10">
+                                <img class="w-24 h-36 md:w-40 md:h-60 block md:rounded-none" src="@peli.UrlFoto"
+                                    alt="" width="384" height="512">
+                                <div class="pt-0 md:p-3 text-left space-y-4 ml-5">
+                                    <div class="text-black-500 text-3xl text-left ">
+                                        <a asp-controller="Pelicula" asp-action="Index">@peli.NomPelicula</a>
                                     </div>
-                                    <div class="text-sky-500 lg:w-44">
-                                        Valoración Individual
+                                    <div class="text-black-500 text-xl text-left font-normal">
+                                        <a asp-controller="Director" asp-action="Index">@peli.NomDirector</a>
                                     </div>
-                                    <div class="mx-3 text-sky-500 ">
-                                        Estado
-                                    </div>
-                                </figcaption>
-                            @*Tamaño celular*@
-                                <figcaption class="visible md:hidden font-medium columns-2">
-                                    <div class="text-sky-500 ">
-                                        Valoración General
-                                    </div>
-                                    <div class="text-slate-700 flex justify-center">
-                                        <div class=" py-1">
-                                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                            </svg>
+                                    <figcaption class="hidden md:block font-medium columns-3">
+                                        <div class="text-sky-500 lg:w-44 ">
+                                            Valoración General
                                         </div>
-                                        <p>4.5</p>
-                                    </div>
-                                </figcaption>
-                                <figcaption class="visible md:hidden font-medium columns-2">
-                                    <div class="text-sky-500 ">
-                                        Valoración Individual
-                                    </div>
-                                    <div class="text-sky-500 ">
-                                        <div class="text-slate-700">
-                                            <ul class="flex justify-center">
+                                        <div class="text-sky-500 lg:w-44">
+                                            Valoración Individual
+                                        </div>
+                                        <div class="mx-3 text-sky-500 ">
+                                            Estado
+                                        </div>
+                                    </figcaption>
+                                @*Tamaño celular*@
+                                    <figcaption class="visible md:hidden font-medium columns-2">
+                                        <div class="text-sky-500 ">
+                                            Valoración General
+                                        </div>
+                                        <div class="text-slate-700 flex justify-center">
+                                            <div class=" py-1">
+                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                </svg>
+                                            </div>
+                                            <p>4.5</p>
+                                        </div>
+                                    </figcaption>
+                                    <figcaption class="visible md:hidden font-medium columns-2">
+                                        <div class="text-sky-500 ">
+                                            Valoración Individual
+                                        </div>
+                                        <div class="text-sky-500 ">
+                                            <div class="text-slate-700">
+                                                <ul class="flex justify-center">
+                                                    <li>
+                                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                        <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+                                                        </svg>
+                                                    </li>
+                                                    <li>
+                                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                        <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+                                                        </svg>
+                                                    </li>
+                                                    <li>
+                                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                        <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+                                                        </svg>
+                                                    </li>
+                                                    <li>
+                                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                        <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
+                                                        </svg>
+                                                    </li>
+                                                    <li>
+                                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" class="w-3.5 text-red-500" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                        <path fill="currentColor" d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"></path>
+                                                        </svg>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </figcaption>
+                                    <figcaption class="visible md:hidden font-medium columns-2">
+                                        <div class="text-sky-500 ">
+                                            Estado
+                                        </div>
+                                        <div class="text-slate-700 flex justify-center">
+                                            Vista
+                                        </div>
+                                    </figcaption>
+                                @*Vista tamaño md*@
+                                    <figcaption class="hidden md:block font-medium columns-3">
+                                        <div class="text-slate-700 flex justify-center">
+                                            <div class="mt-1">
+                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                                                </svg>
+                                            </div>
+                                            <p>4.5</p>
+                                        </div>
+                                        <div class="text-slate-700 py-1">
+                                            <ul class="flex justify-center ">
                                                 <li>
                                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                                     <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
@@ -143,78 +202,128 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
-                                </figcaption>
-                                <figcaption class="visible md:hidden font-medium columns-2">
-                                    <div class="text-sky-500 ">
-                                        Estado
-                                    </div>
-                                    <div class="text-slate-700 flex justify-center">
-                                        Vista
-                                    </div>
-                                </figcaption>
-                            @*Vista tamaño md*@
-                                <figcaption class="hidden md:block font-medium columns-3">
-                                    <div class="text-slate-700 flex justify-center">
-                                        <div class="mt-1">
-                                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                                            </svg>
+                                        <div class="text-slate-700 flex justify-start mx-6">
+                                            Vista
                                         </div>
-                                        <p>4.5</p>
-                                    </div>
-                                    <div class="text-slate-700 py-1">
-                                        <ul class="flex justify-center ">
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                <path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>
-                                                </svg>
-                                            </li>
-                                            <li>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" class="w-3.5 text-red-500" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                <path fill="currentColor" d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"></path>
-                                                </svg>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="text-slate-700 flex justify-start mx-6">
-                                        Vista
-                                    </div>
-                                </figcaption>
-                                <figcaption class="font-medium columns-2">
-                                    <div class="text-slate-700">
-                                        Añadida: 29/09/2022
-                                    </div>
-                                    <div class="text-slate-700">
-                                        <div class="flex space-x-2 justify-center">
-                                            <button type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-800 hover:shadow-lg focus:bg-gray-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#eliminarPel">
-                                                Eliminar
-                                            </button>
+                                    </figcaption>
+                                    <figcaption class="font-medium columns-2">
+                                        <div class="text-slate-700">
+                                            Añadida: @(peli.FechaAgregacion)
                                         </div>
-                                    </div>
+                                        <div class="text-slate-700">
+                                            <div class="flex space-x-2 justify-center" >
+                                                <!--<button id="eliminar" type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-800 hover:shadow-lg focus:bg-gray-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#eliminarPel" >
+                                                    Eliminar
+                                                </button>-->
+                                                <form asp-controller="Estanteria" asp-action="EliminarPelicula"  method="post" asp-route-idLibreria="@Model.idLibAct" asp-route-idPel="@peli.IdPelicula" >
+                                                    <button  type="submit" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-800 hover:shadow-lg focus:bg-gray-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out" >
+                                                        Eliminar
+                                                    </button>
+                                                </form>
+                                                
+                                            </div>
+                                        </div>
 
-                                </figcaption>
-                        </div>
-                    </figure>
-                </div>
+                                    </figcaption>
+                            </div>
+                        </figure>
+                    </div>
+                    }
                 }
+                
 
             </main>
+        </div>
+        @*CÓDIGO PARA EL PAGINADOR DE REGISTROS*@
+        @if (Model.listPelis.Resultado.Count() > 0)
+        {
+            <span>
+                <strong>@Model.listPelis.TotalRegistros</strong> peliculas
+            </span>
+            <span>&nbsp;|&nbsp;</span>
+            <span>
+                Página <strong>@(Model.listPelis.PaginaActual)</strong> de
+                <strong>@Model.listPelis.TotalPaginas</strong>
+            </span>
+            <span>&nbsp;|&nbsp;</span>
+        }
+        else
+        {
+            
+            <span></span>
+        }
+
+        <div class="flex justify-center">
+            <nav aria-label="Page navigation example">
+                
+        @if(Model.listPelis.TotalPaginas>1){
+            if (Model.listPelis.PaginaActual == 1)
+            {
+                @Html.ActionLink("<<", "Libreria", new {idLib=Model.idLibAct, pagina = 1 },new { @class = "btn btn-sm btn-default disabled" })
+                <span></span>
+            }else{
+                        @Html.ActionLink("<<", "Libreria", new {idLib=Model.idLibAct, pagina = 1 },new { @class = "btn btn-sm btn-default" })
+                <span></span>
+            }
+            if(Model.listPelis.PaginaActual==1){
+                        @Html.ActionLink(Model.listPelis.PaginaActual.ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = 1 },new { @class = "btn btn-sm btn-default disabled py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white focus:shadow-none" })
+                <span></span>
+                if (Model.listPelis.TotalPaginas >=2)
+                {
+                            @Html.ActionLink((Model.listPelis.PaginaActual+1).ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual + 1 },
+                        new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+                        <span></span>
+                    if(Model.listPelis.TotalPaginas>=3){
+                                @Html.ActionLink((Model.listPelis.PaginaActual+2).ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual +2},
+                        new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+                        <span></span>
+                    }
+                }
+            }
+            else{
+                if (Model.listPelis.PaginaActual < Model.listPelis.TotalPaginas)
+                {
+                            @Html.ActionLink((Model.listPelis.PaginaActual-1).ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = 1 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
+                    @Html.ActionLink(Model.listPelis.PaginaActual.ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual},
+            new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white  focus:shadow-none" })
+                    <span></span>
+                    if (Model.listPelis.TotalPaginas >= 3)
+                    {
+                                @Html.ActionLink((Model.listPelis.PaginaActual+1).ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual + 1},
+                        new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+                        <span></span>
+                    }
+                }
+                else
+                {
+                    if (Model.listPelis.TotalPaginas <= 2) { 
+                    @Html.ActionLink((Model.listPelis.PaginaActual-1).ToString(), "Libreria", new { idLib=Model.idLibAct,pagina =Model.listPelis.PaginaActual- 1 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
+                                @Html.ActionLink(Model.listPelis.PaginaActual.ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual},
+                    new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white  focus:shadow-none" })
+                    <span></span>
+                    }
+                    else{
+                        @Html.ActionLink((Model.listPelis.PaginaActual-2).ToString(), "Libreria", new { idLib=Model.idLibAct,pagina = Model.listPelis.PaginaActual-2 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
+                                @Html.ActionLink((Model.listPelis.PaginaActual-1).ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual-1},
+            new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
+                        <span></span>
+                                @Html.ActionLink(Model.listPelis.PaginaActual.ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual},
+            new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+                            <span></span>
+                    }
+                }
+                
+            }
+            
+            @if(Model.listPelis.PaginaActual==Model.listPelis.TotalPaginas){
+                @Html.ActionLink(">>", "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.TotalPaginas },new { @class = "btn btn-sm btn-default  disabled py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+            }else{
+                        @Html.ActionLink(">>", "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.TotalPaginas },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+
+            }
+        }
+        
+            </nav>
         </div>
     </div>
     <!-- Codigo del MODAL NUEVA ESTANTERIA-->
@@ -254,6 +363,7 @@
                 </form>
             </div>
         </div>
+        
     </div>
     <!-- Codigo del MODAL ELIMINAR-->
     <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto" id="eliminarPel" tabindex="-1" aria-labelledby="eliminarPel" aria-modal="true" role="dialog">
@@ -267,15 +377,15 @@
                     class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
                     data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                
                 <div
                     class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+                    
                     <button type="button"
                     class="inline-block px-6 py-2.5 bg-stone-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-stone-700 hover:shadow-lg focus:bg-stone-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-stone-600 active:shadow-lg transition duration-150 ease-in-out"
                     data-bs-dismiss="modal">
                     No
                     </button>
-                    <button type="button"
+                    <button asp-action="/Estanteria/EliminarPelicula" asp-route-idPel="#idPel" type="button"
                     class="inline-block px-6 py-2.5 bg-cyan-900 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-cyan-800 hover:shadow-lg focus:bg-cyan-800 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-700 active:shadow-lg transition duration-150 ease-in-out ml-1" data-bs-dismiss="modal">
                     Sí
                     </button>
@@ -284,3 +394,11 @@
         </div>
     </div>
 </main>
+
+ <script>
+        $(document).on("click", "#eliminar", function () {
+        var myBookId = $(this).data('id');
+        alert (myBookId);
+        $(".modal-body #bookId").val( "2" );
+});
+    </script>

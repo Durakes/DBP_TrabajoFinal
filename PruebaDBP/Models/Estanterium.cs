@@ -14,5 +14,5 @@ namespace PruebaDBP.Models
         public string? FechaCreacion { get; set; }
         public bool? EsEditable { get; set; }
     }
-   
+
 }
