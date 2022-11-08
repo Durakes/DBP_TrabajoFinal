@@ -74,13 +74,13 @@
             </aside>
             <main role="main" class="ml-2.5 sm:ml-0 w-6/6 h-5/6 pt-12 sm:p-1 sm:w-3/4 sd:h-5/6 md:w-4/6 md:h-5/6 lg:w-5/6">
                 <div class="mx-5 text-xl">@ViewData["nomLibreria"]</div><br>
-                @if(!Model.listPelis.Any())
+                @if(!Model.listPelis.Resultado.Any())
                 {
                     <div>No hay películas registradas</div>            
                 }
                 else
                 {
-                    @foreach(var peli in Model.listPelis)
+                    @foreach(var peli in Model.listPelis.Resultado)
                     {
                         <div class="container mb-2">
                         
@@ -234,6 +234,97 @@
 
             </main>
         </div>
+        @*CÓDIGO PARA EL PAGINADOR DE REGISTROS*@
+        @if (Model.listPelis.Resultado.Count() > 0)
+        {
+            <span>
+                <strong>@Model.listPelis.TotalRegistros</strong> peliculas
+            </span>
+            <span>&nbsp;|&nbsp;</span>
+            <span>
+                Página <strong>@(Model.listPelis.PaginaActual)</strong> de
+                <strong>@Model.listPelis.TotalPaginas</strong>
+            </span>
+            <span>&nbsp;|&nbsp;</span>
+        }
+        else
+        {
+            
+            <span></span>
+        }
+
+        <div class="flex justify-center">
+            <nav aria-label="Page navigation example">
+                
+        @if(Model.listPelis.TotalPaginas>1){
+            if (Model.listPelis.PaginaActual == 1)
+            {
+                @Html.ActionLink("<<", "Libreria", new {idLib=Model.idLibAct, pagina = 1 },new { @class = "btn btn-sm btn-default disabled" })
+                <span></span>
+            }else{
+                        @Html.ActionLink("<<", "Libreria", new {idLib=Model.idLibAct, pagina = 1 },new { @class = "btn btn-sm btn-default" })
+                <span></span>
+            }
+            if(Model.listPelis.PaginaActual==1){
+                        @Html.ActionLink(Model.listPelis.PaginaActual.ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = 1 },new { @class = "btn btn-sm btn-default disabled py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white focus:shadow-none" })
+                <span></span>
+                if (Model.listPelis.TotalPaginas >=2)
+                {
+                            @Html.ActionLink((Model.listPelis.PaginaActual+1).ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual + 1 },
+                        new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+                        <span></span>
+                    if(Model.listPelis.TotalPaginas>=3){
+                                @Html.ActionLink((Model.listPelis.PaginaActual+2).ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual +2},
+                        new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+                        <span></span>
+                    }
+                }
+            }
+            else{
+                if (Model.listPelis.PaginaActual < Model.listPelis.TotalPaginas)
+                {
+                            @Html.ActionLink((Model.listPelis.PaginaActual-1).ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = 1 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
+                    @Html.ActionLink(Model.listPelis.PaginaActual.ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual},
+            new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white  focus:shadow-none" })
+                    <span></span>
+                    if (Model.listPelis.TotalPaginas >= 3)
+                    {
+                                @Html.ActionLink((Model.listPelis.PaginaActual+1).ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual + 1},
+                        new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+                        <span></span>
+                    }
+                }
+                else
+                {
+                    if (Model.listPelis.TotalPaginas <= 2) { 
+                    @Html.ActionLink((Model.listPelis.PaginaActual-1).ToString(), "Libreria", new { idLib=Model.idLibAct,pagina =Model.listPelis.PaginaActual- 1 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
+                                @Html.ActionLink(Model.listPelis.PaginaActual.ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual},
+                    new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white  focus:shadow-none" })
+                    <span></span>
+                    }
+                    else{
+                        @Html.ActionLink((Model.listPelis.PaginaActual-2).ToString(), "Libreria", new { idLib=Model.idLibAct,pagina = Model.listPelis.PaginaActual-2 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
+                                @Html.ActionLink((Model.listPelis.PaginaActual-1).ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual-1},
+            new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
+                        <span></span>
+                                @Html.ActionLink(Model.listPelis.PaginaActual.ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual},
+            new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+                            <span></span>
+                    }
+                }
+                
+            }
+            
+            @if(Model.listPelis.PaginaActual==Model.listPelis.TotalPaginas){
+                @Html.ActionLink(">>", "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.TotalPaginas },new { @class = "btn btn-sm btn-default  disabled py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+            }else{
+                        @Html.ActionLink(">>", "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.TotalPaginas },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+
+            }
+        }
+        
+            </nav>
+        </div>
     </div>
     <!-- Codigo del MODAL NUEVA ESTANTERIA-->
     <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto" id="registroLib" tabindex="-1" aria-labelledby="registroLibreria" aria-modal="true" role="dialog">
@@ -272,6 +363,7 @@
                 </form>
             </div>
         </div>
+        
     </div>
     <!-- Codigo del MODAL ELIMINAR-->
     <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto" id="eliminarPel" tabindex="-1" aria-labelledby="eliminarPel" aria-modal="true" role="dialog">

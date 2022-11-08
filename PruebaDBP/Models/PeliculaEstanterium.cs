@@ -13,7 +13,8 @@ namespace PruebaDBP.Models
     }
     public class LibreriaPelis
     {
-        public List<PeliculaLib> listPelis { get; set; }
+        //public List<PeliculaLib> listPelis { get; set; }
+        public Paginador<PeliculaLib> listPelis { get; set; }
         public List<Estanterium> listLib { get; set; }
         public int idLibAct{ get; set; }
     }
