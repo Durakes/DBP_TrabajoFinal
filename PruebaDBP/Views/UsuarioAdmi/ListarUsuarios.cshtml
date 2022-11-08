@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PruebaDBP.Models.Director>
+﻿@model IEnumerable<PruebaDBP.Models.Usuario>
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -326,27 +326,36 @@
 
 
 					<div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-						<a class="text-sky-500" asp-action="CrearDirector">Nuevo Director</a>
+						<a class="text-sky-500" asp-action="CrearUsuario">Nuevo Usuario</a>
 						<table class="w-full text-sm text-center text-gray-500 dark:text-gray-400 table-fixed">
 							<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 								<tr>
 									<th scope="col" class=" py-3 px-6">
-										Id Director
+										Id Usuario
 									</th>
 									<th scope="col" class=" py-3 px-6">
-										Id DirTmdb
+										Nombre Usuario
 									</th>
 									<th scope="col" class=" py-3 px-6">
-										Nombre Director
+										Apellido Usuario
 									</th>
 									<th scope="col" class=" py-3 px-6">
-										Biografia Director
+										Username
 									</th>
 									<th scope="col" class="w-1/2 py-3 px-6">
-										Url Foto
+										Contraseña
 									</th>
-									<th scope="col" class=" py-3 px-6">
-										Editar
+									<th scope="col" class="w-1/2 py-3 px-6">
+										Fecha Nacimiento
+									</th>
+									<th scope="col" class="w-1/2 py-3 px-6">
+										Descripcion
+									</th>
+									<th scope="col" class="w-1/2 py-3 px-6">
+										Fecha Creacion
+									</th>
+									<th scope="col" class="w-1/2 py-3 px-6">
+										UrlFoto
 									</th>
 									<th scope="col" class=" py-3 px-6">
 										Eliminar
@@ -357,13 +366,16 @@
 							    @foreach (var item in Model)
 								{
 									<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 w-auto">
-										<td class="border border-gray-400">@item.IdDirector</td>
-										<td class="border border-gray-400">@item.IdDirTmdb </td>
-										<td class="border border-gray-400">@item.NomDirector </td>
-										<td class="border border-gray-400">@item.BioDirector </td>
-										<td class="border border-gray-400" >@item.UrlFoto </td>
-										<td class="border border-gray-400  text-sky-500" ><a asp-action="EditarDirector" asp-route-id="@item.IdDirector">Editar</a></td>
-										<td class="border border-gray-400  text-red-600"><a asp-action="EliminarDirector" asp-route-id="@item.IdDirector">Eliminar</a></td>
+										<td class="border border-gray-400">@item.IdUsuario</td>
+										<td class="border border-gray-400">@item.NomUsuario </td>
+										<td class="border border-gray-400">@item.ApeUsuario </td>
+										<td class="border border-gray-400">@item.Username </td>
+										<td class="border border-gray-400">@item.Contraseña </td>
+										<td class="border border-gray-400">@item.FechaNacimiento </td>
+										<td class="border border-gray-400">@item.Descripcion </td>
+										<td class="border border-gray-400">@item.FechaCreacion </td>
+									    <td class="border border-gray-400" >@item.UrlFoto </td>
+										<td class="border border-gray-400  text-red-600"><a asp-action="EliminarUsuario" asp-route-id="@item.IdUsuario">Eliminar</a></td>
 									</tr>
 								}
 							</tbody>

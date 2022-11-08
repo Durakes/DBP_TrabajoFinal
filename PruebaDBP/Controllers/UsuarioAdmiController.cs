@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using PruebaDBP.Models;
 
 namespace PruebaDBP.Controllers
@@ -12,13 +13,47 @@ namespace PruebaDBP.Controllers
         }
 
 
+        //Manejo de los Procesos del Administrador
         public IActionResult LoginAdmi()
         {
             return View();
         }
+        public IActionResult Validar(Usuario objNew)
+        {
+            if (ModelState.IsValid)
+            {
+                var Obj = (from Tusuario in Context.Usuarios
+                           where Tusuario.IdUsuario == objNew.IdUsuario &&
+                           Tusuario.Contraseña == objNew.Contraseña
+                           select Tusuario).FirstOrDefault();
+                if (Obj == null)
+                {
+                    return RedirectToAction("LoginAdmi");
+                }
+                else
+                {
+                    //Crear sesion de usuario, creo una variable de sesion string
+                    HttpContext.Session.SetString("sadministrador", JsonConvert.SerializeObject(Obj));
+                    return RedirectToAction("VentanaAdmi");
+                }
+
+            }
+            else
+            {
+                return View("LoginAdmi");
+            }
+        }
+
+
         public IActionResult VentanaAdmi()
         {
-            return View();
+                return View();
+        }
+
+        public IActionResult CerrarSesion()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
 
         //Manejo de Info relacionada a las peliculas
@@ -158,6 +193,45 @@ namespace PruebaDBP.Controllers
             else
             {
                 return View("EditarDirector");
+            }
+        }
+
+
+        //Manejo de la info relacionada a Usuarios
+        public IActionResult ListarUsuarios()
+        {
+            var list = Context.Usuarios;
+            return View(list);
+        }
+
+        [Route("UsuarioAdmi/EliminarUsuario/{Codigo}")]
+        public IActionResult EliminarUsuario(int codigo)
+        {
+            var obj = (from Tusuarios in Context.Usuarios where Tusuarios.IdUsuario == codigo select Tusuarios).Single();
+
+            Context.Usuarios.Remove(obj);
+            Context.SaveChanges();
+
+            return RedirectToAction("ListarUsuarios");
+        }
+
+        public IActionResult CrearUsuario()
+        {
+            return View();
+        }
+
+        public IActionResult CrearUsu(Usuario obj)
+        {
+            if (ModelState.IsValid)
+            {
+                Context.Usuarios.Add(obj);
+                Context.SaveChanges();
+                return RedirectToAction("ListarUsuarios");
+            }
+            else
+            {
+                ViewBag.Usuario = Context.Usuarios;
+                return View("CrearUsuario");
             }
         }
     }
