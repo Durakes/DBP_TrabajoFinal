@@ -317,8 +317,7 @@
 							</a>
 						</li>
 						<li class="my-px">
-							<a href="#"
-							   class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-600 hover:bg-gray-100">
+							<a class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-600 hover:bg-gray-100" asp-area="" asp-controller="UsuarioAdmi" asp-action="CerrarSesion">
 								<span class="flex items-center justify-center text-lg text-red-400">
 									<svg fill="none"
 										 stroke-linecap="round"
@@ -344,20 +343,6 @@
 				<div class="container mb-2">
 
 					<form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" asp-controller="UsuarioAdmi" asp-action="EdiatarDire" method="post">
-						<div class="mb-4">
-							<label class="block text-gray-700 text-sm font-bold mb-2" for="Id Director">
-								Id Director
-							</label>
-							<input asp-for="IdDirector" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" placeholder="Id Director">
-							<span asp-validation-for="IdDirector" class="text-danger"></span>
-						</div>
-						<div class="mb-4">
-							<label class="block text-gray-700 text-sm font-bold mb-2" for="Id DirTmdb">
-								Id DirTmdb
-							</label>
-							<input asp-for="IdDirTmdb" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" placeholder="Id DirTmdb">
-							<span asp-validation-for="IdDirTmdb" class="text-danger"></span>
-						</div>
 						<div class="mb-4">
 							<label class="block text-gray-700 text-sm font-bold mb-2" for="Nombre Director">
 								Nombre Director
