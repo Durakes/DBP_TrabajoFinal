@@ -6,12 +6,14 @@ namespace PruebaDBP.Controllers
     public class EstanteriaController : Controller
     {
         private readonly bdlumiereContext Context;
+        private Paginador<PeliculaLib> _PaginadorLibPel;
+        private readonly int _RegistrosPorPagina = 10;
         public EstanteriaController(bdlumiereContext context)
         {
             Context = context;
         }
         [Route("Estanterias")]
-        public IActionResult Libreria(int idLib)
+        public IActionResult Libreria(int idLib, int pagina=1)
         {
             Console.Write("HOLAAA" +idLib+ "\n");
             var usuario = JsonConvert.DeserializeObject<Usuario>(HttpContext.Session.GetString("sUsuario"));
@@ -36,10 +38,27 @@ namespace PruebaDBP.Controllers
                 var lib = (from obj in Context.Estanteria where obj.IdEstanteria == idLib select obj).Single();
                 ViewData["nomLibreria"] = lib.NomEstanteria;
             }
+            //Paginador y lista peliculas
+            List<PeliculaLib> listaPels = new List<PeliculaLib>();
+            List<PeliculaLib> lista = listPeliculas(idLibreria);
+                listaPels = lista.Skip((pagina - 1) * _RegistrosPorPagina).Take(_RegistrosPorPagina).ToList();
+                // Número total de páginas de la tabla Pelicula
+                var _TotalPaginas = (int)Math.Ceiling((double) lista.Count()/ _RegistrosPorPagina);
+                // Instanciamos la 'Clase de paginación' y asignamos los nuevos valores
+                _PaginadorLibPel = new Paginador<PeliculaLib>()
+                {
+                    RegistrosPorPagina = _RegistrosPorPagina,
+                    TotalRegistros = lista.Count(),
+                    TotalPaginas = _TotalPaginas,
+                    PaginaActual = pagina,
+                    Resultado = listaPels,
+                    nombreABuscar = ""
+                };
+            
             //Crear nuevo modelo de librerias y peliculas
             LibreriaPelis libPel= new LibreriaPelis();
             libPel.listLib = listEstanterias;
-            libPel.listPelis = listPeliculas(idLibreria);
+            libPel.listPelis = _PaginadorLibPel;
             libPel.idLibAct = idLibreria;
             
             return View(libPel);
@@ -78,7 +97,7 @@ namespace PruebaDBP.Controllers
             foreach(var item in listRegistros)
             {
                 var obj = (from pel in Context.Peliculas where pel.IdPelicula == item.IdPelicula select pel).Single();
-                var directorPel = (from dir in Context.PeliculaDirectors where obj.IdPelicula == dir.IdPelicula select dir).Single();
+                var directorPel = (from dir in Context.PeliculaDirectors where obj.IdPelicula == dir.IdPelicula select dir).FirstOrDefault();
                 var directorReg = (from director in Context.Directors where director.IdDirector == directorPel.IdDirector select director).Single();
 
                 PeliculaLib registro = new PeliculaLib();
