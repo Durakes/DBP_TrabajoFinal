@@ -116,7 +116,7 @@ namespace PruebaDBP.Controllers
 
                 objOld.NomPelicula = objNew.NomPelicula;
                 objOld.FechaEstreno = objNew.FechaEstreno;
-                objOld.DuracionMin = objNew.DuracionMin;
+                objOld.Valoracion = objNew.Valoracion;
                 objOld.Sumilla = objNew.Sumilla;
                 objOld.UrlFoto = objNew.UrlFoto;
 

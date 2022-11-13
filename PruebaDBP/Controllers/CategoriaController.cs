@@ -38,13 +38,12 @@ namespace PruebaDBP.Controllers
                     foreach (var result in resultado.genres)
                     {
                         string nombre = result.name;
-                        Categorium obj = new Categorium(nombre);
+                        int idtmdbCat = result.id;
+                        Categorium obj = new Categorium(idtmdbCat, nombre);
                         if (ModelState.IsValid)
                         {
                             Context.Categoria.Add(obj);
                             Context.SaveChanges();
-
-                            Console.WriteLine(obj.IdCategoria + obj.NomCategoria);
                         }
                     }
                 }

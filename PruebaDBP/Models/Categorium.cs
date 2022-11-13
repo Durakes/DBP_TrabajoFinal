@@ -8,14 +8,17 @@ namespace PruebaDBP.Models
     {
         public int IdCategoria { get; set; }
         public string? NomCategoria { get; set; }
+        public int? IdTmdbCategoria { get; set; }
         public Categorium() { }
-        public Categorium(int index,string? nomCategoria)
+        public Categorium(int index,string? nomCategoria, int? idTmdb)
         {
             IdCategoria = index;
             NomCategoria = nomCategoria;
+            IdTmdbCategoria = idTmdb;
         }
-        public Categorium(string? nomCategoria)
+        public Categorium(int? idTmdb, string? nomCategoria)
         {
+            IdTmdbCategoria = idTmdb;
             NomCategoria = nomCategoria;
         }
     }
