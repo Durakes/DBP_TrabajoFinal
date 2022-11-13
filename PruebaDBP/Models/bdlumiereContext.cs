@@ -370,6 +370,10 @@ namespace PruebaDBP.Models
                 entity.Property(e => e.Valoracion)
                     .HasColumnType("int(11)")
                     .HasColumnName("valoracion");
+
+                entity.Property(e => e.EstaVisto)
+                    .HasColumnType("int(1)")
+                    .HasColumnName("estaVisto");
             });
 
             OnModelCreatingPartial(modelBuilder);
