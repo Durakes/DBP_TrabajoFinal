@@ -14,5 +14,11 @@ namespace PruebaDBP.Models
         public string? FechaCreacion { get; set; }
         public bool? EsEditable { get; set; }
     }
+    public partial class EstanteriaModif
+    {
+        public int IdEstanteria { get; set; } 
+        public string? NomEstanteria { get; set; }
+
+    }
 
 }

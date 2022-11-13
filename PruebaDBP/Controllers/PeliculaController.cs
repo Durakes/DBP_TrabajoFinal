@@ -145,11 +145,46 @@ namespace PruebaDBP.Controllers
                         }
                     }
                 }
-                return View(lastPelicula2);
+                IndexPelicula objVista = new IndexPelicula();
+                objVista.objPelicula = lastPelicula2;
+                var sesUsuario = (HttpContext.Session.GetString("sUsuario"));
+                
+                if(sesUsuario != null)
+                {
+                    objVista.usuario = JsonConvert.DeserializeObject<Usuario>(sesUsuario);
+                    objVista.listEstanterias = (from est in Context.Estanteria
+                                    where est.IdUsuario == objVista.usuario.IdUsuario
+                                    select est).ToList();
+                    
+                }
+                else
+                {
+                    objVista.usuario = JsonConvert.DeserializeObject<Usuario>(sesUsuario);
+                    objVista.listEstanterias = null;
+                }
+
+                return View(objVista);
             }
             else
             {
-                return View(objPelicula);
+                IndexPelicula objVista = new IndexPelicula();
+                objVista.objPelicula = objPelicula;
+                var sesUsuario = (HttpContext.Session.GetString("sUsuario"));
+                
+                if(sesUsuario != null)
+                {
+                    objVista.usuario = JsonConvert.DeserializeObject<Usuario>(sesUsuario);
+                    objVista.listEstanterias = (from est in Context.Estanteria
+                                    where est.IdUsuario == objVista.usuario.IdUsuario
+                                    select est).ToList();
+                    
+                }
+                else
+                {
+                    objVista.usuario = null;
+                    objVista.listEstanterias = null;
+                }
+                return View(objVista);
             }
         }
 
@@ -236,6 +271,37 @@ namespace PruebaDBP.Controllers
             }
         }
 
+        //Agregar la pelicula a una estantería
+        public IActionResult AgregarPelicula(int idPel, int idEst)
+        {
+            var listRegistros = (from obj in Context.PeliculaEstanteria
+                                where obj.IdEstanteria == idEst
+                                select obj.IdPelicula).ToList();
+            
+            if(listRegistros.Contains(idPel))
+            {
+                return NoContent();
+            }
+            else
+            {
+                PeliculaEstanterium obj = new PeliculaEstanterium();
+                obj.IdEstanteria = idEst;
+                obj.IdPelicula = idPel;
+                obj.FechaAgregacion = DateTime.Now.ToString("yyyy-MM-dd");
+
+                Context.PeliculaEstanteria.Add(obj);
+                Context.SaveChanges();
+                return NoContent();
+            }
+            
+        }
+        //Valorar pelicula
+        public IActionResult ValorarPelicula()
+        {
+            var calif = Request.Form["valoracion"];
+            Console.Write("CALIFFFF "+calif+"\n");
+            return NoContent();
+        }
         public IActionResult TopMovie()
     {
         return View();

@@ -28,11 +28,23 @@
                             @foreach(var est in Model.listLib)
                             {
                                 <li>
-                                <a
+                                @if(est.NomEstanteria == Model.LibAct.NomEstanteria)
+                                {
+                                    <a
+                                    class=" text-sky-400 dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent hover:bg-gray-300"
+                                    asp-controller="Estanteria" asp-action="Libreria" asp-route-idLib="@est.IdEstanteria"
+                                    >@est.NomEstanteria</a>
+                                
+                                }
+                                else
+                                {
+                                    <a
                                     class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-300"
                                     asp-controller="Estanteria" asp-action="Libreria" asp-route-idLib="@est.IdEstanteria"
                                     >@est.NomEstanteria</a>
+                                }
                                 </li>
+                                
                             }
                             
                             
@@ -59,9 +71,22 @@
                         <li>
                             @foreach(var est in Model.listLib)
                             {
-                                <a asp-controller="Estanteria" asp-action="Libreria" asp-route-idLib="@est.IdEstanteria">
+                                <li>
+                                @if(est.NomEstanteria == Model.LibAct.NomEstanteria)
+                                {
+                                    <a asp-controller="Estanteria" asp-action="Libreria" asp-route-idLib="@est.IdEstanteria">
+                                    <h4 class="text-xl underline decoration-solid md:text-xl md:text-xl lg:text-2xl text-sky-300 mb-5 font-bold text-center">@est.NomEstanteria</h4>
+                                    </a>
+                                
+                                }
+                                else
+                                {
+                                    <a asp-controller="Estanteria" asp-action="Libreria" asp-route-idLib="@est.IdEstanteria">
                                     <h4 class="text-xl md:text-xl md:text-xl lg:text-2xl text-slate-100 mb-5 font-bold text-center">@est.NomEstanteria</h4>
-                                </a>
+                                    </a>
+                                }
+                                </li>
+                               
                             }
                             
                             <button type="button" class="border-2 border-slate-50 inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-gray-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#registroLib">
@@ -73,26 +98,40 @@
                 </div>
             </aside>
             <main role="main" class="ml-2.5 sm:ml-0 w-6/6 h-5/6 pt-12 sm:p-1 sm:w-3/4 sd:h-5/6 md:w-4/6 md:h-5/6 lg:w-5/6">
-                <div class="mx-5 text-xl">@ViewData["nomLibreria"]</div><br>
+                <div class="columns-2 mb-3">
+                    <h4 class="mx-5 text-xl">@Model.LibAct.NomEstanteria</h4>
+                    @if(Model.LibAct.NomEstanteria != "Vistas" && Model.LibAct.NomEstanteria != "Por Ver")
+                    {
+                        <a class="float-right mx-6 text-sky-600" href="" data-bs-toggle="modal" data-bs-target="#eliminarEst">Eliminar</a>
+                        <a class="float-right text-sky-600" data-bs-toggle="modal" data-bs-target="#modificarLibreria" href="">Modificar</a>
+                    }
+
+                </div>
+                
+                
                 @if(!Model.listPelis.Resultado.Any())
                 {
                     <div>No hay películas registradas</div>            
                 }
                 else
                 {
-                    @foreach(var peli in Model.listPelis.Resultado)
+                    @foreach(var item in Model.listPelis.Resultado)
                     {
                         <div class="container mb-2">
                         
                             <figure class="md:p-2 flex flex-md-column bg-slate-50 rounded-xl lg:gap-10">
-                                <img class="w-24 h-36 md:w-40 md:h-60 block md:rounded-none" src="@peli.UrlFoto"
+                                <img class="w-24 h-36 md:w-40 md:h-60 block md:rounded-none" src="@item.UrlFoto"
                                     alt="" width="384" height="512">
                                 <div class="pt-0 md:p-3 text-left space-y-4 ml-5">
                                     <div class="text-black-500 text-3xl text-left ">
-                                        <a asp-controller="Pelicula" asp-action="Index">@peli.NomPelicula</a>
+                                        <a asp-controller="Pelicula" asp-action="Index" asp-route-id="@item.IdTmdb">@item.NomPelicula</a>
                                     </div>
                                     <div class="text-black-500 text-xl text-left font-normal">
-                                        <a asp-controller="Director" asp-action="Index">@peli.NomDirector</a>
+                                        @foreach(var director in item.directores)
+                                        {
+                                            <a asp-controller="Director" asp-action="Index">@director.NomDirector</a>
+                                        }
+                                        
                                     </div>
                                     <figcaption class="hidden md:block font-medium columns-3">
                                         <div class="text-sky-500 lg:w-44 ">
@@ -208,14 +247,14 @@
                                     </figcaption>
                                     <figcaption class="font-medium columns-2">
                                         <div class="text-slate-700">
-                                            Añadida: @(peli.FechaAgregacion)
+                                            Añadida: @item.FechaAgregacion
                                         </div>
                                         <div class="text-slate-700">
                                             <div class="flex space-x-2 justify-center" >
                                                 <!--<button id="eliminar" type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-800 hover:shadow-lg focus:bg-gray-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#eliminarPel" >
                                                     Eliminar
                                                 </button>-->
-                                                <form asp-controller="Estanteria" asp-action="EliminarPelicula"  method="post" asp-route-idLibreria="@Model.idLibAct" asp-route-idPel="@peli.IdPelicula" >
+                                                <form asp-controller="Estanteria" asp-action="EliminarPelicula"  method="post" asp-route-idLibreria="@Model.LibAct.IdEstanteria" asp-route-idPel="@item.IdPelicula" >
                                                     <button  type="submit" data-mdb-ripple="true" data-mdb-ripple-color="light" class="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-800 hover:shadow-lg focus:bg-gray-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out" >
                                                         Eliminar
                                                     </button>
@@ -259,22 +298,22 @@
         @if(Model.listPelis.TotalPaginas>1){
             if (Model.listPelis.PaginaActual == 1)
             {
-                @Html.ActionLink("<<", "Libreria", new {idLib=Model.idLibAct, pagina = 1 },new { @class = "btn btn-sm btn-default disabled" })
+                @Html.ActionLink("<<", "Libreria", new {idLib=Model.LibAct.IdEstanteria, pagina = 1 },new { @class = "btn btn-sm btn-default disabled" })
                 <span></span>
             }else{
-                        @Html.ActionLink("<<", "Libreria", new {idLib=Model.idLibAct, pagina = 1 },new { @class = "btn btn-sm btn-default" })
+                        @Html.ActionLink("<<", "Libreria", new {idLib=Model.LibAct.IdEstanteria, pagina = 1 },new { @class = "btn btn-sm btn-default" })
                 <span></span>
             }
             if(Model.listPelis.PaginaActual==1){
-                        @Html.ActionLink(Model.listPelis.PaginaActual.ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = 1 },new { @class = "btn btn-sm btn-default disabled py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white focus:shadow-none" })
+                        @Html.ActionLink(Model.listPelis.PaginaActual.ToString(), "Libreria", new {idLib=Model.LibAct.IdEstanteria, pagina = 1 },new { @class = "btn btn-sm btn-default disabled py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white focus:shadow-none" })
                 <span></span>
                 if (Model.listPelis.TotalPaginas >=2)
                 {
-                            @Html.ActionLink((Model.listPelis.PaginaActual+1).ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual + 1 },
+                            @Html.ActionLink((Model.listPelis.PaginaActual+1).ToString(), "Libreria", new {idLib=Model.LibAct.IdEstanteria, pagina = Model.listPelis.PaginaActual + 1 },
                         new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
                         <span></span>
                     if(Model.listPelis.TotalPaginas>=3){
-                                @Html.ActionLink((Model.listPelis.PaginaActual+2).ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual +2},
+                                @Html.ActionLink((Model.listPelis.PaginaActual+2).ToString(), "Libreria", new {idLib=Model.LibAct.IdEstanteria, pagina = Model.listPelis.PaginaActual +2},
                         new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
                         <span></span>
                     }
@@ -283,13 +322,13 @@
             else{
                 if (Model.listPelis.PaginaActual < Model.listPelis.TotalPaginas)
                 {
-                            @Html.ActionLink((Model.listPelis.PaginaActual-1).ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = 1 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
-                    @Html.ActionLink(Model.listPelis.PaginaActual.ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual},
+                            @Html.ActionLink((Model.listPelis.PaginaActual-1).ToString(), "Libreria", new {idLib=Model.LibAct.IdEstanteria, pagina = 1 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
+                    @Html.ActionLink(Model.listPelis.PaginaActual.ToString(), "Libreria", new {idLib=Model.LibAct.IdEstanteria, pagina = Model.listPelis.PaginaActual},
             new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white  focus:shadow-none" })
                     <span></span>
                     if (Model.listPelis.TotalPaginas >= 3)
                     {
-                                @Html.ActionLink((Model.listPelis.PaginaActual+1).ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual + 1},
+                                @Html.ActionLink((Model.listPelis.PaginaActual+1).ToString(), "Libreria", new {idLib=Model.LibAct.IdEstanteria, pagina = Model.listPelis.PaginaActual + 1},
                         new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
                         <span></span>
                     }
@@ -297,17 +336,17 @@
                 else
                 {
                     if (Model.listPelis.TotalPaginas <= 2) { 
-                    @Html.ActionLink((Model.listPelis.PaginaActual-1).ToString(), "Libreria", new { idLib=Model.idLibAct,pagina =Model.listPelis.PaginaActual- 1 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
-                                @Html.ActionLink(Model.listPelis.PaginaActual.ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual},
+                    @Html.ActionLink((Model.listPelis.PaginaActual-1).ToString(), "Libreria", new { idLib=Model.LibAct.IdEstanteria,pagina =Model.listPelis.PaginaActual- 1 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
+                                @Html.ActionLink(Model.listPelis.PaginaActual.ToString(), "Libreria", new {idLib=Model.LibAct.IdEstanteria, pagina = Model.listPelis.PaginaActual},
                     new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white  focus:shadow-none" })
                     <span></span>
                     }
                     else{
-                        @Html.ActionLink((Model.listPelis.PaginaActual-2).ToString(), "Libreria", new { idLib=Model.idLibAct,pagina = Model.listPelis.PaginaActual-2 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
-                                @Html.ActionLink((Model.listPelis.PaginaActual-1).ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual-1},
+                        @Html.ActionLink((Model.listPelis.PaginaActual-2).ToString(), "Libreria", new { idLib=Model.LibAct.IdEstanteria,pagina = Model.listPelis.PaginaActual-2 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
+                                @Html.ActionLink((Model.listPelis.PaginaActual-1).ToString(), "Libreria", new {idLib=Model.LibAct.IdEstanteria, pagina = Model.listPelis.PaginaActual-1},
             new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
                         <span></span>
-                                @Html.ActionLink(Model.listPelis.PaginaActual.ToString(), "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.PaginaActual},
+                                @Html.ActionLink(Model.listPelis.PaginaActual.ToString(), "Libreria", new {idLib=Model.LibAct.IdEstanteria, pagina = Model.listPelis.PaginaActual},
             new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
                             <span></span>
                     }
@@ -316,9 +355,9 @@
             }
             
             @if(Model.listPelis.PaginaActual==Model.listPelis.TotalPaginas){
-                @Html.ActionLink(">>", "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.TotalPaginas },new { @class = "btn btn-sm btn-default  disabled py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+                @Html.ActionLink(">>", "Libreria", new {idLib=Model.LibAct.IdEstanteria, pagina = Model.listPelis.TotalPaginas },new { @class = "btn btn-sm btn-default  disabled py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
             }else{
-                        @Html.ActionLink(">>", "Libreria", new {idLib=Model.idLibAct, pagina = Model.listPelis.TotalPaginas },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+                        @Html.ActionLink(">>", "Libreria", new {idLib=Model.LibAct.IdEstanteria, pagina = Model.listPelis.TotalPaginas },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
 
             }
         }
@@ -365,13 +404,13 @@
         </div>
         
     </div>
-    <!-- Codigo del MODAL ELIMINAR-->
-    <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto" id="eliminarPel" tabindex="-1" aria-labelledby="eliminarPel" aria-modal="true" role="dialog">
+    <!-- Codigo del MODAL ELIMINAR ESTANTERIA-->
+    <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto" id="eliminarEst" tabindex="-1" aria-labelledby="eliminarEst" aria-modal="true" role="dialog">
         <div class="modal-dialog modal-dialog-centered relative w-auto pointer-events-none">
             <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
                 <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
                     <h5 class="text-xl font-medium leading-normal text-gray-800" id="registroLibreriaLabel">
-                        ¿Eliminar película?
+                        ¿Eliminar estantería?
                     </h5>
                     <button type="button"
                     class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
@@ -385,13 +424,57 @@
                     data-bs-dismiss="modal">
                     No
                     </button>
-                    <button asp-action="/Estanteria/EliminarPelicula" asp-route-idPel="#idPel" type="button"
-                    class="inline-block px-6 py-2.5 bg-cyan-900 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-cyan-800 hover:shadow-lg focus:bg-cyan-800 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-700 active:shadow-lg transition duration-150 ease-in-out ml-1" data-bs-dismiss="modal">
-                    Sí
-                    </button>
+                    <form asp-action="EliminarLibreria" asp-route-idLib="@Model.LibAct.IdEstanteria">
+                        <button  type="submit"
+                        class="inline-block px-6 py-2.5 bg-cyan-900 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-cyan-800 hover:shadow-lg focus:bg-cyan-800 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-700 active:shadow-lg transition duration-150 ease-in-out ml-1" data-bs-dismiss="modal">
+                        Sí
+                        </button>
+                    </form>
+                    
                 </div>
             </div>
         </div>
+    </div>
+    <!-- Codigo del MODAL MODIFICAR ESTANTERIA-->
+    <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto" id="modificarLibreria" tabindex="-1" aria-labelledby="modificarLibreria" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered relative w-auto pointer-events-none">
+            <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+                <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+                    <h5 class="text-xl font-medium leading-normal text-gray-800" id="registroLibreriaLabel">
+                        Modificar estantería
+                    </h5>
+                    <button type="button"
+                    class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+                    data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/Estanteria/ModificarLibreria">
+                <input hidden type="text" asp-for="@Model.LibAct.IdEstanteria"/>
+                    <div class="modal-body relative p-4">
+                        <div class="flex justify-center">
+                            <div class="mb-3 xl:w-96">
+                                <label for="exampleText0" class="form-label inline-block mb-2 text-gray-700">Nuevo nombre de la estantería</label>
+                                
+                                <input type="text" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0
+                                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" asp-for="@Model.LibAct.NomEstanteria" id="nombreLib" placeholder="Nombre"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+                        <button type="button"
+                        class="inline-block px-6 py-2.5 bg-stone-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-stone-700 hover:shadow-lg focus:bg-stone-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-stone-600 active:shadow-lg transition duration-150 ease-in-out"
+                        data-bs-dismiss="modal">
+                        Cerrar
+                        </button>
+                        <button type="submit"
+                        class="inline-block px-6 py-2.5 bg-cyan-900 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-cyan-800 hover:shadow-lg focus:bg-cyan-800 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-700 active:shadow-lg transition duration-150 ease-in-out ml-1" data-bs-dismiss="modal">
+                        Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
     </div>
 </main>
 

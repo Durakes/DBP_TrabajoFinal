@@ -14,12 +14,13 @@ namespace PruebaDBP.Models
     public class LibreriaPelis
     {
         //public List<PeliculaLib> listPelis { get; set; }
-        public Paginador<PeliculaLib> listPelis { get; set; }
+        public Paginador<PeliLib> listPelis { get; set; }
         public List<Estanterium> listLib { get; set; }
-        public int idLibAct{ get; set; }
+        public Estanterium LibAct{ get; set; }
     }
 
-    public class PeliculaLib
+
+    public class PeliLib
     {
         public int IdPelicula { get; set; }
         public int? IdTmdb { get; set; }
@@ -27,5 +28,10 @@ namespace PruebaDBP.Models
         public string? NomDirector { get; set; }
         public string? UrlFoto { get; set; }
         public string? FechaAgregacion { get; set; }
+        public int? DuracionMin { get; set; }
+        public string? Sumilla { get; set; }
+        public List<Director> directores{get;set;}
+
+
     }
 }
