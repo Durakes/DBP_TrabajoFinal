@@ -34,4 +34,10 @@ namespace PruebaDBP.Models
 
         public Pelicula() { }
     }
+    public partial class IndexPelicula
+    {
+        public Pelicula objPelicula;
+        public Usuario usuario;
+        public List<Estanterium> listEstanterias;
+    }
 }
