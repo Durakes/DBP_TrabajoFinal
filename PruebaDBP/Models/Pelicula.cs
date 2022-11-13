@@ -13,21 +13,21 @@ namespace PruebaDBP.Models
         public string? NomPelicula { get; set; }
         [Required(ErrorMessage = "El campo fecha de esteno es obligatorio")]
         public string? FechaEstreno { get; set; }
-        [Required(ErrorMessage = "El campo duracion en minutos es obligatorio")]
-        public int? DuracionMin { get; set; }
+        [Required(ErrorMessage = "El campo valoracion es obligatorio")]
+        public int? Valoracion { get; set; }
         [Required(ErrorMessage = "El campo sumilla es obligatorio")]
         public string? Sumilla { get; set; }
         [Required(ErrorMessage = "El campo UrlFoto es obligatorio")]
         public string? UrlFoto { get; set; }
 
 
-        public Pelicula(int? idTmdb, int? idIdioma, string? nomPelicula, string? fechaEstreno, int? duracionMin, string? sumilla, string? urlFoto)
+        public Pelicula(int? idTmdb, int? idIdioma, string? nomPelicula, string? fechaEstreno, int? valoracion, string? sumilla, string? urlFoto)
         {
             IdTmdb = idTmdb;
             IdIdioma = idIdioma;
             NomPelicula = nomPelicula;
             FechaEstreno = fechaEstreno;
-            DuracionMin = duracionMin;
+            Valoracion = valoracion;
             Sumilla = sumilla;
             UrlFoto = urlFoto;
         }

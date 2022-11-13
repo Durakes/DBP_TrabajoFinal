@@ -49,6 +49,10 @@ namespace PruebaDBP.Models
                     .HasColumnType("int(11)")
                     .HasColumnName("id_categoria");
 
+                entity.Property(e => e.IdTmdbCategoria)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("id_tmdbCat");
+
                 entity.Property(e => e.NomCategoria)
                     .HasMaxLength(100)
                     .HasColumnName("nom_categoria");
@@ -196,9 +200,9 @@ namespace PruebaDBP.Models
                     .HasColumnType("int(11)")
                     .HasColumnName("id_pelicula");
 
-                entity.Property(e => e.DuracionMin)
-                    .HasColumnType("int(11)")
-                    .HasColumnName("duracion_min");
+                entity.Property(e => e.Valoracion)
+                    .HasColumnType("int(4)")
+                    .HasColumnName("valoracion");
 
                 entity.Property(e => e.FechaEstreno)
                     .HasMaxLength(15)
@@ -213,7 +217,7 @@ namespace PruebaDBP.Models
                     .HasColumnName("nom_pelicula");
 
                 entity.Property(e => e.Sumilla)
-                    .HasMaxLength(250)
+                    .HasMaxLength(2500)
                     .HasColumnName("sumilla");
 
                 entity.Property(e => e.UrlFoto)

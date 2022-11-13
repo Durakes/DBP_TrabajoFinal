@@ -58,7 +58,7 @@ namespace PruebaDBP.Controllers
                         posterUrl = "https://image.tmdb.org/t/p/w500" + detallePelicula.poster_path;
                         titulo = detallePelicula.title;
                         fecha = detallePelicula.release_date;
-                        minutos = detallePelicula.runtime;
+                        minutos = detallePelicula.vote_average;
                         lenguaje = detallePelicula.original_language;
                         generos = new List<string>();
                         /*Probar esta parte luego*/
@@ -217,7 +217,7 @@ namespace PruebaDBP.Controllers
                 string lenguaje;
                 string titulo;
                 string fecha;
-                int minutos = 0;
+                int valoracion = 0;
                 string sumilla;
                 string posterURL;
 
@@ -238,6 +238,7 @@ namespace PruebaDBP.Controllers
                             lenguaje = objPelicula.original_language;
                             titulo = objPelicula.title;
                             fecha = "2020-11-02";
+                            valoracion = objPelicula.vote_average;
                             sumilla = objPelicula.overview;
                             if (objPelicula.poster_path != null)
                                 posterURL = "https://image.tmdb.org/t/p/w500" + objPelicula.poster_path;
@@ -245,7 +246,7 @@ namespace PruebaDBP.Controllers
                                 posterURL = "";
 
                             var ObjIdioma = (from Tleng in Context.Idiomas where Tleng.Abreviacion == lenguaje select Tleng).Single();
-                            Pelicula objPeliculaEncontrado = new Pelicula(idPeliculaTMDB, ObjIdioma.IdIdioma, titulo, fecha, minutos, sumilla, posterURL);
+                            Pelicula objPeliculaEncontrado = new Pelicula(idPeliculaTMDB, ObjIdioma.IdIdioma, titulo, fecha, valoracion, sumilla, posterURL);
                             peliculasEncontradasAPI.Add(objPeliculaEncontrado);
                         }
                     }
@@ -324,9 +325,9 @@ namespace PruebaDBP.Controllers
                 string posterUrl;
                 string titulo;
                 string fecha;
-                int? minutos;
+                int? valoracion;
                 string lenguaje;
-                List<String> generos = new List<string>();
+                List<int> generos = new List<int>();
                 List<int?> directores = new List<int?>();
                 int? idDirectorTmdb;
                 string nombreDirector;
@@ -358,29 +359,29 @@ namespace PruebaDBP.Controllers
                                 posterUrl = "https://image.tmdb.org/t/p/w500" + detallePelicula.poster_path;
                                 titulo = detallePelicula.title;
                                 fecha = detallePelicula.release_date;
-                                minutos = detallePelicula.runtime;
+                                valoracion = detallePelicula.vote_average;
                                 lenguaje = detallePelicula.original_language;
-                                generos = new List<string>();
+                                generos = new List<int>();
                                 /*Probar esta parte luego*/
                                 //dynamic generosv2 = detallePelicula.genres;
                                 foreach (var genero in detallePelicula.genres)
                                 {
-                                    string nombreGenero = genero.name;
+                                    int nombreGenero = genero.id;
                                     generos.Add(nombreGenero);
                                 }
 
                                 var ObjIdioma = (from Tleng in Context.Idiomas where Tleng.Abreviacion == lenguaje select Tleng).Single();
 
-                                objPeliculaRegistro = new Pelicula(idPelicula, ObjIdioma.IdIdioma, titulo, fecha, minutos, sumilla, posterUrl);
+                                objPeliculaRegistro = new Pelicula(idPelicula, ObjIdioma.IdIdioma, titulo, fecha, valoracion, sumilla, posterUrl);
                                 if (ModelState.IsValid)
                                 {
                                     Context.Peliculas.Add(objPeliculaRegistro);
                                     Context.SaveChanges();
 
                                     Pelicula lastPelicula = Context.Peliculas.OrderByDescending(p => p.IdPelicula).FirstOrDefault();
-                                    foreach(String genero in generos)
+                                    foreach(int genero in generos)
                                     {
-                                        var ObjCategoria = (from TCat in Context.Categoria where TCat.NomCategoria == genero select TCat).Single();
+                                        var ObjCategoria = (from TCat in Context.Categoria where TCat.IdTmdbCategoria == genero select TCat).Single();
                                         PeliculaCategorium registroCategoria = new PeliculaCategorium(lastPelicula.IdPelicula, ObjCategoria.IdCategoria);
                                         Context.PeliculaCategoria.Add(registroCategoria);
                                         Context.SaveChanges();
