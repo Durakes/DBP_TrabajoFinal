@@ -11,5 +11,6 @@ namespace PruebaDBP.Models
         public int? Valoracion { get; set; }
         //Fecha de Valoracion se cambio de Date a String
         public string? FechaValoracion { get; set; }
+        public int? EstaVisto { get; set; }
     }
 }
