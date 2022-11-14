@@ -38,6 +38,10 @@ namespace PruebaDBP.Models
     {
         public Pelicula objPelicula;
         public Usuario usuario;
+        public ValoracionUsuario valoracion;
         public List<Estanterium> listEstanterias;
+        public List<Director> listDirectores;
+        public List<String> listCategoria;
+        public String idioma;
     }
 }
