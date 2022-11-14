@@ -173,7 +173,6 @@
                 
                 
                 <!--Fin Tags-->
-                <div class="float-right"> @Model.objPelicula.IdIdioma </div>
             </div>
         </figure>
 
@@ -219,15 +218,29 @@
                                 {
                                     @foreach(var est in Model.listEstanterias)
                                     {
-                                        @if(est.NomEstanteria != "Vistas" && est.NomEstanteria != "Por Ver")
+                                        @if(est.NomEstanteria != "Vistas")
                                         { 
-                                            <li>
-                                                <a
-                                                class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-300"
-                                                asp-controller="Pelicula" asp-action="AgregarPelicula" asp-route-idPel = "@Model.objPelicula.IdPelicula" asp-route-idEst = "@est.IdEstanteria"
-                                                >@est.NomEstanteria</a>
-                                                
-                                            </li>
+                                            if(est.NomEstanteria == "Por Ver")
+                                            {
+                                                <li>
+                                                    <a
+                                                    class="pointer-events-none dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-400 hover:bg-gray-300"
+                                                    asp-controller="Pelicula" asp-action="AgregarPelicula" asp-route-idPel = "@Model.objPelicula.IdPelicula" asp-route-idEst = "@est.IdEstanteria"
+                                                    >@est.NomEstanteria</a>
+                                                    
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <a
+                                                    class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-300"
+                                                    asp-controller="Pelicula" asp-action="AgregarPelicula" asp-route-idPel = "@Model.objPelicula.IdPelicula" asp-route-idEst = "@est.IdEstanteria"
+                                                    >@est.NomEstanteria</a>
+                                                    
+                                                </li> 
+                                            }
+
                                         }
                                     }
 

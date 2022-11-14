@@ -42,6 +42,6 @@ namespace PruebaDBP.Models
         public List<Estanterium> listEstanterias;
         public List<Director> listDirectores;
         public List<String> listCategoria;
-        public String idioma;
+
     }
 }
