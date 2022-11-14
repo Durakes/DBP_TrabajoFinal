@@ -31,25 +31,72 @@ namespace PruebaDBP.Models
         public string Username { get; set; }
         [Required(ErrorMessage = "El campo contraseña es obligatorio")]
         public string Contraseña { get; set; }
-        
+        public string? FechaNacimiento { get; set; }
+
+    }
+    public partial class UsuarioLogin2
+    {
+        [Required(ErrorMessage = "El campo username es obligatorio")]
+        public string Username { get; set; }
+        [Required(ErrorMessage = "El campo Fecha de nacimiento es obligatorio")]
+        public string? FechaNacimiento { get; set; }
+        public int IdUsuario { get; set; }
+
     }
     public partial class UsuarioModif
     {
         public int IdUsuario { get; set; }
-        
+
         public string? NomUsuario { get; set; }
-        
+
         public string? ApeUsuario { get; set; }
-        
+
         public string? Username { get; set; }
-        
+
         public string? Descripcion { get; set; }
         public string? Contraseña { get; set; }
         public string? UrlFoto { get; set; }
         public string? ContraseñaActual { get; set; }
         public string? ContraseñaNueva1 { get; set; }
         public string? ContraseñaNueva2 { get; set; }
-        
+
     }
 
+    public partial class Cambio
+    {
+        
+        [Required(ErrorMessage = "Modifique su contraseña")]
+        public string? ContraseñaNueva1 { get; set; }
+        [Required(ErrorMessage = "Confirme su contraseña")]
+        public string? ContraseñaNueva2 { get; set; }
+    }
+    public class PeliAgre
+    {
+        public int IdPelicula { get; set; }
+        public int? IdTmdb { get; set; }
+        public string? NomPelicula { get; set; }
+        public string? NomDirector { get; set; }
+        public string? UrlFoto { get; set; }
+        public string? FechaEstreno { get; set; }
+        public string? Sumilla { get; set; }
+        public string? estanteria { get; set; }
+        public int IdEstanteria { get; set; }
+    }
+    
+    public class PerfilPelis
+    {
+        public List<PeliAgre> Agregadas { get; set; }
+        public int IdUsuario { get; set; }
+        public string? NomUsuario { get; set; }
+
+        public string? ApeUsuario { get; set; }
+
+        public string? Username { get; set; }
+
+        public string? Descripcion { get; set; }
+        public string? Contraseña { get; set; }
+        public string? UrlFoto { get; set; }
+        public string? FechaCreacion { get; set; }
+    }
+    
 }

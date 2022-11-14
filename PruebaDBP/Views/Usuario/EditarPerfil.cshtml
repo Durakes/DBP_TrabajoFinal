@@ -5,43 +5,91 @@
 
 <main class="flex items-center justify-center bg-gray-100 p-5">
     <div class="conteiner w-100 bg-white items-center">
-        <div class="md:p-12 md:mx-6 md:w-8/10 sm:w-19/20 overflow-hidden">
-            <form asp-controller="Usuario" asp-action="ModificarPerfil" method="post">           
-                <div class="form-group md:flex items-center md:space-x-5">
-                    <div class="columns-1">
-                        <img class="items-center m-5 w-24 h-24 md:w-36 md:h-36 md:flex rounded-full mx-auto" src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.webp" srcset="@Model.UrlFoto" alt="" width="512" height="512">
-                        <input asp-for="UrlFoto" class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file">
-                    </div>
-                    <div class="columns-1 visible">
-                        <label class="block p-2">
-                            <span class="text-gray-700">Usuario: </span> 
-                            <input hidden type="text" asp-for="IdUsuario" />    
-                            <input type="text" asp-for="Username" class="bg-gray-100 form-input mt-1 rounded-full block w-full pl-3" placeholder="Ingrese su usuario" />
-                        </label>
-                        <label class="block p-2">
-                            <span class="text-gray-700">Nombre: </span>
-                            <input type="text" asp-for="NomUsuario" class="bg-gray-100 form-input mt-1 rounded-full block w-full pl-3" placeholder="Ingrese su nombre" />
-                        </label>
-                        <label class="block p-2">
-                            <span class="text-gray-700">Apellido: </span>
-                            <input type="text" asp-for="ApeUsuario" class="bg-gray-100 form-input mt-1 rounded-full block w-full pl-3" placeholder="Ingrese su apellido" />
-                        </label>
-                        <label class="block p-2">
-                            <span class="text-gray-700">Descripción:</span>
-                            <textarea type="text" asp-for="Descripcion" class="bg-gray-100 form-textarea mt-1 rounded-2xl block w-full pl-3" rows="3" placeholder="Ingrese su descripción"></textarea>
-                        </label>
-                        <div>
-                            <div class="p-6 text-center space-y-5 md:columns-2 items-center columns-1">
-                                <button type="submit" class="w-full text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Guardar cambios</button>
-                                <button class="block w-full text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button" data-modal-toggle="authentication-modal">
-                                    Cambiar Contraseña
-                                </button>
+        <div class="md:p-12 md:mx-6 md:w-8/10 sm:w-19/20 overflow-hidden grid md:grid-cols-2 gap-9 flex items-center">
+            <div class="container">
+                <div class="text-gray-700 mx-2 mb-4">Seleccione su nueva foto de perfil: </div>
+                <form asp-controller="Usuario" asp-action="ModificarFoto" method="post" class="grid grid-cols-3">
+                    <input hidden type="text" asp-for="IdUsuario" />
+                    <button id="imagen1" name="foto" value="https://i.pinimg.com/originals/5f/58/ac/5f58ace713513468184be481d8315354.jpg">
+                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-white">
+                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://i.pinimg.com/originals/5f/58/ac/5f58ace713513468184be481d8315354.jpg" alt="" width="384" height="512">
+                        </div>
+                    </button>
+                    <button id="imagen2" name="foto" value="https://i.pinimg.com/474x/bc/f9/ce/bcf9cefb35a6e69e5ac0bd51abf91cf3.jpg">
+                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-white">
+                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://i.pinimg.com/474x/bc/f9/ce/bcf9cefb35a6e69e5ac0bd51abf91cf3.jpg" alt="" width="384" height="512">
+                        </div>
+                    </button>
+                    <button id="imagen3" name="foto"  value="https://th.bing.com/th/id/OIP.UpE5TpdCl_h62knsPXK7ygAAAA?pid=ImgDet&rs=1">
+                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-white">
+                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://th.bing.com/th/id/OIP.UpE5TpdCl_h62knsPXK7ygAAAA?pid=ImgDet&rs=1" alt="" width="384" height="512">
+                        </div>
+                    </button>
+                    <button id="imagen4" name="foto" value="https://th.bing.com/th/id/OIP.7845UVkGy58Y-FNOXl1GBQHaE8?pid=ImgDet&rs=1">
+                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-white">
+                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://th.bing.com/th/id/OIP.7845UVkGy58Y-FNOXl1GBQHaE8?pid=ImgDet&rs=1" alt="" width="384" height="512">
+                        </div>
+                    </button>
+                    <button id="imagen5" name="foto" value="https://fondosmil.com/fondo/80557.jpg">
+                        <div class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-white">
+                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://fondosmil.com/fondo/80557.jpg" alt="" width="384" height="512">
+                        </div>
+                    </button>
+                    <button id="imagen6" name="foto" value="https://th.bing.com/th/id/OIP.m5dBoegdK2pIucUnrI0x0QAAAA?pid=ImgDet&rs=1">
+                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-white">
+                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://th.bing.com/th/id/OIP.m5dBoegdK2pIucUnrI0x0QAAAA?pid=ImgDet&rs=1" alt="" width="384" height="512">
+                        </div>
+                    </button>
+                    <button id="imagen7" name="foto" value="https://1.bp.blogspot.com/-1C1cKods0oY/VQNsiyff5NI/AAAAAAACB3M/ccLFIa8bthM/s1600/Fotos%2BDivertidas%2BGatos%2B24.jpg">
+                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-white">
+                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://1.bp.blogspot.com/-1C1cKods0oY/VQNsiyff5NI/AAAAAAACB3M/ccLFIa8bthM/s1600/Fotos%2BDivertidas%2BGatos%2B24.jpg" alt="" width="384" height="512">
+                        </div>
+                    </button>
+                    <button id="imagen8" name="foto" value="https://th.bing.com/th/id/OIP.ZB_U_8KHdZsto8bUcdQ_QQAAAA?pid=ImgDet&rs=1">
+                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-white">
+                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://th.bing.com/th/id/OIP.ZB_U_8KHdZsto8bUcdQ_QQAAAA?pid=ImgDet&rs=1" alt="" width="384" height="512">
+                        </div>
+                    </button>
+                    <button id="imagen9" name="foto" value="https://i.pinimg.com/originals/63/7d/67/637d67884efc2352f9e2fa5430446863.jpg">
+                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-white">
+                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://i.pinimg.com/originals/63/7d/67/637d67884efc2352f9e2fa5430446863.jpg" alt="" width="384" height="512">
+                        </div>
+                    </button>
+                </form>
+            </div>
+            <div class="container">
+                <form asp-controller="Usuario" asp-action="ModificarPerfil" method="post">           
+                    <div class="form-group md:flex items-center md:space-x-5">
+                        <div class="columns-1 visible">
+                            <label class="block p-2">
+                                <span class="text-gray-700">Usuario: </span> 
+                                <input hidden type="text" asp-for="IdUsuario" />    
+                                <input type="text" asp-for="Username" class="bg-gray-100 form-input mt-1 rounded-full block w-full pl-3" placeholder="Ingrese su usuario" />
+                            </label>
+                            <label class="block p-2">
+                                <span class="text-gray-700">Nombre: </span>
+                                <input type="text" asp-for="NomUsuario" class="bg-gray-100 form-input mt-1 rounded-full block w-full pl-3" placeholder="Ingrese su nombre" />
+                            </label>
+                            <label class="block p-2">
+                                <span class="text-gray-700">Apellido: </span>
+                                <input type="text" asp-for="ApeUsuario" class="bg-gray-100 form-input mt-1 rounded-full block w-full pl-3" placeholder="Ingrese su apellido" />
+                            </label>
+                            <label class="block p-2">
+                                <span class="text-gray-700">Descripción:</span>
+                                <textarea type="text" asp-for="Descripcion" class="bg-gray-100 form-textarea mt-1 rounded-2xl block w-full pl-3" rows="3" placeholder="Ingrese su descripción"></textarea>
+                            </label>
+                            <div>
+                                <div class="p-6 text-center space-y-5 md:columns-2 items-center columns-1">
+                                    <button type="submit" class="w-full text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Guardar cambios</button>
+                                    <button class="block w-full text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button" data-modal-toggle="authentication-modal">
+                                        Cambiar Contraseña
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>
-            
+                </form>
+            </div>
         </div>
     </div>
     <!-- Main modal -->
@@ -93,16 +141,17 @@
 
                         </div>
                         @if (ViewBag.Message != null)  
-    {  
-        <script type="text/javascript">  
-            window.onload = function () {  
-                alert("@ViewBag.Message");  
-            };  
-        </script>  
-    }  
+                        {  
+                            <script type="text/javascript">  
+                                window.onload = function () {  
+                                    alert("@ViewBag.Message");  
+                                };  
+                            </script>  
+                        }  
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    
 </main>

@@ -1,5 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor Accessor
+@using Newtonsoft.Json;
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,9 +39,10 @@
 
                 @{
                     if(objSesion != null)
-                    { 
-                        <div class="flex lg:order-2">
-                            <form asp-controller="Pelicula" asp-action="Resultados" class="mr-3" method="get">
+                    {
+                        var usuario = JsonConvert.DeserializeObject<Usuario>(objSesion);
+                        <div class="flex lg:order-2 items-center">
+                            <form asp-controller="Pelicula" asp-action="Resultados" class="mr-3 " method="get">
                                 <div class="flex">
                                     <div class="relative w-52">
                                         <input type="search" name="nombreBuscar" id="nombreBuscar" class="block p-2.5 rounded-l-lg w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-300 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Buscar..." required="">
@@ -50,7 +53,9 @@
                                     </div>
                                 </div>
                             </form>
-                            <a class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 lg:mr-5" asp-controller="Usuario" asp-action="Perfil">Perfil</a>
+                            <a class="text-white bg-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 lg:mr-5" asp-controller="Usuario" asp-action="Perfil">
+                                <img class="w-10 h-10 rounded-full mx-auto" src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.webp" srcset="@usuario.UrlFoto" alt="" width="384" height="512">
+                            </a>
                             <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-sticky" aria-expanded="false">
                                 <span class="sr-only">Abrir menú principal</span>
                                 <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
