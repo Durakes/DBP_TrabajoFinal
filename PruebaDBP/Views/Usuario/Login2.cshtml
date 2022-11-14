@@ -1,6 +1,6 @@
-@model PruebaDBP.Models.UsuarioLogin
+﻿@model PruebaDBP.Models.UsuarioLogin2
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Confirma tu identidad";
 }
 
 <main class="flex items-center justify-center h-auto">
@@ -25,24 +25,25 @@
                         <div class="lg:w-6/12 px-4 lg:px-0 rounded-b-lg md:rounded-r-lg pt-4 md:pt-0">
                             <div class="lg:p-12 lg:mx-6">
 
-                                <form action="/Usuario/Validar" method="post">
-                                    <p class="mb-4">Ingrese sus datos de usuario</p>
+                                <form action="/Usuario/Validar2" method="post">
+                                    <p class="mb-4">Ingrese los datos solicitados</p>
                                     <div class="mb-4">
                                         <input type="text" asp-for="Username" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Username" />
                                         <span asp-validation-for="Username" class="text-rose-500"></span>
                                     </div>
-                                    
-                                    <div class="mb-4">
-                                        <input type="password" asp-for="Contraseña" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Contraseña" />
-                                        <span asp-validation-for="Contraseña" class="text-rose-500"></span>
+
+                                    <div class="mb-4 datepicker relative form-floating xl:w-96" data-mdb-toggle-button="false">
+                                        <input type="text" asp-for="FechaNacimiento"
+                                               class="form-control block w-full px-3 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                               placeholder="Select a date" />
+                                        <label for="floatingInput" class="text-gray-400">Fecha de nacimiento</label>
+                                        <button class="datepicker-toggle-button" data-mdb-toggle="datepicker">
+                                            <i class="fas fa-calendar datepicker-toggle-icon"></i>
+                                        </button>
+                                        <span asp-validation-for="FechaNacimiento" class="text-rose-500"></span>
                                     </div>
                                     <div class="text-center pt-1 mb-12 pb-1">
-                                        <button class="inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3" type="submit" data-mdb-ripple="true" data-mdb-ripple-color="light" style="background: linear-gradient(90deg, rgba(226,226,227,1) 0%, rgba(68,93,116,0.9262079831932774) 36%, rgba(63,102,127,1) 73%, rgba(0,30,36,1) 100%);" >Inicio de Sesión</button>
-                                        <a class="block w-full text-gray-500 bg-white hover:text-gray-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center" asp-controller="Usuario" asp-action="Login2">¿Olvidaste tu contraseña?</a>
-                                    </div>
-                                    <div class="flex items-center justify-between pb-6">
-                                        <p class="mb-0 mr-2">¿No tienes cuenta?</p>
-                                        <a class="inline-block px-6 py-2 border-2 border-gray-600 text-gray-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" asp-controller="Usuario" asp-action="Registro">Registrate</a>
+                                        <button class="inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3" type="submit" data-mdb-ripple="true" data-mdb-ripple-color="light" style="background: linear-gradient(90deg, rgba(226,226,227,1) 0%, rgba(68,93,116,0.9262079831932774) 36%, rgba(63,102,127,1) 73%, rgba(0,30,36,1) 100%);">Inicio de Sesión</button>
                                     </div>
                                 </form>
                             </div>

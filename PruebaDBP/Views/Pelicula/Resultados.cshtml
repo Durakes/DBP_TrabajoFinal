@@ -13,7 +13,7 @@
                 
                 <div class="container bg-slate-50 rounded-xl grid justify-items-center mt-10 ">
                     <figure class=" flex items-center bg-slate-50 rounded-xl p-2 grid grid-cols-4 md:grid-cols-6 gap-2 justify-content-center flex justify-center">
-                        <a asp-controller="Pelicula" asp-action="aparecer" asp-route-id="@item.IdTmdb">
+                        <a asp-controller="Pelicula" asp-action="Index" asp-route-id="@item.IdTmdb">
                             <img class="w-fit h-fit md:w-auto md:h-auto flex md:rounded-none mx-auto" src="/images/default.png" srcset="@Html.DisplayFor(modelitem=>item.UrlFoto)" alt="" width="384" height="512">
                         </a>
                             <div class="pt-0 md:p-5 text-left space-y-4 ml-5 col-span-3 md:col-span-5 ">
