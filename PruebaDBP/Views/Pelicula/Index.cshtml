@@ -15,7 +15,7 @@
                         @Model.objPelicula.NomPelicula
                     </div>
                 </figcaption>
-                <figcaption class="font-medium columns-3">
+                <figcaption class="font-medium columns-4">
                     <div class="text-sky-500">
                         Director
                     </div>
@@ -25,16 +25,36 @@
                     <div class="text-sky-500">
                         Valoración
                     </div>
+                    @if(Model.usuario != null )
+                    {
+                        <div class="text-sky-500">
+                            Tu valoración
+                        </div>
+                    }
+                    
                 </figcaption>
-                <figcaption class="font-medium grid  grid-cols-3">
+                <figcaption class="font-medium columns-4">
                     <div class="text-black-500">
-                        <a asp-controller="Director" asp-action="Index">James Cameron</a>
+                        @{var ult = Model.listDirectores.Last();}
+                        @foreach(var item in Model.listDirectores)
+                        {   
+                            if(item.Equals(ult))
+                            {
+                                <a asp-controller="Director" asp-action="Index" asp-route-idDir="@item.IdDirector"> @item.NomDirector</a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Director" asp-action="Index" asp-route-idDir="@item.IdDirector"> @item.NomDirector, </a>
+                            }
+                            
+                            
+                        }
+                        
                     </div>
                     <div class="text-black-500">
                         @Model.objPelicula.FechaEstreno
                     </div>
-                    <div>
-                        <div class="text-slate-700 flex justify-self-start mx-5 md:row-start-3 md:row-end-4 ">
+                    <div class="text-slate-700 flex justify-self-start mx-5 md:row-start-3 md:row-end-4 ">
                             <div class="text-slate-700 flex justify-center">
                                 <div class=" py-1">
                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
@@ -45,10 +65,86 @@
                                         </path>
                                     </svg>
                                 </div>
-                                <p>@Html.DisplayFor(modelItem => modelItem.Valoracion)</p>
+                                <p>@Model.objPelicula.Valoracion</p>
                             </div>
-                        </div>
                     </div>
+
+                    <!--Valoracion personal-->
+                    @if(Model.usuario != null )
+                    {
+                        @if(Model.valoracion!= null)
+                        {
+                            @if(Model.valoracion.EstaVisto == 1)
+                            {
+                                @if(Model.valoracion.Valoracion != null)
+                                {
+                                    <div class="text-slate-700 flex justify-self-start md:row-start-3 md:row-end-4 ">
+                                            <div class=" py-1">
+                                                <div class="text-slate-700 flex justify-self-start md:row-start-3 md:row-end-4 ">
+                                                    <ul class="flex justify-center">
+                                                        
+                                                        @for(int i = 0; i<5; i++)
+                                                        {
+                                                            if(i < Model.valoracion.Valoracion)
+                                                            {
+                                                                <li>
+                                                                    <svg aria-hidden="true" focusable="false" data-prefix="fas"data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                                        <path fill="currentColor"
+                                                                            d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </li>
+                                                            }
+                                                            else
+                                                            {
+                                                                <li>
+                                                                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" class="w-3.5 text-red-500 mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                                        <path fill="currentColor"
+                                                                            d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </li>
+                                                            }
+                                                           
+
+                                                        }     
+                                                    </ul>                                           
+                                                </div>
+                                            </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="text-slate-700 flex justify-self-start md:row-start-3 md:row-end-4 ">
+                                        <div class="text-slate-700 flex justify-center">
+                                            <p>¡Valora la película!</p>
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+                            else
+                            {
+                                <div class="text-slate-700 flex justify-self-start md:row-start-3 md:row-end-4 ">
+                                    <div class="text-slate-700 flex ">
+                                        <p>No disponible</p>
+                                    </div>
+                                </div>
+
+                            }
+                            
+                        }
+                        else
+                        {
+                            <div class="text-slate-700 flex justify-self-start md:row-start-3 md:row-end-4 ">
+                                    <div class="text-slate-700 flex ">
+                                        <p>No disponible</p>
+                                    </div>
+                            </div>
+                        }
+                        
+
+                    }
                 </figcaption>
                 <div class="columns-1">
                     <div class="text-sky-500 text-md font-medium h-10 w-50">
@@ -61,38 +157,22 @@
 
                 </div>
                 <!--Tags-->
-                <div
-                    class="text-xs m-2 inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-gray-200 text-gray-500 rounded-full">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z">
-                        </path>
-                    </svg>
-                    <p class="px-2 text-right">Fantasia</p>
-                </div>
-                <div
-                    class="text-xs m-2 inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-gray-200 text-gray-500 rounded-full">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z">
-                        </path>
-                    </svg>
-                    <p class="px-2 text-right">Aventura</p>
-                </div>
-                <div
-                    class="text-xs m-2 inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-gray-200 text-gray-500 rounded-full">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z">
-                        </path>
-                    </svg>
-                    <p class="px-2 text-right">Aventura</p>
-                </div>
+                @foreach(var cat in Model.listCategoria)
+                {
+                    <div
+                        class="text-xs m-2 inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-gray-200 text-gray-500 rounded-full">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z">
+                            </path>
+                        </svg>
+                        <p class="px-2 text-right">@cat</p>
+                    </div>
+                }
+                
+                
                 <!--Fin Tags-->
-                <div class="float-right"> @Model.objPelicula.IdIdioma </div>
             </div>
         </figure>
 
@@ -115,27 +195,118 @@
                         </button>
                         <ul class="dropdown-menu w-full absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-paddingborder-none"
                         aria-labelledby="dropdownMenuButton1">
-                            @foreach(var est in Model.listEstanterias)
+                            @if(Model.valoracion != null)
                             {
-                                <li>
-                                    <a
-                                    class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-300"
-                                    asp-controller="Pelicula" asp-action="AgregarPelicula" asp-route-idPel = "@Model.objPelicula.IdPelicula" asp-route-idEst = "@est.IdEstanteria"
-                                    >@est.NomEstanteria</a>
-                                
-                                </li>
-                                
+                                @if(Model.valoracion.EstaVisto == 0)
+                                {
+                                    @foreach(var est in Model.listEstanterias)
+                                    {
+                                        @if(est.NomEstanteria != "Vistas")
+                                        { 
+                                            <li>
+                                                <a
+                                                class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-300"
+                                                asp-controller="Pelicula" asp-action="AgregarPelicula" asp-route-idPel = "@Model.objPelicula.IdPelicula" asp-route-idEst = "@est.IdEstanteria"
+                                                >@est.NomEstanteria</a>
+                                                
+                                            </li>
+                                        }
+                                    }
+
+                                }
+                                else
+                                {
+                                    @foreach(var est in Model.listEstanterias)
+                                    {
+                                        @if(est.NomEstanteria != "Vistas")
+                                        { 
+                                            if(est.NomEstanteria == "Por Ver")
+                                            {
+                                                <li>
+                                                    <a
+                                                    class="pointer-events-none dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-400 hover:bg-gray-300"
+                                                    asp-controller="Pelicula" asp-action="AgregarPelicula" asp-route-idPel = "@Model.objPelicula.IdPelicula" asp-route-idEst = "@est.IdEstanteria"
+                                                    >@est.NomEstanteria</a>
+                                                    
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <a
+                                                    class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-300"
+                                                    asp-controller="Pelicula" asp-action="AgregarPelicula" asp-route-idPel = "@Model.objPelicula.IdPelicula" asp-route-idEst = "@est.IdEstanteria"
+                                                    >@est.NomEstanteria</a>
+                                                    
+                                                </li> 
+                                            }
+
+                                        }
+                                    }
+
+                                }
                             }
+                            else
+                            {
+                                @foreach(var est in Model.listEstanterias)
+                                    {
+                                        @if(est.NomEstanteria != "Vistas")
+                                        { 
+                                            <li>
+                                                <a
+                                                class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-300"
+                                                asp-controller="Pelicula" asp-action="AgregarPelicula" asp-route-idPel = "@Model.objPelicula.IdPelicula" asp-route-idEst = "@est.IdEstanteria"
+                                                >@est.NomEstanteria</a>
+                                                
+                                            </li>
+                                        }
+                                    }
+                            }
+
+
 
                         </ul>
                     </div>
                     <!-- fin dropdown-->
-                <button type="button"
-                    class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 lg:mr-5"
-                    data-bs-toggle="modal" data-bs-target="#valorar">Valorar</button>
-                    <button type="button"
-                    class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3"
-                    data-bs-toggle="" data-bs-target="" id="btnVisto">Vista</button>
+                    @if(Model.valoracion != null)
+                    {
+                        @if(Model.valoracion.EstaVisto == 0)
+                        {
+                            <button disabled type="button"
+                            class="text-white bg-gray-400 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 lg:mr-5"
+                            data-bs-toggle="modal" data-bs-target="#valorar">Valorar</button>
+                            <form asp-controller="Pelicula" asp-action="PeliculaVista" asp-route-idPel = "@Model.objPelicula.IdPelicula" asp-route-idUser = "@Model.usuario.IdUsuario" method="post">
+                            <button type="submit"
+                            class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3"
+                            data-bs-toggle="" data-bs-target="" id="btnVisto">Vista</button>
+                            </form>
+
+                        }
+                        else
+                        {
+                            <button type="button"
+                            class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 lg:mr-5"
+                            data-bs-toggle="modal" data-bs-target="#valorar">Valorar</button>
+                            <form asp-controller="Pelicula" asp-action="PeliculaVista" asp-route-idPel = "@Model.objPelicula.IdPelicula" asp-route-idUser = "@Model.usuario.IdUsuario" method="post">
+                            <button type="submit"
+                            class="text-white bg-sky-600 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3"
+                            data-bs-toggle="" data-bs-target="" id="btnVisto">Vista</button>
+                            </form>
+
+                        }
+                    }
+                    else
+                    {
+                        <button disabled type="button"
+                            class="text-white bg-gray-400 hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 lg:mr-5"
+                            data-bs-toggle="modal" data-bs-target="#valorar">Valorar</button>
+                            <form asp-controller="Pelicula" asp-action="PeliculaVista" asp-route-idPel = "@Model.objPelicula.IdPelicula" asp-route-idUser = "@Model.usuario.IdUsuario" method="post">
+                            <button type="submit"
+                            class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3"
+                            data-bs-toggle="" data-bs-target="" id="btnVisto">Vista</button>
+                            </form>
+
+                    }
 
 
                 </figure>
@@ -145,9 +316,19 @@
         
         <figure class=" grid gap-4 grid-cols-1">
             <p class="grid justify-items-center md:justify-items-start  text-2xl">Comentarios de la Comunidad</p>
-            <button hidden type="button"
-                class="w-52 text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3"
-                data-bs-toggle="modal" data-bs-target="#formComentario" id="commentInput">Agregar un comentario</button>
+            @if(Model.valoracion != null)
+            {
+                @if(Model.valoracion.EstaVisto == 1)
+                {
+                    <button type="button"
+                    class="w-52 text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3"
+                    data-bs-toggle="modal" data-bs-target="#formComentario" id="commentInput">Agregar un comentario</button>
+
+                }
+
+            }
+           
+
             <div class="container bg-slate-100 rounded-xl grid justify-items-center ">
                 @for (int i = 0; i < 5; i++)
                 {
@@ -257,6 +438,8 @@
             </div>
         </figure>
         <!-- Codigo del MODAL Valorar-->
+        @if(Model.usuario != null )
+        {
         <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
             id="valorar" tabindex="-1" aria-labelledby="valoraPelicula" aria-modal="true" role="dialog">
             <div class="modal-dialog modal-dialog-centered relative w-auto pointer-events-none">
@@ -271,15 +454,15 @@
                             class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
                             data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="/Pelicula/ValorarPelicula" method="post">
+                    <form asp-controller="Pelicula" asp-action="ValorarPelicula" asp-route-idPel = "@Model.objPelicula.IdPelicula" asp-route-idUser = "@Model.usuario.IdUsuario" method="post">
                         <select name="valoracion"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected>Selecciona una opción</option>
-                            <option value="calif1">(1) Mala</option>
-                            <option value="calif2">(2) Ok</option>
-                            <option value="calif3">(3) Buena</option>
-                            <option value="calif4">(4) Muy Buena</option>
-                            <option value="calif5">(5) Excelente</option>
+                            <option value="1">(1) Mala</option>
+                            <option value="2">(2) Ok</option>
+                            <option value="3">(3) Buena</option>
+                            <option value="4">(4) Muy Buena</option>
+                            <option value="5">(5) Excelente</option>
                         </select>
                         <div
                             class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
@@ -288,17 +471,21 @@
                                 data-bs-dismiss="modal">
                                 Cerrar
                             </button>
-                            <button type="submit"
+                            <button type="submit" 
                                 class="inline-block px-6 py-2.5 bg-cyan-900 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-cyan-800 hover:shadow-lg focus:bg-cyan-800 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-700 active:shadow-lg transition duration-150 ease-in-out ml-1"
                                 data-bs-dismiss="modal">
                                 Guardar
                             </button>
+                        </div>
                     </form>
                     
-                    </div>
                 </div>
             </div>
         </div>
+        
+
+        }
+        
         <!-- Codigo del MODAL Comentario FORM-->
         <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
             id="formComentario" tabindex="-1" aria-labelledby="" aria-modal="true" role="dialog">
@@ -353,25 +540,6 @@
 
 </main>
 
-<script>
-
-    const btn = document.getElementById("btnVisto");
-    const comment = document.getElementById("commentInput");
-    let index = 0;
-    const colors = ['#0284c7', '#374151'];
-    const visibility = [false, true];
-
-    btn.addEventListener('click', function onClick() {
-
-        btn.style.backgroundColor = colors[index];
-        btn.style.color = 'white';
-        comment.hidden = visibility[index];
-        index = index >= colors.length - 1 ? 0 : index + 1;
-        
-        
-    });
-
-</script>
 <script>
     const input = document.getElementById("comentario")
     const error = document.getElementById("advertencia")

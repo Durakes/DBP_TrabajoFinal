@@ -31,6 +31,7 @@ namespace PruebaDBP.Controllers
             string lenguaje;
             List<String> generos = new List<string>();
             List<int?> directores = new List<int?>();
+            List<Director> listDirectores = new List<Director>(); //Lista que se pasa a vista
             int? idDirectorTmdb;
             string nombreDirector;
             string directorUrl;
@@ -135,7 +136,7 @@ namespace PruebaDBP.Controllers
 
                                 ObjDirector = Context.Directors.OrderByDescending(p => p.IdDirector).FirstOrDefault();
                             }
-
+                            listDirectores.Add(ObjDirector);
                             PeliculaDirector registroDirector = new PeliculaDirector(lastPelicula2.IdPelicula, ObjDirector.IdDirector);
                             if (ModelState.IsValid)
                             {
@@ -145,13 +146,18 @@ namespace PruebaDBP.Controllers
                         }
                     }
                 }
+
+                //Objeto que se devolverá a la vista
                 IndexPelicula objVista = new IndexPelicula();
                 objVista.objPelicula = lastPelicula2;
-                var sesUsuario = (HttpContext.Session.GetString("sUsuario"));
+                objVista.listCategoria = generos;
+                objVista.listDirectores = listDirectores;
                 
+                var sesUsuario = (HttpContext.Session.GetString("sUsuario"));
                 if(sesUsuario != null)
                 {
                     objVista.usuario = JsonConvert.DeserializeObject<Usuario>(sesUsuario);
+                    objVista.valoracion = (from valUser in Context.ValoracionUsuarios where valUser.IdPelicula == objVista.objPelicula.IdPelicula && valUser.IdUsuario == objVista.usuario.IdUsuario select valUser).FirstOrDefault();
                     objVista.listEstanterias = (from est in Context.Estanteria
                                     where est.IdUsuario == objVista.usuario.IdUsuario
                                     select est).ToList();
@@ -159,7 +165,8 @@ namespace PruebaDBP.Controllers
                 }
                 else
                 {
-                    objVista.usuario = JsonConvert.DeserializeObject<Usuario>(sesUsuario);
+                    objVista.usuario = null;
+                    objVista.valoracion = null;
                     objVista.listEstanterias = null;
                 }
 
@@ -169,11 +176,34 @@ namespace PruebaDBP.Controllers
             {
                 IndexPelicula objVista = new IndexPelicula();
                 objVista.objPelicula = objPelicula;
+
+                //Obtener categorias
+                var catPel = (from cat in Context.PeliculaCategoria where cat.IdPelicula == objPelicula.IdPelicula select cat).ToList();
+                List<String> listaCateg = new List<String>();
+                foreach(var cat in catPel)
+                {
+                    var categoria = (from categ in Context.Categoria where categ.IdCategoria == cat.IdCategoria select categ).Single();
+                    listaCateg.Add(categoria.NomCategoria);
+                }
+                objVista.listCategoria = listaCateg;
+
+                //Obtener directores
+                var directorPel = (from dir in Context.PeliculaDirectors where dir.IdPelicula == objPelicula.IdPelicula select dir).ToList();
+                List<Director> listaDirectores = new List<Director>();
+                foreach(var dir in directorPel)
+                {
+                    var directorReg = (from director in Context.Directors where director.IdDirector == dir.IdDirector select director).Single();
+                    listaDirectores.Add(directorReg);
+                }
+                objVista.listDirectores = listaDirectores;
+
+                //Obtener info de usuario + estanterías
                 var sesUsuario = (HttpContext.Session.GetString("sUsuario"));
                 
                 if(sesUsuario != null)
                 {
                     objVista.usuario = JsonConvert.DeserializeObject<Usuario>(sesUsuario);
+                    objVista.valoracion = (from valUser in Context.ValoracionUsuarios where valUser.IdPelicula == objVista.objPelicula.IdPelicula && valUser.IdUsuario == objVista.usuario.IdUsuario select valUser).FirstOrDefault();
                     objVista.listEstanterias = (from est in Context.Estanteria
                                     where est.IdUsuario == objVista.usuario.IdUsuario
                                     select est).ToList();
@@ -182,6 +212,7 @@ namespace PruebaDBP.Controllers
                 else
                 {
                     objVista.usuario = null;
+                    objVista.valoracion = null;
                     objVista.listEstanterias = null;
                 }
                 return View(objVista);
@@ -296,13 +327,83 @@ namespace PruebaDBP.Controllers
             }
             
         }
-        //Valorar pelicula
-        public IActionResult ValorarPelicula()
+
+        //Marcar pelicula como vista
+        public IActionResult PeliculaVista(int idPel, int idUser)
         {
-            var calif = Request.Form["valoracion"];
-            Console.Write("CALIFFFF "+calif+"\n");
-            return NoContent();
+            var valoracion = (from valUser in Context.ValoracionUsuarios where valUser.IdPelicula == idPel && valUser.IdUsuario == idUser select valUser).FirstOrDefault();
+            var pelicula = (from pel in Context.Peliculas where pel.IdPelicula == idPel select pel).Single();
+            var libVistas = (from lib in Context.Estanteria where lib.IdUsuario == idUser && lib.NomEstanteria == "Vistas" select lib).Single();
+            var libPorVer = (from lib in Context.Estanteria where lib.IdUsuario == idUser && lib.NomEstanteria == "Por Ver" select lib).Single();
+
+            if(valoracion == null)
+            {
+                ValoracionUsuario objVal = new ValoracionUsuario();
+                objVal.EstaVisto = 1;
+                objVal.IdPelicula = idPel;
+                objVal.IdUsuario = idUser;
+
+                PeliculaEstanterium agregar = new PeliculaEstanterium();
+                agregar.IdEstanteria = libVistas.IdEstanteria;
+                agregar.IdPelicula = idPel;
+                agregar.FechaAgregacion = DateTime.Now.ToString("yyyy-MM-dd");
+
+                var eliminar = (from lib in Context.PeliculaEstanteria where lib.IdEstanteria == libPorVer.IdEstanteria && lib.IdPelicula == idPel select lib).FirstOrDefault();
+                if(eliminar != null)
+                {
+                    Context.PeliculaEstanteria.Remove(eliminar);
+                }
+                Context.PeliculaEstanteria.Add(agregar);
+                Context.ValoracionUsuarios.Add(objVal);
+
+            }
+            else
+            {
+                if(valoracion.EstaVisto == 1)
+                {
+                    valoracion.EstaVisto = 0;
+                    var eliminar = (from lib in Context.PeliculaEstanteria where lib.IdEstanteria == libVistas.IdEstanteria && lib.IdPelicula == idPel select lib).Single();
+                    Context.PeliculaEstanteria.Remove(eliminar);
+                }
+                else
+                {
+                    valoracion.EstaVisto = 1;
+                    PeliculaEstanterium agregar = new PeliculaEstanterium();
+                    agregar.IdEstanteria = libVistas.IdEstanteria;
+                    agregar.IdPelicula = idPel;
+                    agregar.FechaAgregacion = DateTime.Now.ToString("yyyy-MM-dd");
+
+                    var eliminar = (from lib in Context.PeliculaEstanteria where lib.IdEstanteria == libPorVer.IdEstanteria && lib.IdPelicula == idPel select lib).FirstOrDefault();
+                    if(eliminar != null)
+                    {
+                        Context.PeliculaEstanteria.Remove(eliminar);
+                    }
+                    Context.PeliculaEstanteria.Add(agregar);
+                }
+                
+            }
+            
+            Context.SaveChanges();
+
+            return RedirectToAction("Index",new { id = pelicula.IdTmdb });
         }
+
+        //Valorar pelicula
+        public IActionResult ValorarPelicula(int idPel, int idUser)
+        {
+            var calificacion = Int32.Parse( Request.Form["valoracion"]);
+            var pelicula = (from pel in Context.Peliculas where pel.IdPelicula == idPel select pel).Single();
+      
+            var valoracion = (from valUser in Context.ValoracionUsuarios where valUser.IdPelicula == idPel && valUser.IdUsuario == idUser select valUser).Single();
+            valoracion.Valoracion = calificacion;
+            valoracion.FechaValoracion = DateTime.Now.ToString("yyyy-MM-dd");
+            
+            //Console.Write("\n"+"CALIFFFF "+calificacion+"\n");
+
+            Context.SaveChanges();
+            return RedirectToAction("Index",new { id = pelicula.IdTmdb });
+        }
+
         public IActionResult TopMovie()
     {
         return View();
