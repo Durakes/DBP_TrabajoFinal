@@ -185,9 +185,66 @@ namespace PruebaDBP.Controllers
             
         }
 
+        //Peliculas recomendadas en carrusel
         public IActionResult Index()
         {
-            return View();
+            //Recuperar ult peli agregada
+            List<PeliAgre> listaAgregadas = new List<PeliAgre>();
+            listaAgregadas = PeliculasList();
+
+            if(!listaAgregadas.Any()) //Si la vista está vacía
+            {
+                Random rnd = new Random();
+
+                //Obtener tres indices random entre 0 y 1000
+                int index1 = rnd.Next(0,1000);
+                int index2 = rnd.Next(0,1000);
+                int index3 = rnd.Next(0,1000);
+
+                //Obtener los las peliculas correspondientes a esos Index
+                var peli1 = (from pel in Context.Peliculas where pel.IdPelicula == index1 select pel).Single();
+                var peli2 = (from pel in Context.Peliculas where pel.IdPelicula == index2 select pel).Single();
+                var peli3 = (from pel in Context.Peliculas where pel.IdPelicula == index3 select pel).Single();
+
+                Recomendaciones objRecom = new Recomendaciones();
+                objRecom.peli1 = peli1;
+                objRecom.peli2 = peli2;
+                objRecom.peli3 = peli3;
+                return View(objRecom);
+            }
+            else
+            {
+                var ultPel = listaAgregadas.Last();
+
+                //Recuperar un tag de la pelicula
+                var catPel = (from cat in Context.PeliculaCategoria where cat.IdPelicula == ultPel.IdPelicula select cat).FirstOrDefault();
+
+                //Hacer una lista de las peliculas con esa categoria
+                var listPelisCateg = (from pel in Context.PeliculaCategoria where pel.IdCategoria == catPel.IdCategoria select pel).ToList();
+
+                //Obtener numero de elementos en la lista listPelisCateg
+                var total = listPelisCateg.Count();
+
+                //Obtener tres indices random entre 0 y total
+                Random rnd = new Random();
+
+                int index1 = rnd.Next(0,total);
+                int index2 = rnd.Next(0,total);
+                int index3 = rnd.Next(0,total);
+
+                //Obtener los las peliculas correspondientes a esos Index
+                var peli1 = (from pel in Context.Peliculas where pel.IdPelicula == listPelisCateg[index1].IdPelicula select pel).Single();
+                var peli2 = (from pel in Context.Peliculas where pel.IdPelicula == listPelisCateg[index2].IdPelicula select pel).Single();
+                var peli3 = (from pel in Context.Peliculas where pel.IdPelicula == listPelisCateg[index3].IdPelicula select pel).Single();
+
+                Recomendaciones objRecom = new Recomendaciones();
+                objRecom.peli1 = peli1;
+                objRecom.peli2 = peli2;
+                objRecom.peli3 = peli3;
+
+                return View(objRecom);
+            }
+            
         }
 
         public IActionResult Perfil()

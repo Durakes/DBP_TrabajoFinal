@@ -9,7 +9,7 @@
             
             <form asp-controller="Usuario" asp-action="Registro" method="post">
                 <div class="relative p-0 rounded-md shadow-md bg-slate-200 w-52 h-auto sd:w-44 sd:h-auto md:w-64 md:h-auto lg:w-96 lg:h-auto md:flex md:rounded-none mx-auto">
-                    <button type="submit" class="absolute text-xs top-32 right-2 w-24 md:text-sm md:top-36 md:right-2 md:w-24 lg:top-56 lg:right-8 lg:w-28 lg:text-base bg-gray-700 text-white p-2 rounded hover:bg-gray-800 text-center" value="btn" name="grabar" data-toggle="modal" data-target="#exampleModal">Registrese</button>
+                    <button type="submit" class="absolute text-xs top-32 right-2 w-24 md:text-sm md:top-36 md:right-2 md:w-24 lg:top-56 lg:right-8 lg:w-28 lg:text-base bg-gray-700 text-white p-2 rounded hover:bg-gray-800 text-center" value="btn" name="grabar" data-toggle="modal" data-target="#exampleModal">Registrate</button>
                     <img class="" src="/images/promocion.jpg">
                 </div>
             </form>
@@ -30,16 +30,16 @@
                     </div>
                     <div class="carousel-inner relative w-full overflow-hidden">
                         <div class="carousel-item active float-left w-full">
-                            <img src="/images/pelicula1.jpg" class="block w-full"
-                                alt="Pelicula 1" />
+                            <a asp-controller="Pelicula" asp-action="Index" asp-route-id="505642"><img src="https://image.tmdb.org/t/p/w500/mYpT2R7639KvKZ668uoQGS2QNFp.jpg" class="block w-full"
+                                alt="Pelicula 1" /></a>
                         </div>
                         <div class="carousel-item float-left w-full">
-                            <img src="/images/pelicula2.jpg" class="block w-full"
-                                alt="Pelicula 2" />
+                            <a asp-controller="Pelicula" asp-action="Index" asp-route-id="436270"><img src="https://image.tmdb.org/t/p/w500/3eQMzMd2qsZkAJbk4wekp3Crg54.jpg" class="block w-full"
+                                alt="Pelicula 2" /></a>
                         </div>
                         <div class="carousel-item float-left w-full">
-                            <img src="/images/pelicula3.jpg" class="block w-full"
-                                alt="Pelicula 3" />
+                            <a asp-controller="Pelicula" asp-action="Index" asp-route-id="833097"><img src="https://image.tmdb.org/t/p/w500/sXCR9cmG82NnKpKtO4LpqXqZAFR.jpg" class="block w-full"
+                                alt="Pelicula 3" /></a>
                         </div>
                     </div>
                     <button

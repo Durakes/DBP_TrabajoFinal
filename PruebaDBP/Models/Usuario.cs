@@ -100,5 +100,11 @@ namespace PruebaDBP.Models
         public string? UrlFoto { get; set; }
         public string? FechaCreacion { get; set; }
     }
+    public partial class Recomendaciones
+    {
+        public Pelicula peli1 { get; set; }
+        public Pelicula peli2 { get; set; }
+        public Pelicula peli3 { get; set; }
+    }
     
 }

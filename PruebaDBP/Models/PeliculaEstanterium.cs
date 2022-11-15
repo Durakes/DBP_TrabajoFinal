@@ -17,6 +17,7 @@ namespace PruebaDBP.Models
         public Paginador<PeliLib> listPelis { get; set; }
         public List<Estanterium> listLib { get; set; }
         public Estanterium LibAct{ get; set; }
+        
     }
 
 
@@ -30,7 +31,9 @@ namespace PruebaDBP.Models
         public string? FechaAgregacion { get; set; }
         public int? DuracionMin { get; set; }
         public string? Sumilla { get; set; }
+        public int? Valoracion { get; set; }
         public List<Director> directores{get;set;}
+        public ValoracionUsuario valoracion;
 
 
     }
