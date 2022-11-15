@@ -81,8 +81,10 @@ namespace PruebaDBP.Models
         public string? Sumilla { get; set; }
         public string? estanteria { get; set; }
         public int IdEstanteria { get; set; }
+        public ValoracionUsuario valoracion { get; set; }
+
     }
-    
+
     public class PerfilPelis
     {
         public List<PeliAgre> Agregadas { get; set; }

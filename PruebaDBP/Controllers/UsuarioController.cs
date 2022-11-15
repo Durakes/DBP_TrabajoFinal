@@ -85,8 +85,8 @@ namespace PruebaDBP.Controllers
             Console.WriteLine(obj.ContraseñaNueva1);
             Console.WriteLine(obj.ContraseñaNueva2);
             Console.WriteLine(obj1.IdUsuario);
-            //if (ModelState.IsValid)
-            //{
+            if (ModelState.IsValid)
+            {
                 var objAnterior = (from userT in Context.Usuarios
                                    where userT.IdUsuario == obj1.IdUsuario
                                    select userT).Single();
@@ -108,11 +108,11 @@ namespace PruebaDBP.Controllers
                     HttpContext.Session.SetString("sUsuario", JsonConvert.SerializeObject(objAnterior));
                     return RedirectToAction("Index", "Usuario");
                 }
-            /*}
+            }
             else
             {
                 return RedirectToAction("RenovarContraseña");
-            }*/
+            }
 
 
         }
@@ -215,8 +215,8 @@ namespace PruebaDBP.Controllers
             return obj;
         }
         public List<PeliAgre> PeliculasList()
-        {
-            var usuario = JsonConvert.DeserializeObject<Usuario>(HttpContext.Session.GetString("sUsuario"));
+        { var sUser = HttpContext.Session.GetString("sUsuario");
+            var usuario = JsonConvert.DeserializeObject<Usuario>(sUser);
             List<PeliAgre> lista = new List<PeliAgre>();
             var listRegistros = (from obj in Context.Estanteria
                                  where obj.IdUsuario == usuario.IdUsuario
@@ -231,21 +231,32 @@ namespace PruebaDBP.Controllers
                     var obj = (from pel in Context.Peliculas orderby item.FechaCreacion where pel.IdPelicula == item2.IdPelicula select pel).Single();
                     var directorPel = (from dir in Context.PeliculaDirectors where obj.IdPelicula == dir.IdPelicula select dir).FirstOrDefault();
                     var directorReg = (from director in Context.Directors where director.IdDirector == directorPel.IdDirector select director).Single();
-                    
-                        PeliAgre registro = new PeliAgre();
-                        registro.IdPelicula = obj.IdPelicula;
-                        registro.NomPelicula = obj.NomPelicula;
-                        registro.NomDirector = directorReg.NomDirector;
-                        registro.Sumilla = obj.Sumilla;
-                        registro.FechaEstreno = obj.FechaEstreno;
-                        registro.UrlFoto = obj.UrlFoto;
-                        registro.estanteria = item.NomEstanteria;
-                        registro.IdEstanteria = item.IdEstanteria;
-                        lista.Add(registro);
+                    PeliAgre registro = new PeliAgre();
+                    registro.IdPelicula = obj.IdPelicula;
+                    registro.IdTmdb=obj.IdTmdb;
+                    registro.NomPelicula = obj.NomPelicula;
+                    registro.NomDirector = directorReg.NomDirector;
+                    registro.Sumilla = obj.Sumilla;
+                    registro.FechaEstreno = obj.FechaEstreno;
+                    registro.UrlFoto = obj.UrlFoto;
+                    registro.estanteria = item.NomEstanteria;
+                    registro.IdEstanteria = item.IdEstanteria;
+                    if (sUser != null)
+                    {
+                        registro.valoracion = (from valUser in Context.ValoracionUsuarios where valUser.IdPelicula == obj.IdPelicula && valUser.IdUsuario == usuario.IdUsuario select valUser).FirstOrDefault();
+                        
+
+                    }
+                    else
+                    {
+                        registro.valoracion = null;
+                    }
+                    lista.Add(registro);
                 }
+            
             }
 
-            return lista.Take(8).ToList();
+            return lista.Take(5).ToList();
         }
 
         [Route("Editar")]
