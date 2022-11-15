@@ -104,18 +104,18 @@ namespace PruebaDBP.Controllers
         public List<PeliLib> listPeliculas(int idLib)
         {
             List<PeliLib> lista = new List<PeliLib>();
-           
+           var usuario = JsonConvert.DeserializeObject<Usuario>(HttpContext.Session.GetString("sUsuario"));
 
             var listRegistros = (from obj in Context.PeliculaEstanteria
                                 where obj.IdEstanteria == idLib
                                 select obj).ToList();
-                                
-            foreach(var item in listRegistros)
+            foreach(var item in listRegistros.OrderByDescending(x => x.FechaAgregacion))
             {
                 //selecciono la pelicula
                 var objPelicula = (from pel in Context.Peliculas where pel.IdPelicula == item.IdPelicula select new PeliLib{
                                 IdPelicula = pel.IdPelicula,
                                 IdTmdb = pel.IdTmdb,
+                                Valoracion = pel.Valoracion,
                                 FechaAgregacion = item.FechaAgregacion,
                                 NomPelicula = pel.NomPelicula,
                                 UrlFoto = pel.UrlFoto,
@@ -132,9 +132,12 @@ namespace PruebaDBP.Controllers
                     listaDirectores.Add(directorReg);
                 }
                 objPelicula.directores = listaDirectores;
+
+                //Recuperar la valoración
+                objPelicula.valoracion = (from valUser in Context.ValoracionUsuarios where valUser.IdPelicula == objPelicula.IdPelicula && valUser.IdUsuario == usuario.IdUsuario select valUser).FirstOrDefault();
                 
                 lista.Add(objPelicula);
-            }
+            }            
 
             return lista;
         }
