@@ -24,4 +24,11 @@ namespace PruebaDBP.Models
 
         public Director() { }
     }
+    public partial class IndexDirector
+    {
+        public Director director {get; set; }
+
+        public List<Pelicula> listPeliculas {get; set; }
+    }
+
 }
