@@ -81,6 +81,7 @@ namespace PruebaDBP.Models
         public string? Sumilla { get; set; }
         public string? estanteria { get; set; }
         public int IdEstanteria { get; set; }
+        public string? FechaAgregar { get; set; }
         public ValoracionUsuario valoracion { get; set; }
 
     }

@@ -153,10 +153,7 @@ namespace PruebaDBP.Controllers
                 objVista.objPelicula = lastPelicula2;
                 objVista.listCategoria = generos;
                 objVista.listDirectores = listDirectores;
-                ComentarioIndex objComentariosIndex = new ComentarioIndex();
-                listaComentario.Add(objComentariosIndex);
                 objVista.listComentario = listaComentario;
-
 
                 var sesUsuario = (HttpContext.Session.GetString("sUsuario"));
                 if(sesUsuario != null)
