@@ -23,6 +23,7 @@ namespace PruebaDBP.Controllers
                 IndexDirector objDirector = new IndexDirector();
                 objDirector.director = objDir;
                 //Lista de peliculas
+                List<Pelicula> listPeliculas = new List<Pelicula>();
                 System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
 
                 var baseAddress = new Uri("http://api.themoviedb.org/3/");
@@ -44,7 +45,7 @@ namespace PruebaDBP.Controllers
 
                                 if(peliculaBD != null)
                                 {
-                                    objDirector.listPeliculas.Add(peliculaBD);
+                                    listPeliculas.Add(peliculaBD);
                                 }else
                                 {
                                     using(var responsePel = await httpClient.GetAsync("movie/" + idPel.ToString() + "?api_key=da8f080c81b970a5c0962ea17bfc0cda&language=es"))
@@ -53,13 +54,15 @@ namespace PruebaDBP.Controllers
                                         dynamic resultPel = JsonConvert.DeserializeObject(responsePelData);
                                         string nombre = resultPel.title;
                                         string fechaEstreno = resultPel.release_date;
+                                        string lenguaje = objPelicula.original_language;
                                         int? valoracion = resultPel.vote_average;
                                         string sumilla = resultPel.overview;
                                         string fotoURL = "https://image.tmdb.org/t/p/w500" + resultPel.poster_path;
 
-                                        Pelicula objPeliculaRegistro = new Pelicula(idPel, resultPel.original_language, nombre, fechaEstreno, valoracion, sumilla, fotoURL);
+                                        var ObjIdioma = (from Tleng in Context.Idiomas where Tleng.Abreviacion == lenguaje select Tleng).Single();
+                                        Pelicula objPeliculaRegistro = new Pelicula(idPel, ObjIdioma.IdIdioma, nombre, fechaEstreno, valoracion, sumilla, fotoURL);
 
-                                        objDirector.listPeliculas.Add(objPeliculaRegistro);
+                                        listPeliculas.Add(objPeliculaRegistro);
                                     }
                                 }
                             }
@@ -67,8 +70,7 @@ namespace PruebaDBP.Controllers
                         
                     }
                 }
-                /*objDirector.listPeliculas= Lista de peliculas del director*/
-
+                objDirector.listPeliculas = listPeliculas;
                 return View(objDirector);
                 
             }
