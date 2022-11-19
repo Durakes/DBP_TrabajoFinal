@@ -62,7 +62,46 @@
                                 <div class="md:col-span-2">
                                     <figcaption class="font-medium columns-2">
                                         <div class="text-sky-500">
-                                            Director: <a asp-controller="Pelicula" asp-action="Index" asp-route-id="@item.NomDirector" class="text-slate-600 font-small">@item.NomDirector</a>
+                                            Director: <label class="text-slate-600">
+                                                @{
+                                                    var cant = item.directoresLista.Count();
+                                                    var cantFalt = cant - 2;
+                                                    var ult = item.directoresLista.Last();
+                                                    if (cant > 1)
+                                                    {
+                                                        item.directoresLista.Remove(ult);
+                                                    }
+                                                    var ult2 = item.directoresLista.Last();
+                                                }
+                                                @foreach (var item2 in item.directoresLista)
+                                                {
+                                                    if (item.Equals(ult2))
+                                                    {
+                                                        if (ult2.NomDirector != ult.NomDirector)
+                                                        {
+                                                            if (cant == 2)
+                                                            {
+                                                                <a asp-controller="Director" asp-action="Index" asp-route-idDir="@item2.IdDirTmdb"> @item2.NomDirector</a>
+                                                            }
+                                                            else
+                                                            {
+                                                                <label>+@cantFalt</label>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <div>@item2.NomDirector</div>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <a asp-controller="Director" asp-action="Index" asp-route-idDir="@item2.IdDirTmdb"> @item2.NomDirector</a>
+                                                    }
+
+
+
+                                                }
+                                            </label>
                                         </div>
                                         <div class="text-sky-500">
                                             Año: <label class="text-slate-600 font-small">@item.FechaEstreno</label>

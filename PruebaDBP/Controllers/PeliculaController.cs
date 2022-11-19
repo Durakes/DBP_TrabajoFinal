@@ -37,6 +37,7 @@ namespace PruebaDBP.Controllers
             string directorUrl;
             string bioDirector;
             Pelicula objPeliculaRegistro;
+            List<ComentarioIndex> listaComentario = new List<ComentarioIndex>();
 
             
 
@@ -152,7 +153,11 @@ namespace PruebaDBP.Controllers
                 objVista.objPelicula = lastPelicula2;
                 objVista.listCategoria = generos;
                 objVista.listDirectores = listDirectores;
-                
+                ComentarioIndex objComentariosIndex = new ComentarioIndex();
+                listaComentario.Add(objComentariosIndex);
+                objVista.listComentario = listaComentario;
+
+
                 var sesUsuario = (HttpContext.Session.GetString("sUsuario"));
                 if(sesUsuario != null)
                 {
@@ -185,17 +190,24 @@ namespace PruebaDBP.Controllers
                     var categoria = (from categ in Context.Categoria where categ.IdCategoria == cat.IdCategoria select categ).Single();
                     listaCateg.Add(categoria.NomCategoria);
                 }
-                objVista.listCategoria = listaCateg;
+                objVista.listCategoria = listaCateg.Take(3).ToList();
 
                 //Obtener directores
+                
                 var directorPel = (from dir in Context.PeliculaDirectors where dir.IdPelicula == objPelicula.IdPelicula select dir).ToList();
                 List<Director> listaDirectores = new List<Director>();
                 foreach(var dir in directorPel)
                 {
+                    Console.WriteLine("************************+"+dir.IdDirector);
                     var directorReg = (from director in Context.Directors where director.IdDirector == dir.IdDirector select director).Single();
                     listaDirectores.Add(directorReg);
                 }
-                objVista.listDirectores = listaDirectores;
+                    string NombreNull = "No disponible";
+                    Director objDirector = new Director();
+                    objDirector.NomDirector = NombreNull;
+                    listaDirectores.Add(objDirector);
+                    objVista.listDirectores = listaDirectores;
+                
 
                 //Obtener info de usuario + estanterías
                 var sesUsuario = (HttpContext.Session.GetString("sUsuario"));
@@ -215,6 +227,20 @@ namespace PruebaDBP.Controllers
                     objVista.valoracion = null;
                     objVista.listEstanterias = null;
                 }
+
+                var comentariosPel = (from pelComent in Context.Comentarios where pelComent.IdPelicula == objPelicula.IdPelicula select pelComent).ToList();
+                foreach(var item in comentariosPel)
+                {
+                    var userVal = (from pelUser in Context.Usuarios where pelUser.IdUsuario == item.IdUsuario select pelUser).FirstOrDefault();
+                    var ValoracionPel = (from pelVal in Context.ValoracionUsuarios where pelVal.IdUsuario == item.IdUsuario && pelVal.IdPelicula==item.IdPelicula select pelVal).FirstOrDefault();
+                    ComentarioIndex objComentariosIndex = new ComentarioIndex();
+                    Console.WriteLine(ValoracionPel.Valoracion);
+                    objComentariosIndex.UsuarioValor = ValoracionPel;
+                    objComentariosIndex.CometariosUsers = item;
+                    objComentariosIndex.User = userVal;
+                    listaComentario.Add(objComentariosIndex);
+                }
+                objVista.listComentario = listaComentario;
                 return View(objVista);
             }
         }
@@ -228,12 +254,14 @@ namespace PruebaDBP.Controllers
         //private List<Pelicula> _pelicula;
         //List<Pelicula> peliculasEncontradasAPI = new List<Pelicula>();
         private readonly int _RegistrosPorPagina = 10;
-        private Paginador<Pelicula> _PaginadorPelicula;
-        
+        private Paginador<PeliculaTop> _PaginadorPelicula;
+        private Paginador<PeliculaTop> _PaginadorPeliculaTop;
+
+
         public async Task<IActionResult> Resultados(string nombreBuscar, int pagina = 1)
         {
             System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-            List<Pelicula> peliculasEncontradasAPI = new List<Pelicula>();
+            List<PeliculaTop> peliculasEncontradasAPI = new List<PeliculaTop>();
 
             var baseAddress = new Uri("http://api.themoviedb.org/3/");
 
@@ -251,6 +279,7 @@ namespace PruebaDBP.Controllers
                 int valoracion = 0;
                 string sumilla;
                 string posterURL;
+                List<String> generos = new List<string>();
 
                 while (page <= totalpages)
                 {
@@ -266,29 +295,50 @@ namespace PruebaDBP.Controllers
                         foreach (var objPelicula in busquedaDatos.results)
                         {
                             idPeliculaTMDB = objPelicula.id;
-                            lenguaje = objPelicula.original_language;
-                            titulo = objPelicula.title;
-                            fecha = "2020-11-02";
-                            valoracion = objPelicula.vote_average;
-                            sumilla = objPelicula.overview;
-                            if (objPelicula.poster_path != null)
-                                posterURL = "https://image.tmdb.org/t/p/w500" + objPelicula.poster_path;
-                            else
-                                posterURL = "";
+                            //
+                            
+                            using (var detalle = await httpClient.GetAsync("movie/" + idPeliculaTMDB.ToString() + "?api_key=da8f080c81b970a5c0962ea17bfc0cda&language=es"))
+                            {
+                                string detalleData = await detalle.Content.ReadAsStringAsync();
+                                dynamic detallePelicula = JsonConvert.DeserializeObject(detalleData);
+                                sumilla = detallePelicula.overview;
+                                if (objPelicula.poster_path != null)
+                                    posterURL = "https://image.tmdb.org/t/p/w500" + objPelicula.poster_path;
+                                else
+                                    posterURL = "";
+                                titulo = detallePelicula.title;
+                                fecha = detallePelicula.release_date;
+                                lenguaje = detallePelicula.original_language;
+                                generos = new List<string>();
+                                valoracion = detallePelicula.vote_average;
+                                /*Probar esta parte luego*/
+                                //dynamic generosv2 = detallePelicula.genres;
+                                foreach (var genero in detallePelicula.genres)
+                                {
+                                    string nombreGenero = genero.name;
+                                    generos.Add(nombreGenero);
+                                }
 
-                            var ObjIdioma = (from Tleng in Context.Idiomas where Tleng.Abreviacion == lenguaje select Tleng).Single();
-                            Pelicula objPeliculaEncontrado = new Pelicula(idPeliculaTMDB, ObjIdioma.IdIdioma, titulo, fecha, valoracion, sumilla, posterURL);
-                            peliculasEncontradasAPI.Add(objPeliculaEncontrado);
+                                var ObjIdioma = (from Tleng in Context.Idiomas where Tleng.Abreviacion == lenguaje select Tleng).Single();
+                                Pelicula objPeliculaEncontrado = new Pelicula(idPeliculaTMDB, ObjIdioma.IdIdioma, titulo, fecha, valoracion, sumilla, posterURL);
+
+                                //
+
+                                PeliculaTop PeliculasMostrar = new PeliculaTop();
+                                PeliculasMostrar.PeliTop = objPeliculaEncontrado;
+                                PeliculasMostrar.listaCategorias = generos;
+                                peliculasEncontradasAPI.Add(PeliculasMostrar);
+                            }
                         }
                     }
                     page++;
                 }
-                List<Pelicula> pruebita2 = new List<Pelicula>();
+                List<PeliculaTop> pruebita2 = new List<PeliculaTop>();
                 pruebita2 = peliculasEncontradasAPI.Skip((pagina - 1) * _RegistrosPorPagina).Take(_RegistrosPorPagina).ToList();
                 // Número total de páginas de la tabla Pelicula
                 var _TotalPaginas = (int)Math.Ceiling((double)totalResult / _RegistrosPorPagina);
                 // Instanciamos la 'Clase de paginación' y asignamos los nuevos valores
-                _PaginadorPelicula = new Paginador<Pelicula>()
+                _PaginadorPelicula = new Paginador<PeliculaTop>()
                 {
                     RegistrosPorPagina = _RegistrosPorPagina,
                     TotalRegistros = totalResult,
@@ -403,12 +453,74 @@ namespace PruebaDBP.Controllers
             Context.SaveChanges();
             return RedirectToAction("Index",new { id = pelicula.IdTmdb });
         }
+        public IActionResult SubirComentario(int idPel, string? comentario)
+        {
+            var usuario = JsonConvert.DeserializeObject<Usuario>(HttpContext.Session.GetString("sUsuario"));
 
-        public IActionResult TopMovie()
-    {
-        return View();
+            var pelicula = (from pel in Context.Peliculas where pel.IdPelicula == idPel select pel).Single();
 
-    }
+            string? Fecha= DateTime.Now.ToString("yyyy-MM-dd");
+            Comentario ObjComentario = new Comentario();
+            ObjComentario.IdUsuario = usuario.IdUsuario;
+            ObjComentario.IdPelicula=idPel;
+            ObjComentario.FechaPublicacion=Fecha;
+            ObjComentario.Texto = comentario;
+            ObjComentario.Estado = true;
+
+            Context.Comentarios.Add(ObjComentario);
+            Context.SaveChanges();
+            return RedirectToAction("Index", new { id = pelicula.IdTmdb });
+        }
+
+        public IActionResult TopMovie( int pagina=1)
+        {
+
+              
+            List<PeliculaTop> PelisMejorValoradas = new List<PeliculaTop>();
+            var pelis = (from pel in Context.Peliculas select pel).OrderByDescending((x => x.Valoracion)).ToList();
+            foreach(var item in pelis)
+            {
+                PeliculaTop PeliculasMejorVal = new PeliculaTop();
+                PeliculasMejorVal.PeliTop = item;
+                var directorPel = (from dir in Context.PeliculaDirectors where dir.IdPelicula == item.IdPelicula select dir).ToList();
+                List<Director> listaDirectores = new List<Director>();
+                foreach (var dir in directorPel)
+                {
+                    Console.WriteLine("************************+" + dir.IdDirector);
+                    var directorReg = (from director in Context.Directors where director.IdDirector == dir.IdDirector select director).Single();
+                    listaDirectores.Add(directorReg);
+                }
+                string NombreNull = "No disponible";
+                Director objDirector = new Director();
+                objDirector.NomDirector = NombreNull;
+                listaDirectores.Add(objDirector);
+                PeliculasMejorVal.directoresLista= listaDirectores;
+                PelisMejorValoradas.Add(PeliculasMejorVal);
+                var catPel = (from cat in Context.PeliculaCategoria where cat.IdPelicula == item.IdPelicula select cat).ToList();
+                List<String> listaCateg = new List<String>();
+                foreach (var cat in catPel)
+                {
+                    var categoria = (from categ in Context.Categoria where categ.IdCategoria == cat.IdCategoria select categ).Single();
+                    listaCateg.Add(categoria.NomCategoria);
+                }
+                PeliculasMejorVal.listaCategorias = listaCateg.Take(3).ToList();
+            }
+            List<PeliculaTop> result = new List<PeliculaTop>();
+            var totalReg=PelisMejorValoradas.Take(25).ToList();
+            result = totalReg.Skip((pagina - 1) * _RegistrosPorPagina).Take(_RegistrosPorPagina).ToList();
+            // Número total de páginas de la tabla Pelicula
+            var _TotalPaginas = (int)Math.Ceiling((double)25 / _RegistrosPorPagina);
+            // Instanciamos la 'Clase de paginación' y asignamos los nuevos valores
+            _PaginadorPeliculaTop = new Paginador<PeliculaTop>()
+            {
+                RegistrosPorPagina = _RegistrosPorPagina,
+                TotalRegistros = 25,
+                TotalPaginas = _TotalPaginas,
+                PaginaActual = pagina,
+                Resultado = result
+            };
+            return View(_PaginadorPeliculaTop);
+        }
 
             
         public async Task AllMovies()

@@ -75,7 +75,7 @@ namespace PruebaDBP.Models
         public int IdPelicula { get; set; }
         public int? IdTmdb { get; set; }
         public string? NomPelicula { get; set; }
-        public string? NomDirector { get; set; }
+        public List<Director> directoresLista;
         public string? UrlFoto { get; set; }
         public string? FechaEstreno { get; set; }
         public string? Sumilla { get; set; }

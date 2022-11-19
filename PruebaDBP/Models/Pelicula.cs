@@ -34,6 +34,12 @@ namespace PruebaDBP.Models
 
         public Pelicula() { }
     }
+    public partial class ComentarioIndex
+    {
+        public Comentario CometariosUsers;
+        public ValoracionUsuario UsuarioValor;
+        public Usuario User;
+    }
     public partial class IndexPelicula
     {
         public Pelicula objPelicula;
@@ -42,6 +48,13 @@ namespace PruebaDBP.Models
         public List<Estanterium> listEstanterias;
         public List<Director> listDirectores;
         public List<String> listCategoria;
+        public List<ComentarioIndex> listComentario;
 
+    }
+    public partial class PeliculaTop
+    {
+        public Pelicula PeliTop;
+        public List<Director> directoresLista;
+        public List<String> listaCategorias;
     }
 }

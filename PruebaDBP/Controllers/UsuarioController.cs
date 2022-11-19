@@ -286,13 +286,19 @@ namespace PruebaDBP.Controllers
                 foreach (var item2 in obj2)
                 {
                     var obj = (from pel in Context.Peliculas orderby item.FechaCreacion where pel.IdPelicula == item2.IdPelicula select pel).Single();
-                    var directorPel = (from dir in Context.PeliculaDirectors where obj.IdPelicula == dir.IdPelicula select dir).FirstOrDefault();
-                    var directorReg = (from director in Context.Directors where director.IdDirector == directorPel.IdDirector select director).Single();
+                    var directorPel = (from dir in Context.PeliculaDirectors where obj.IdPelicula == dir.IdPelicula select dir).ToList();
+                    List<Director> listaDirectores = new List<Director>();
+                    foreach (var dir in directorPel)
+                    {
+                        Console.WriteLine("************************+" + dir.IdDirector);
+                        var directorReg = (from director in Context.Directors where director.IdDirector == dir.IdDirector select director).Single();
+                        listaDirectores.Add(directorReg);
+                    }
                     PeliAgre registro = new PeliAgre();
                     registro.IdPelicula = obj.IdPelicula;
                     registro.IdTmdb=obj.IdTmdb;
                     registro.NomPelicula = obj.NomPelicula;
-                    registro.NomDirector = directorReg.NomDirector;
+                    registro.directoresLista = listaDirectores;
                     registro.Sumilla = obj.Sumilla;
                     registro.FechaEstreno = obj.FechaEstreno;
                     registro.UrlFoto = obj.UrlFoto;
