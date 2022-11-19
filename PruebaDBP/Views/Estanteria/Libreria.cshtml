@@ -128,7 +128,7 @@
                                     <div class="text-black-500 text-xl text-left font-normal">
                                         @foreach(var director in item.directores)
                                         {
-                                            <a asp-controller="Director" asp-action="Index">@director.NomDirector</a><br>
+                                            <a asp-controller="Director" asp-action="Index" asp-route-id="@director.IdDirTmdb">@director.NomDirector</a><br>
                                         }
                                         
                                     </div>
