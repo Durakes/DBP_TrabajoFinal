@@ -1,34 +1,80 @@
-﻿@*
+﻿@using PruebaDBP.Models
+@model Paginador<PeliculaTop>
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
 <main class="flex items-center justify-center bg-gray-100  py-8 px-4">
     <div class="columns-1 mx-auto space-y-4">
-        @for(int i=1;i<=10;i++){
+        @{
+            int i=1;
+            int e = 1;
+        }
+        @foreach(var item in Model.Resultado){
+
+            int ranking = (Model.PaginaActual - 1) * 10 + i;
+
             <div class="md:hidden container bg-slate-50 rounded-xl grid justify-items-center mt-10 ">
                 <figure class=" flex items-center bg-slate-50 rounded-xl p-2 grid grid-cols-4 md:grid-cols-6 gap-2 justify-content-center flex justify-center">
-                    <img class="w-fit h-fit md:w-auto md:h-auto flex md:rounded-none mx-auto" src="/images/avatar.jpg" alt="" width="384" height="512">
+                    <img class="w-fit h-fit md:w-auto md:h-auto flex md:rounded-none mx-auto" src="/images/default.png" srcset="@item.PeliTop.UrlFoto" alt="" width="384" height="512">
                     <div class="pt-0 md:p-5 text-left space-y-4 ml-5 col-span-3 md:col-span-5 ">
 
                         <div class="text-sky-900 text-3xl text-left">
-                            <a href="\Home\Movie">@i. Avatar</a>
+                            <a href="\Home\Movie">@ranking.  @item.PeliTop.NomPelicula</a>
                         </div>
                         <div class="columns-1 md:columns-2 grid md:grid-cols-3 gap-0 md:gap-4">
                             <div class="md:col-span-2">
                                 <figcaption class="font-medium columns-2">
                                     <div class="text-sky-500">
-                                        Director: <label class="text-slate-600 font-small">James Cameron</label>
+                                        Director:
+                                            <div class="text-slate-600">
+                                            @{
+                                                var cant = item.directoresLista.Count();
+                                                var cantFalt = cant - 2;
+                                                var ult = item.directoresLista.Last();
+                                                if(cant>1){
+                                                    item.directoresLista.Remove(ult);
+                                                }
+                                                var ult2 = item.directoresLista.Last();
+                                        }
+                                        @foreach(var item2 in item.directoresLista)
+                                        {   
+                                            if(item.Equals(ult2))
+                                            {
+                                                if(ult2.NomDirector!=ult.NomDirector){
+                                                    if (cant==2)
+                                                    {
+                                                        <a asp-controller="Director" asp-action="Index" asp-route-idDir="@item2.IdDirTmdb"> @item2.NomDirector</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <label>+@cantFalt</label>
+                                                    }
+                                                }
+                                                else{
+                                                    <div>@item2.NomDirector</div>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <a asp-controller="Director" asp-action="Index" asp-route-idDir="@item2.IdDirTmdb"> @item2.NomDirector</a>
+                                            }
+                                        
+                            
+                            
+                                        }
+                                        </div>
                                     </div>
                                     <div class="text-sky-500">
-                                        Año: <label class="text-slate-600 font-small">2009</label>
+                                        Año: <label class="text-slate-600 font-small">@item.PeliTop.FechaEstreno</label>
                                     </div>
                                 </figcaption>
 
                                 <blockquote>
                                     <div class="h-auto w-auto md:py-2 font-small text-[0px] md:text-base mt-0 md:mt-3 ">
                                         <div class="font-medium text-sky-500 mb-2">Sinopsis</div>
-                                        Corre el año 2154. Jake Sully es un antiguo marine que vive postrado en una silla de ruedas, pero cuya determinación y valentía se mantienen intactas. Ahora, tiene una misión entre manos: viajar a Pandora, un planeta del que los humanos extraen...
+                                        @item.PeliTop.Sumilla
                                     </div>
                                 </blockquote>
                             </div>
@@ -41,22 +87,19 @@
                                                 <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
                                             </svg>
                                         </div>
-                                        <p>4.5</p>
+                                        <p>@item.PeliTop.Valoracion</p>
                                     </div>
                                     <div class="mt-3">
                                         <ul class="flex justify-start gap-4">
-                                            <li>
-                                                <div class="text-xs mt-1 inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-gray-200 text-gray-500 rounded-full">
-                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>
-                                                    <p class="px-2 text-right">Fantasia</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="text-xs mt-1 inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-gray-200 text-gray-500 rounded-full">
-                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>
-                                                    <p class="px-2 text-right">Aventura</p>
-                                                </div>
-                                            </li>
+                                            @foreach (var cat in item.listaCategorias)
+                                            {
+                                                <li>
+                                                    <div class="text-xs mt-1 inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-gray-200 text-gray-500 rounded-full">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>
+                                                        <p class="px-2 text-right">@cat</p>
+                                                    </div>
+                                                </li>
+                                            }
                                         </ul>
                                     </div>
                                 </figure>
@@ -64,7 +107,10 @@
                         </div>
                     </div>
                 </figure>
+                 
             </div>
+
+            i++;
          }
         
         <!--tamaño laptop-->
@@ -77,43 +123,83 @@
                 </tr>
             </thead>
             <tbody>
-                @for(int i=1; i<=10; i++){
+                @foreach(var item in Model.Resultado){
+                    int ranking=(Model.PaginaActual - 1) * 10 + e;
                     <tr>
-                        <td class="border border-slate-600"><div class="flex container text-6xl text-gray-800 grid justify-items-center align-items-center place-content-center inset-0 font-serif col-span-1">@i</div></td>
+                        <td class="border border-slate-600"><div class="flex container text-6xl text-gray-800 grid justify-items-center align-items-center place-content-center inset-0 font-serif col-span-1">@ranking</div></td>
                         <td class="border border-slate-600">
                             <figure class=" col-span-3 flex items-center bg-slate-50 rounded-xl p-2 grid grid-cols-4 md:grid-cols-6 gap-2 justify-content-center flex justify-center">
 
-                                <img class="w-fit h-fit md:w-24 md:h-36 flex md:rounded-none mx-auto" src="/images/avatar.jpg" alt="" width="384" height="512">
+                                <a asp-controller="Pelicula" asp-action="Index" asp-route-id="@item.PeliTop.IdTmdb">
+                                    <img class="w-fit h-fit md:w-24 md:h-36 flex md:rounded-none mx-auto" src="/images/default.png" srcset="@item.PeliTop.UrlFoto" alt="" width="384" height="512">
+                                </a>
                                 <div class="pt-0 md:p-5 text-left space-y-4 ml-5 col-span-3 md:col-span-5 ">
 
                                     <div class="text-sky-900 text-3xl text-left">
-                                        <a href="\Home\Movie">Avatar</a>
+                                        <a asp-controller="Pelicula" asp-action="Index" asp-route-id="@item.PeliTop.IdTmdb">@item.PeliTop.NomPelicula</a>
                                     </div>
                                     <div class="columns-1 gap-4">
                                         <div class="columns-1">
                                             <figcaption class="font-medium columns-1 md:columns-2">
                                                 <div class="text-sky-500 columns-2">
-                                                    Director: <label class="text-slate-600 font-small">James Cameron</label>
+                                                    Director:
+                                                    <label class="text-slate-600">
+                                                    @{
+                                                        var cant = item.directoresLista.Count();
+                                                        var cantFalt = cant - 2;
+                                                        var ult = item.directoresLista.Last();
+                                                        if (cant > 1)
+                                                        {
+                                                            item.directoresLista.Remove(ult);
+                                                        }
+                                                        var ult2 = item.directoresLista.Last();
+                                                    }
+                                                    @foreach (var item2 in item.directoresLista)
+                                                    {
+                                                        if (item.Equals(ult2))
+                                                        {
+                                                            if (ult2.NomDirector != ult.NomDirector)
+                                                            {
+                                                                if (cant == 2)
+                                                                {
+                                                                    <a asp-controller="Director" asp-action="Index" asp-route-idDir="@item2.IdDirTmdb"> @item2.NomDirector</a>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <label>+@cantFalt</label>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <div>@item2.NomDirector</div>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <a asp-controller="Director" asp-action="Index" asp-route-idDir="@item2.IdDirTmdb"> @item2.NomDirector</a>
+                                                        }
+
+
+
+                                                    }
+                                                    </label>
                                                 </div>
                                                 <div class="text-sky-500">
-                                                    Año: <label class="text-slate-600 font-small">2009</label>
+                                                    Año: <label class="text-slate-600 font-small">@item.PeliTop.FechaEstreno</label>
                                                 </div>
                                             </figcaption>
                                             <figure>
                                                 <div class="mt-3">
                                                     <ul class="flex justify-start gap-4">
-                                                        <li>
-                                                            <div class="text-xs mt-1 inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-gray-200 text-gray-500 rounded-full">
-                                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>
-                                                                <p class="px-2 text-right">Fantasia</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="text-xs mt-1 inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-gray-200 text-gray-500 rounded-full">
-                                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>
-                                                                <p class="px-2 text-right">Aventura</p>
-                                                            </div>
-                                                        </li>
+                                                        @foreach (var cat in item.listaCategorias)
+                                                        {
+                                                            <li>
+                                                                <div class="text-xs mt-1 inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-gray-200 text-gray-500 rounded-full">
+                                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>
+                                                                    <p class="px-2 text-right">@cat</p>
+                                                                </div>
+                                                            </li>
+                                                        }
                                                     </ul>
                                                 </div>
                                             </figure>
@@ -129,12 +215,116 @@
                                         <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
                                     </svg>
                                 </div>
-                                <p>4.5</p>
+                                <p>@item.PeliTop.Valoracion</p>
                             </div>
                         </td>
                     </tr>
+                    e++;
                 }
             </tbody>
         </table>
+        @*CÓDIGO PARA EL PAGINADOR DE REGISTROS*@
+        @if (Model.Resultado.Count() > 0)
+        {
+            <span>
+                <strong>@Model.TotalRegistros</strong> registros encontrados
+            </span>
+            <span>&nbsp;|&nbsp;</span>
+            <span>
+                Página <strong>@(Model.PaginaActual)</strong> de
+                <strong>@Model.TotalPaginas</strong>
+            </span>
+            <span>&nbsp;|&nbsp;</span>
+        }
+        else
+        {
+            <span>No hay resultados para esta búsqueda</span>
+            <span>&nbsp;|&nbsp;</span>
+        }
+
+        <div class="flex justify-center">
+            <nav aria-label="Page navigation example">
+
+                @if (Model.TotalPaginas > 1)
+                {
+                    if (Model.PaginaActual == 1)
+                    {
+                        @Html.ActionLink("<<", "TopMovie", new { pagina = 1 },new { @class = "btn btn-sm btn-default disabled" })
+                        <span></span>
+                    }
+                    else
+                    {
+                        @Html.ActionLink("<<", "TopMovie", new { pagina = 1 },new { @class = "btn btn-sm btn-default" })
+                        <span></span>
+                    }
+                    if (Model.PaginaActual == 1)
+                    {
+                        @Html.ActionLink(Model.PaginaActual.ToString(), "TopMovie", new {pagina = 1 },new { @class = "btn btn-sm btn-default disabled py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white focus:shadow-none" })
+                        <span></span>
+                        if (Model.TotalPaginas >= 2)
+                        {
+                            @Html.ActionLink((Model.PaginaActual+1).ToString(), "TopMovie", new { pagina = Model.PaginaActual + 1 },
+                new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+                            <span></span>
+                            if (Model.TotalPaginas >= 3)
+                            {
+                                @Html.ActionLink((Model.PaginaActual+2).ToString(), "TopMovie", new {pagina = Model.PaginaActual +2},
+                new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+                                <span></span>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (Model.PaginaActual < Model.TotalPaginas)
+                        {
+                            @Html.ActionLink((Model.PaginaActual-1).ToString(), "TopMovie", new { pagina = 1 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
+                            @Html.ActionLink(Model.PaginaActual.ToString(), "TopMovie", new { pagina = Model.PaginaActual},
+                new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white  focus:shadow-none" })
+                            <span></span>
+                            if (Model.TotalPaginas >= 3)
+                            {
+                                @Html.ActionLink((Model.PaginaActual+1).ToString(), "TopMovie", new { pagina = Model.PaginaActual + 1},
+                new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+                                <span></span>
+                            }
+                        }
+                        else
+                        {
+                            if (Model.TotalPaginas <= 2)
+                            {
+                                @Html.ActionLink((Model.PaginaActual-1).ToString(), "TopMovie", new {pagina =Model.PaginaActual- 1 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
+                                @Html.ActionLink(Model.PaginaActual.ToString(), "TopMovie", new {nombreBuscar=Model.nombreABuscar, pagina = Model.PaginaActual},
+                new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white  focus:shadow-none" })
+                                <span></span>
+                            }
+                            else
+                            {
+                                @Html.ActionLink((Model.PaginaActual-2).ToString(), "TopMovie", new {pagina = Model.PaginaActual-2 },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
+                                @Html.ActionLink((Model.PaginaActual-1).ToString(), "TopMovie", new { pagina = Model.PaginaActual-1},
+                new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"})
+                                <span></span>
+                                @Html.ActionLink(Model.PaginaActual.ToString(), "TopMovie", new { pagina = Model.PaginaActual},
+                new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-blue-500 outline-none transition-all duration-300 rounded-full text-white hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+                                <span></span>
+                            }
+                        }
+
+                    }
+
+                    @if (Model.PaginaActual == Model.TotalPaginas)
+                    {
+                        @Html.ActionLink(">>", "TopMovie", new {pagina = Model.TotalPaginas },new { @class = "btn btn-sm btn-default  disabled py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink(">>", "TopMovie", new { pagina = Model.TotalPaginas },new { @class = "btn btn-sm btn-default py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded-full text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none" })
+
+                    }
+                }
+
+            </nav>
+        </div>
     </div>
+   
 </main>

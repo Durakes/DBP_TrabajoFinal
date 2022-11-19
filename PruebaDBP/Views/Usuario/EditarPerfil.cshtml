@@ -4,55 +4,55 @@
 }
 
 <main class="flex items-center justify-center bg-gray-100 p-5">
-    <div class="conteiner w-100 bg-white items-center">
+    <div class="conteiner w-100 bg-gray-200 items-center">
         <div class="md:p-12 md:mx-6 md:w-8/10 sm:w-19/20 overflow-hidden grid md:grid-cols-2 gap-9 flex items-center">
             <div class="container">
                 <div class="text-gray-700 mx-2 mb-4">Seleccione su nueva foto de perfil: </div>
                 <form asp-controller="Usuario" asp-action="ModificarFoto" method="post" class="grid grid-cols-3">
                     <input hidden type="text" asp-for="IdUsuario" />
-                    <button id="imagen1" name="foto" value="https://i.pinimg.com/originals/5f/58/ac/5f58ace713513468184be481d8315354.jpg">
-                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-white">
-                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://i.pinimg.com/originals/5f/58/ac/5f58ace713513468184be481d8315354.jpg" alt="" width="384" height="512">
+                    <button id="imagen1" name="foto" value="https://mir-s3-cdn-cf.behance.net/project_modules/disp/bb3a8833850498.56ba69ac33f26.png">
+                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-gray-200">
+                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/bb3a8833850498.56ba69ac33f26.png" alt="" width="384" height="512">
                         </div>
                     </button>
-                    <button id="imagen2" name="foto" value="https://i.pinimg.com/474x/bc/f9/ce/bcf9cefb35a6e69e5ac0bd51abf91cf3.jpg">
-                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-white">
-                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://i.pinimg.com/474x/bc/f9/ce/bcf9cefb35a6e69e5ac0bd51abf91cf3.jpg" alt="" width="384" height="512">
+                    <button id="imagen2" name="foto" value="https://mir-s3-cdn-cf.behance.net/project_modules/disp/e70b1333850498.56ba69ac32ae3.png">
+                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-gray-200">
+                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/e70b1333850498.56ba69ac32ae3.png" alt="" width="384" height="512">
                         </div>
                     </button>
-                    <button id="imagen3" name="foto"  value="https://th.bing.com/th/id/OIP.UpE5TpdCl_h62knsPXK7ygAAAA?pid=ImgDet&rs=1">
-                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-white">
-                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://th.bing.com/th/id/OIP.UpE5TpdCl_h62knsPXK7ygAAAA?pid=ImgDet&rs=1" alt="" width="384" height="512">
+                    <button id="imagen3" name="foto" value="https://mir-s3-cdn-cf.behance.net/project_modules/disp/64623a33850498.56ba69ac2a6f7.png">
+                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-gray-200">
+                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/64623a33850498.56ba69ac2a6f7.png" alt="" width="384" height="512">
                         </div>
                     </button>
-                    <button id="imagen4" name="foto" value="https://th.bing.com/th/id/OIP.7845UVkGy58Y-FNOXl1GBQHaE8?pid=ImgDet&rs=1">
-                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-white">
-                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://th.bing.com/th/id/OIP.7845UVkGy58Y-FNOXl1GBQHaE8?pid=ImgDet&rs=1" alt="" width="384" height="512">
+                    <button id="imagen4" name="foto" value="https://mir-s3-cdn-cf.behance.net/project_modules/disp/84c20033850498.56ba69ac290ea.png">
+                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-gray-200">
+                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/84c20033850498.56ba69ac290ea.png" alt="" width="384" height="512">
                         </div>
                     </button>
-                    <button id="imagen5" name="foto" value="https://fondosmil.com/fondo/80557.jpg">
-                        <div class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-white">
-                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://fondosmil.com/fondo/80557.jpg" alt="" width="384" height="512">
+                    <button id="imagen5" name="foto" value="https://th.bing.com/th/id/R.41d3862df7da58ba1afb318fb16f83f7?rik=hq3YO6f4XE4jyA&pid=ImgRaw&r=0">
+                        <div class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-gray-200">
+                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://th.bing.com/th/id/R.41d3862df7da58ba1afb318fb16f83f7?rik=hq3YO6f4XE4jyA&pid=ImgRaw&r=0" alt="" width="384" height="512">
                         </div>
                     </button>
-                    <button id="imagen6" name="foto" value="https://th.bing.com/th/id/OIP.m5dBoegdK2pIucUnrI0x0QAAAA?pid=ImgDet&rs=1">
-                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-white">
-                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://th.bing.com/th/id/OIP.m5dBoegdK2pIucUnrI0x0QAAAA?pid=ImgDet&rs=1" alt="" width="384" height="512">
+                    <button id="imagen6" name="foto" value="https://mir-s3-cdn-cf.behance.net/project_modules/disp/1bdc9a33850498.56ba69ac2ba5b.png">
+                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-gray-200">
+                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/1bdc9a33850498.56ba69ac2ba5b.png" alt="" width="384" height="512">
                         </div>
                     </button>
-                    <button id="imagen7" name="foto" value="https://1.bp.blogspot.com/-1C1cKods0oY/VQNsiyff5NI/AAAAAAACB3M/ccLFIa8bthM/s1600/Fotos%2BDivertidas%2BGatos%2B24.jpg">
-                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-white">
-                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://1.bp.blogspot.com/-1C1cKods0oY/VQNsiyff5NI/AAAAAAACB3M/ccLFIa8bthM/s1600/Fotos%2BDivertidas%2BGatos%2B24.jpg" alt="" width="384" height="512">
+                    <button id="imagen7" name="foto" value="https://mir-s3-cdn-cf.behance.net/project_modules/disp/f9fa8a33850498.56ba69ac2cc3a.png">
+                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-gray-200">
+                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/f9fa8a33850498.56ba69ac2cc3a.png" alt="" width="384" height="512">
                         </div>
                     </button>
-                    <button id="imagen8" name="foto" value="https://th.bing.com/th/id/OIP.ZB_U_8KHdZsto8bUcdQ_QQAAAA?pid=ImgDet&rs=1">
-                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-white">
-                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://th.bing.com/th/id/OIP.ZB_U_8KHdZsto8bUcdQ_QQAAAA?pid=ImgDet&rs=1" alt="" width="384" height="512">
+                    <button id="imagen8" name="foto" value="https://mir-s3-cdn-cf.behance.net/project_modules/disp/363e3e33850498.56ba69ac3183c.png">
+                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-gray-200">
+                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/363e3e33850498.56ba69ac3183c.png" alt="" width="384" height="512">
                         </div>
                     </button>
-                    <button id="imagen9" name="foto" value="https://i.pinimg.com/originals/63/7d/67/637d67884efc2352f9e2fa5430446863.jpg">
-                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-white">
-                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://i.pinimg.com/originals/63/7d/67/637d67884efc2352f9e2fa5430446863.jpg" alt="" width="384" height="512">
+                    <button id="imagen9" name="foto" value="https://mir-s3-cdn-cf.behance.net/project_modules/disp/2c659933850498.56ba69ac2e080.png">
+                        <div class="m-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 bg-gray-200">
+                            <img class="w-12 h-12 md:w-24 md:h-24 md:flex  mx-auto" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/2c659933850498.56ba69ac2e080.png" alt="" width="384" height="512">
                         </div>
                     </button>
                 </form>
