@@ -2,6 +2,8 @@
 using Newtonsoft.Json;
 using PruebaDBP.Models;
 using System.Dynamic;
+using System.Linq;
+
 namespace PruebaDBP.Controllers
 {
     public class UsuarioController : Controller
@@ -276,7 +278,7 @@ namespace PruebaDBP.Controllers
             var usuario = JsonConvert.DeserializeObject<Usuario>(sUser);
             List<PeliAgre> lista = new List<PeliAgre>();
             var listRegistros = (from obj in Context.Estanteria
-                                 where obj.IdUsuario == usuario.IdUsuario
+                                 where obj.IdUsuario == usuario.IdUsuario && obj.NomEstanteria=="Vistas"
                                  select obj).ToList();
 
             foreach (var item in listRegistros)
@@ -285,7 +287,7 @@ namespace PruebaDBP.Controllers
                 
                 foreach (var item2 in obj2)
                 {
-                    var obj = (from pel in Context.Peliculas orderby item.FechaCreacion where pel.IdPelicula == item2.IdPelicula select pel).Single();
+                    var obj = (from pel in Context.Peliculas where pel.IdPelicula == item2.IdPelicula select pel).Single();
                     var directorPel = (from dir in Context.PeliculaDirectors where obj.IdPelicula == dir.IdPelicula select dir).ToList();
                     List<Director> listaDirectores = new List<Director>();
                     foreach (var dir in directorPel)
@@ -304,6 +306,7 @@ namespace PruebaDBP.Controllers
                     registro.UrlFoto = obj.UrlFoto;
                     registro.estanteria = item.NomEstanteria;
                     registro.IdEstanteria = item.IdEstanteria;
+                    registro.FechaAgregar = item2.FechaAgregacion;
                     if (sUser != null)
                     {
                         registro.valoracion = (from valUser in Context.ValoracionUsuarios where valUser.IdPelicula == obj.IdPelicula && valUser.IdUsuario == usuario.IdUsuario select valUser).FirstOrDefault();
@@ -318,8 +321,9 @@ namespace PruebaDBP.Controllers
                 }
             
             }
+            
 
-            return lista.Take(5).ToList();
+            return lista.OrderByDescending(p=>p.FechaAgregar).Take(5).ToList();
         }
 
         [Route("Editar")]

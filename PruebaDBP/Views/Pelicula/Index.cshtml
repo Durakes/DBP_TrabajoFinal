@@ -20,7 +20,7 @@
                         Director
                     </div>
                     <div class="text-sky-500">
-                        Año
+                        Fecha de estreno
                     </div>
                     <div class="text-sky-500">
                         Valoración
@@ -52,7 +52,7 @@
                                 if(ult2.NomDirector!=ult.NomDirector){
                                     if (cant==2)
                                     {
-                                        <a asp-controller="Director" asp-action="Index" asp-route-idDir="@item.IdDirTmdb"> @item.NomDirector</a>
+                                        <a asp-controller="Director" asp-action="Index" asp-route-id="@item.IdDirTmdb"> @item.NomDirector</a>
                                     }
                                     else
                                     {
@@ -65,7 +65,7 @@
                             }
                             else
                             {
-                                <a asp-controller="Director" asp-action="Index" asp-route-idDir="@item.IdDirTmdb"> @item.NomDirector </a>
+                                <a asp-controller="Director" asp-action="Index" asp-route-id="@item.IdDirTmdb"> @item.NomDirector </a>
                             }
                             
                             
@@ -351,8 +351,6 @@
            
 
             <div class="container bg-slate-100 rounded-xl grid justify-items-center ">
-                @if (Model.listComentario.Count() >= 1)
-                {
                     @foreach (var item in Model.listComentario)
                     {
                         <figure class=" grid gap-4 grid-cols-1 mb-5">
@@ -367,7 +365,7 @@
                                     <div class="pt-0 md:p-5 text-left space-y-4 ml-5 col-span-3 md:col-span-5 ">
 
                                         <div class="text-black-500 text-xl text-left">
-                                            <a asp-controller="Usuario" asp-action="Perfil">@item.User.Username</a>
+                                            @item.User.Username
                                             <!--Flag
                                             <svg data-bs-toggle="modal" data-bs-target="#reportar" aria-hidden="true"
                                             focusable="false" data-prefix="fas" data-icon="fa-pennant"
@@ -447,7 +445,7 @@
                                                                 {
                                                                     <div class="text-slate-700 flex justify-self-start md:row-start-3 md:row-end-4 ">
                                                                         <div class="text-slate-700 flex justify-center">
-                                                                            <p>¡Valora la película!</p>
+                                                                            <p>Sin valorar</p>
                                                                         </div>
                                                                     </div>
                                                                 }
@@ -480,7 +478,7 @@
                                 </figure>
                             </div>
                         </figure>
-                    }
+                    
                 }
 
             </div>
@@ -555,7 +553,7 @@
                                 <div class="px-3 mb-2 mt-2 w-full">
                                     <textarea id="comentario"
                                         class=" bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-16 py-2 px-3 font-medium placeholder-gray-400 focus:outline-none focus:bg-white"
-                                              name="comentario" maxlength="150" placeholder='Escribe tu comentario' required></textarea>
+                                              name="comentario" maxlength="500" placeholder='Escribe tu comentario' required></textarea>
                                 </div>
                                 <div class="w-full md:w-full  md:w-full px-3 ">
                                     <div class="-mr-1  columns-2 ">
