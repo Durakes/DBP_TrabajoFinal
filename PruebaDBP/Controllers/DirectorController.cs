@@ -16,6 +16,7 @@ namespace PruebaDBP.Controllers
 
             if(objDir == null)
             {
+                Console.Write("hola"+id + "\n");
                 return NoContent();
             }
             else
