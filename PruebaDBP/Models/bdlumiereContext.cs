@@ -201,7 +201,7 @@ namespace PruebaDBP.Models
                     .HasColumnName("id_pelicula");
 
                 entity.Property(e => e.Valoracion)
-                    .HasColumnType("int(4)")
+                    .HasPrecision(4,2)
                     .HasColumnName("valoracion");
 
                 entity.Property(e => e.FechaEstreno)

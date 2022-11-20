@@ -27,7 +27,7 @@ namespace PruebaDBP.Controllers
             string posterUrl;
             string titulo;
             string fecha;
-            int? minutos;
+            decimal? valoracion;
             string lenguaje;
             List<String> generos = new List<string>();
             List<int?> directores = new List<int?>();
@@ -60,7 +60,7 @@ namespace PruebaDBP.Controllers
                         posterUrl = "https://image.tmdb.org/t/p/w500" + detallePelicula.poster_path;
                         titulo = detallePelicula.title;
                         fecha = detallePelicula.release_date;
-                        minutos = detallePelicula.vote_average;
+                        valoracion = (detallePelicula.vote_average / 2) ;
                         lenguaje = detallePelicula.original_language;
                         generos = new List<string>();
                         /*Probar esta parte luego*/
@@ -73,7 +73,7 @@ namespace PruebaDBP.Controllers
 
                         var ObjIdioma = (from Tleng in Context.Idiomas where Tleng.Abreviacion == lenguaje select Tleng).Single();
 
-                        objPeliculaRegistro = new Pelicula(id, ObjIdioma.IdIdioma, titulo, fecha, minutos, sumilla, posterUrl);
+                        objPeliculaRegistro = new Pelicula(id, ObjIdioma.IdIdioma, titulo, fecha, valoracion, sumilla, posterUrl);
                         if (ModelState.IsValid)
                         {
                             Context.Peliculas.Add(objPeliculaRegistro);
@@ -273,7 +273,7 @@ namespace PruebaDBP.Controllers
                 string lenguaje;
                 string titulo;
                 string fecha;
-                int valoracion = 0;
+                decimal valoracion = 0;
                 string sumilla;
                 string posterURL;
                 List<String> generos = new List<string>();
@@ -307,7 +307,7 @@ namespace PruebaDBP.Controllers
                                 fecha = detallePelicula.release_date;
                                 lenguaje = detallePelicula.original_language;
                                 generos = new List<string>();
-                                valoracion = detallePelicula.vote_average;
+                                valoracion = (detallePelicula.vote_average / 2) ;
                                 /*Probar esta parte luego*/
                                 //dynamic generosv2 = detallePelicula.genres;
                                 foreach (var genero in detallePelicula.genres)
@@ -535,7 +535,7 @@ namespace PruebaDBP.Controllers
                 string posterUrl;
                 string titulo;
                 string fecha;
-                int? valoracion;
+                decimal? valoracion;
                 string lenguaje;
                 List<int> generos = new List<int>();
                 List<int?> directores = new List<int?>();
