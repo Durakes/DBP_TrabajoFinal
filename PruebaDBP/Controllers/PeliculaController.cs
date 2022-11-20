@@ -57,7 +57,10 @@ namespace PruebaDBP.Controllers
                         string detalleData = await detalle.Content.ReadAsStringAsync();
                         dynamic detallePelicula = JsonConvert.DeserializeObject(detalleData);
                         sumilla = detallePelicula.overview;
-                        posterUrl = "https://image.tmdb.org/t/p/w500" + detallePelicula.poster_path;
+                        if (detallePelicula.poster_path != null)
+                            posterUrl = "https://image.tmdb.org/t/p/w500" + detallePelicula.poster_path;
+                        else
+                            posterUrl = "";
                         titulo = detallePelicula.title;
                         fecha = detallePelicula.release_date;
                         valoracion = (detallePelicula.vote_average / 2) ;
