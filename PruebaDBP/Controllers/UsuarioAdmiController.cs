@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using PruebaDBP.Models;
+
 
 namespace PruebaDBP.Controllers
 {
@@ -65,6 +65,7 @@ namespace PruebaDBP.Controllers
                 var Obj = JsonConvert.DeserializeObject
                     <Usuario>(HttpContext.Session.GetString("sadministrador"));
 
+                ViewBag.Idioma = Context.Idiomas;
                 return View();
             }
             else
@@ -83,7 +84,7 @@ namespace PruebaDBP.Controllers
             }
             else
             {
-                ViewBag.Pelicula = Context.Peliculas;
+                ViewBag.Idioma = Context.Idiomas;
                 return View("CrearPelicula");
             }
         }
@@ -99,6 +100,7 @@ namespace PruebaDBP.Controllers
                     <Usuario>(HttpContext.Session.GetString("sadministrador"));
 
                 var obj = (from Tpeli in Context.Peliculas where Tpeli.IdPelicula == codigo select Tpeli).Single();
+                ViewBag.Idioma = Context.Idiomas;
                 return View(obj);
             }
             else
@@ -107,7 +109,7 @@ namespace PruebaDBP.Controllers
             }
         }
 
-        [HttpGet]
+     
         public IActionResult EditarPeli(Pelicula objNew)
         {
             if (ModelState.IsValid)
@@ -122,11 +124,14 @@ namespace PruebaDBP.Controllers
 
 
 
+
+
                 Context.SaveChanges();
                 return RedirectToAction("ListadoPeliculas");
             }
             else
             {
+                ViewBag.Idioma = Context.Idiomas;
                 return View("EditrPelicula");
             }
         }
@@ -152,6 +157,7 @@ namespace PruebaDBP.Controllers
                     <Usuario>(HttpContext.Session.GetString("sadministrador"));
 
                 var list = Context.Peliculas;
+                ViewBag.Idioma = Context.Idiomas;
                 return View(list);
             }
             else
@@ -217,7 +223,6 @@ namespace PruebaDBP.Controllers
             }
             else
             {
-                ViewBag.Director = Context.Directors;
                 return View("CrearDirector");
             }
         }
@@ -250,7 +255,7 @@ namespace PruebaDBP.Controllers
 
                 objOld.NomDirector = objNew.NomDirector;
                 objOld.BioDirector = objNew.BioDirector;
-                objOld.UrlFoto = objNew.UrlFoto;
+                objOld.UrlFoto     = objNew.UrlFoto;
 
 
 
@@ -315,15 +320,156 @@ namespace PruebaDBP.Controllers
         {
             if (ModelState.IsValid)
             {
+                var fechaCreacion = DateTime.Now.ToString("yyyy-MM-dd");
+                obj.FechaCreacion = fechaCreacion;
                 Context.Usuarios.Add(obj);
                 Context.SaveChanges();
                 return RedirectToAction("ListarUsuarios");
             }
             else
             {
-                ViewBag.Usuario = Context.Usuarios;
                 return View("CrearUsuario");
             }
+        }
+
+
+
+
+        //Manejo de la informacion relacionada a los Comentarios
+        [HttpGet]
+        public IActionResult ListarComentarios()
+        {
+            var ObjSesion = HttpContext.Session.GetString("sadministrador");
+            if (ObjSesion != null)
+            {
+                var Obj = JsonConvert.DeserializeObject
+                    <Usuario>(HttpContext.Session.GetString("sadministrador"));
+
+                var list = Context.Comentarios;
+                return View(list);
+            }
+            else
+            {
+                return RedirectToAction("LoginAdmi");
+            }
+        }
+
+
+        [Route("UsuarioAdmi/EliminarComentario/{Codigo}")]
+        public IActionResult EliminarComentario(int codigo)
+        {
+            var obj = (from Tcomentario in Context.Comentarios where Tcomentario.IdComentario == codigo select Tcomentario).Single();
+
+            Context.Comentarios.Remove(obj);
+            Context.SaveChanges();
+
+            return RedirectToAction("ListarComentarios");
+        }
+
+
+
+        //Manejo de la informacion relacionada a los Idiomas
+        [HttpGet]
+        public IActionResult ListarIdiomas()
+        {
+            var ObjSesion = HttpContext.Session.GetString("sadministrador");
+            if (ObjSesion != null)
+            {
+                var Obj = JsonConvert.DeserializeObject
+                    <Usuario>(HttpContext.Session.GetString("sadministrador"));
+
+                var list = Context.Idiomas;
+                return View(list);
+            }
+            else
+            {
+                return RedirectToAction("LoginAdmi");
+            }
+        }
+
+
+        [HttpGet]
+        public IActionResult CrearIdioma()
+        {
+            var ObjSesion = HttpContext.Session.GetString("sadministrador");
+            if (ObjSesion != null)
+            {
+                var Obj = JsonConvert.DeserializeObject
+                    <Usuario>(HttpContext.Session.GetString("sadministrador"));
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("LoginAdmi");
+            }
+        }
+
+        public IActionResult CrearIdio(Idioma obj)
+        {
+            if (ModelState.IsValid)
+            {
+                Context.Idiomas.Add(obj);
+                Context.SaveChanges();
+                return RedirectToAction("ListarIdiomas");
+            }
+            else
+            {
+                return View("CrearIdioma");
+            }
+        }
+
+
+        [HttpGet]
+        [Route("UsuarioAdmi/EditarIdioma/{Codigo}")]
+        public IActionResult EditarIdioma(int codigo)
+        {
+            var ObjSesion = HttpContext.Session.GetString("sadministrador");
+            if (ObjSesion != null)
+            {
+                var Obj = JsonConvert.DeserializeObject
+                    <Usuario>(HttpContext.Session.GetString("sadministrador"));
+
+                var obj = (from Tidioma in Context.Idiomas where Tidioma.IdIdioma == codigo select Tidioma).Single();
+                return View(obj);
+            }
+            else
+            {
+                return RedirectToAction("LoginAdmi");
+            }
+        }
+
+        public IActionResult EdiatarIdio(Idioma objNew)
+        {
+            if (ModelState.IsValid)
+            {
+                var objOld = (from Tidioma in Context.Idiomas where Tidioma.IdIdioma == objNew.IdIdioma select Tidioma).Single();
+
+
+                objOld.NomIdioma   = objNew.NomIdioma;
+                objOld.Abreviacion = objNew.Abreviacion;
+
+
+
+                Context.SaveChanges();
+                return RedirectToAction("ListarIdiomas");
+            }
+            else
+            {
+                return View("EditarIdioma");
+            }
+        }
+
+
+        [Route("UsuarioAdmi/EliminarIdioma/{Codigo}")]
+        public IActionResult EliminarIdioma(int codigo)
+        {
+            var obj = (from Tidioma in Context.Idiomas where Tidioma.IdIdioma == codigo select Tidioma).Single();
+
+            Context.Idiomas.Remove(obj);
+            Context.SaveChanges();
+
+            return RedirectToAction("ListarIdiomas");
         }
     }
 }

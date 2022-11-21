@@ -1,4 +1,4 @@
-﻿@model PruebaDBP.Models.Pelicula
+﻿@model PruebaDBP.Models.Idioma
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -212,8 +212,7 @@
 					<!-- navigation -->
 					<ul class="flex flex-col w-full">
 						<li class="my-px">
-							<a 
-							   class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-600 bg-gray-100"asp-area="" asp-controller="UsuarioAdmi" asp-action="VentanaAdmi">
+							<a class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-600 bg-gray-100" asp-area="" asp-controller="UsuarioAdmi" asp-action="VentanaAdmi">
 								<span class="flex items-center justify-center text-lg text-gray-400">
 									<svg fill="none"
 										 stroke-linecap="round"
@@ -248,7 +247,8 @@
 							</a>
 						</li>
 						<li class="my-px">
-                            <a class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-600 hover:bg-gray-100"asp-area="" asp-controller="UsuarioAdmi" asp-action="ListarDirectores">								<span class="flex items-center justify-center text-lg text-gray-400">
+							<a class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-600 hover:bg-gray-100" asp-area="" asp-controller="UsuarioAdmi" asp-action="ListarDirectores">
+								<span class="flex items-center justify-center text-lg text-gray-400">
 									<svg fill="none"
 										 stroke-linecap="round"
 										 stroke-linejoin="round"
@@ -339,60 +339,32 @@
 
 				<div class="container mb-2">
 
-					<form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" asp-controller="UsuarioAdmi" asp-action="CrearPeli" method="post">
-						<div class="mb-4">
-							<label class="block text-gray-700 text-sm font-bold mb-2" for="Nombre Pelicula">
-								Nombre Pelicula
-							</label>
-							<input asp-for="NomPelicula" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" placeholder="Nombre Pelicula">
-							<span asp-validation-for="NomPelicula" class="text-danger"></span>
-						</div>
+					<form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" asp-controller="UsuarioAdmi" asp-action="EdiatarIdio" method="post">
 						<div class="mb-4">
 							<span class="sr-only">
-								<label class="block text-gray-700 text-sm font-bold mb-2" for="IdTmdb">
-									Id_tmdb
+								<label class="block text-gray-700 text-sm font-bold mb-2" for="IdIdioma">
+									IdIdioma
 								</label>
-								<input asp-for="IdTmdb" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value=0 id="username" placeholder="IdTmdb">
-								<span asp-validation-for="IdTmdb" class="text-danger"></span>
+								<input asp-for="IdIdioma" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" placeholder="IdIdioma">
+								<span asp-validation-for="IdIdioma" class="text-danger"></span>
 							</span>
 						</div>
 						<div class="mb-4">
-							<label class="block text-gray-700 text-sm font-bold mb-2" for="Nombre Pelicula">
-								Idioma
+							<label class="block text-gray-700 text-sm font-bold mb-2" for="Nombre Idioma">
+								Nombre Idioma
 							</label>
-							<select asp-for="IdIdioma" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" asp-items='@(new SelectList( ViewBag.Idioma,"IdIdioma","NomIdioma"))'></select>
-							<span asp-validation-for="IdIdioma" class="text-danger"></span>
+							<input asp-for="NomIdioma" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" placeholder="Nombre Idioma">
+							<span asp-validation-for="NomIdioma" class="text-danger"></span>
 						</div>
 						<div class="mb-4">
-							<label class="block text-gray-700 text-sm font-bold mb-2" for="Fecha Estreno">
-								Fecha Estreno
+							<label class="block text-gray-700 text-sm font-bold mb-2" for="Abreviacion">
+								Abreviacion
 							</label>
-							<input type="date" asp-for="FechaEstreno" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" placeholder="Fecha Estreno">
-							<span asp-validation-for="FechaEstreno" class="text-danger"></span>
-						</div>
-						<div class="mb-4">
-							<label class="block text-gray-700 text-sm font-bold mb-2" for="Duracion en Min">
-								Duracion en Min
-							</label>
-							<input asp-for="Valoracion" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" placeholder="Duracion en Min">
-							<span asp-validation-for="Valoracion" class="text-danger"></span>
-						</div>
-						<div class="mb-4">
-							<label class="block text-gray-700 text-sm font-bold mb-2" for="Sumilla">
-								Sumilla
-							</label>
-							<input asp-for="Sumilla" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" placeholder="Sumilla">
-							<span asp-validation-for="Sumilla" class="text-danger"></span>
-						</div>
-						<div class="mb-4">
-							<label class="block text-gray-700 text-sm font-bold mb-2" for="UrlFoto">
-								UrlFoto
-							</label>
-							<input asp-for="UrlFoto" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" placeholder="UrlFoto">
-							<span asp-validation-for="UrlFoto" class="text-danger"></span>
+							<input asp-for="Abreviacion" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" placeholder="Abreviacion">
+							<span asp-validation-for="Abreviacion" class="text-danger"></span>
 						</div>
 						<div class="flex items-center justify-between">
-							<button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" value="btn" name="grabar" data-toggle="modal" data-target="#exampleModal">Crear</button>
+							<button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" value="btn" name="grabar" data-toggle="modal" data-target="#exampleModal">Modificar</button>
 						</div>
 					</form>
 
@@ -406,3 +378,4 @@
 
 
 </main>
+
