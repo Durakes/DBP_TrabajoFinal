@@ -58,7 +58,12 @@ namespace PruebaDBP.Controllers
                                         string lenguaje = objPelicula.original_language;
                                         int? valoracion = resultPel.vote_average;
                                         string sumilla = resultPel.overview;
-                                        string fotoURL = "https://image.tmdb.org/t/p/w500" + resultPel.poster_path;
+                                        string fotoURL;
+                                        if (resultPel.poster_path != null)
+                                            fotoURL = "https://image.tmdb.org/t/p/w500" + resultPel.poster_path;
+                                        else
+                                            fotoURL = "";
+                                        
 
                                         var ObjIdioma = (from Tleng in Context.Idiomas where Tleng.Abreviacion == lenguaje select Tleng).Single();
                                         Pelicula objPeliculaRegistro = new Pelicula(idPel, ObjIdioma.IdIdioma, nombre, fechaEstreno, valoracion, sumilla, fotoURL);
