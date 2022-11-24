@@ -7,7 +7,9 @@ namespace PruebaDBP.Models
     public partial class Idioma
     {
         public int IdIdioma { get; set; }
+        [Required(ErrorMessage = "El campo nombre del idioma es obligatorio")]
         public string? NomIdioma { get; set; }
+        [Required(ErrorMessage = "El campo abreviacion es obligatorio")]
         public string? Abreviacion { get; set; }
 
         public Idioma(string nombre, string abrv)
